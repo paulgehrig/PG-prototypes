@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Hub - Updated Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f0f0;
+            line-height: 1.5;
+            color: #1b1b1b;
+            font-size: 16px;
+        }
+
+        /* Config Header */
+        .config-header {
+            background: #1b1b1b;
+            color: white;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .config-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .config-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .config-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .config-label {
+            font-size: 13px;
+            color: #a0a0a0;
+        }
+
+        .config-toggle {
+            display: flex;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .config-toggle button {
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: #a0a0a0;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .config-toggle button.active {
+            background: #005ea2;
+            color: white;
+        }
+
+        .config-toggle button:hover:not(.active) {
+            background: #444;
+        }
+
+        .config-toggle.hidden {
+            display: none;
+        }
+
+        .reset-btn {
+            margin-left: auto;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #a0a0a0;
+            border-radius: 4px;
+            background: transparent;
+            color: #a0a0a0;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .reset-btn:hover {
+            border-color: white;
+            color: white;
+        }
+
+        /* Viewport Container */
+        .viewport-container {
+            display: flex;
+            justify-content: center;
+            padding: 24px;
+            min-height: calc(100vh - 120px);
+        }
+
+        .viewport-frame {
+            background: white;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .viewport-frame.mobile {
+            width: 375px;
+            border-radius: 24px;
+            border: 8px solid #1b1b1b;
+        }
+
+        .viewport-frame.desktop {
+            width: 100%;
+            max-width: 1024px;
+            border-radius: 8px;
+        }
+
+        /* Government Banner */
+        .gov-banner {
+            background: #1a4480;
+            color: white;
+            font-size: 12px;
+            padding: 4px 16px;
+            text-align: center;
+        }
+
+        /* Header */
+        .site-header {
+            background: #1b1b1b;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-header-logo {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .site-header-nav {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        .site-header-nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .site-header-menu {
+            background: #005ea2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 24px 16px;
+            min-height: 500px;
+        }
+
+        .desktop .page-content {
+            padding: 32px 48px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .desktop.layout-two-column .page-content {
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .desktop.layout-two-column .page-header {
+            grid-column: 1 / -1;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .page-header p {
+            color: #1b1b1b;
+            font-size: 16px;
+        }
+
+        #reportingPeriod {
+            font-weight: 400;
+        }
+
+        #reportingPeriod::before {
+            content: "Reporting period: ";
+            font-weight: 700;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin-bottom: 24px;
+        }
+
+        .desktop.layout-two-column .progress-section {
+            margin-bottom: 0;
+        }
+
+        .progress-content h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1b1b1b;
+        }
+
+        .progress-description {
+            font-size: 14px;
+            color: #71767a;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .months-completed {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1b1b1b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .months-completed .check-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: #00a91c;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .months-required-hint {
+            font-size: 14px;
+            color: #71767a;
+            margin-bottom: 16px;
+        }
+
+        /* Month Progress Rows */
+        .month-progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .month-progress-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .month-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .month-progress-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: #1b1b1b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .month-progress-label.complete {
+            font-weight: 600;
+        }
+
+        .month-progress-label .check-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: #00a91c;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .month-progress-hours {
+            font-size: 14px;
+            color: #1b1b1b;
+        }
+
+        .month-progress-hours.complete {
+            color: #00a91c;
+            font-weight: 600;
+        }
+
+        .month-progress-hours.partial {
+            color: #005ea2;
+            font-weight: 600;
+        }
+
+        .month-progress-bar {
+            height: 8px;
+            background: #dfe1e2;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .month-progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .month-progress-bar-fill.complete {
+            background: #00a91c;
+        }
+
+        .month-progress-bar-fill.partial {
+            background: #005ea2;
+        }
+
+        .month-progress-bar-fill.empty {
+            background: transparent;
+        }
+
+        /* Single month progress (application 1-month) */
+        .single-month-progress {
+            margin-top: 8px;
+        }
+
+        .single-month-progress .month-progress-bar {
+            margin-bottom: 8px;
+        }
+
+        .single-month-hours {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .single-month-hours.partial {
+            color: #005ea2;
+            font-weight: 600;
+        }
+
+        .single-month-hours.complete {
+            color: #00a91c;
+            font-weight: 600;
+        }
+
+        /* Submit CTA Button */
+        .submit-cta {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: #005ea2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .submit-cta:hover {
+            background: #1a4480;
+        }
+
+        .submit-cta.in-progress-section {
+            margin-top: 20px;
+        }
+
+        .submit-cta.at-bottom {
+            margin-top: 32px;
+        }
+
+        /* Activities Section */
+        .activities-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* Category sections */
+        .category-section {
+            margin-bottom: 32px;
+        }
+
+        .category-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .category-add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border: 1px solid #005ea2;
+            border-radius: 4px;
+            background: transparent;
+            color: #005ea2;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .category-add-btn:hover:not(.disabled) {
+            background: #f0f7ff;
+        }
+
+        .category-add-btn.disabled {
+            border-color: #a9aeb1;
+            color: #a9aeb1;
+            cursor: not-allowed;
+        }
+
+        /* Activity cards container */
+        .category-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Empty state */
+        .category-empty {
+            padding: 16px 20px;
+            background: #f6f6f6;
+            border-radius: 8px;
+            color: #71767a;
+            font-size: 14px;
+        }
+
+        /* Activity Cards */
+        .activity-card {
+            background: white;
+            border: 1px solid #dfe1e2;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .activity-card-header {
+            padding: 16px 20px;
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .activity-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .activity-card-link {
+            color: #005ea2;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .activity-card-body {
+            padding: 8px 20px 16px;
+        }
+
+        /* All months view styles */
+        .month-details-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .month-detail-row {
+            display: flex;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px solid #dfe1e2;
+            gap: 16px;
+        }
+
+        .month-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .month-detail-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1b1b1b;
+            min-width: 90px;
+        }
+
+        .month-detail-stat {
+            display: flex;
+            flex-direction: column;
+            min-width: 80px;
+        }
+
+        .month-detail-label {
+            font-size: 12px;
+            color: #71767a;
+        }
+
+        .month-detail-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1b1b1b;
+        }
+
+        .expand-months-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            background: transparent;
+            border: none;
+            color: #005ea2;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .expand-months-btn:hover {
+            text-decoration: underline;
+        }
+
+        .activity-card.all-months .activity-card-body {
+            padding: 0 20px 12px;
+        }
+
+        .activity-card-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .activity-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-stat-label {
+            font-size: 12px;
+            color: #71767a;
+        }
+
+        .activity-stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1b1b1b;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #1b1b1b;
+            color: white;
+            padding: 24px 16px;
+            margin-top: 32px;
+        }
+
+        .site-footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .site-footer-logo {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .site-footer-btn {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Activity Details Panel */
+        .details-panel-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .details-panel-overlay.open {
+            display: block;
+        }
+
+        .details-panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .details-panel-overlay.open .details-panel {
+            transform: translateX(0);
+        }
+
+        .mobile .details-panel {
+            max-width: 100%;
+        }
+
+        .details-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #dfe1e2;
+            background: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .details-panel-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .details-panel-close {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border: 1px solid #005ea2;
+            border-radius: 4px;
+            background: transparent;
+            color: #005ea2;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .details-panel-content {
+            padding: 20px;
+        }
+
+        .details-category-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #1b1b1b;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 2px;
+            margin-bottom: 8px;
+        }
+
+        .details-activity-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .details-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .details-month {
+            padding: 12px 0;
+            border-bottom: 1px solid #dfe1e2;
+        }
+
+        .details-month:last-child {
+            border-bottom: none;
+        }
+
+        .details-month-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #71767a;
+            margin-bottom: 8px;
+        }
+
+        .details-month-stats {
+            display: flex;
+            gap: 32px;
+        }
+
+        .details-month-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details-month-stat-label {
+            font-size: 12px;
+            color: #71767a;
+        }
+
+        .details-month-stat-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .details-documents {
+            margin-top: 24px;
+        }
+
+        .details-documents-header {
+            background: #e7f6f8;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .details-document-list {
+            border: 1px solid #dfe1e2;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .details-document-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #dfe1e2;
+            font-size: 14px;
+        }
+
+        .details-document-item:last-child {
+            border-bottom: none;
+        }
+
+        .details-document-icon {
+            width: 32px;
+            height: 32px;
+            background: #e7f6f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .details-edit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: #005ea2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .details-edit-btn:hover {
+            background: #1a4480;
+        }
+
+        .details-remove-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 24px;
+            background: transparent;
+            color: #b50909;
+            border: 1px solid #b50909;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .details-remove-btn:hover {
+            background: #fef0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="config-header">
+        <div class="config-header-inner">
+            <div class="config-row">
+                <span class="config-label">Viewport:</span>
+                <div class="config-toggle" id="viewportToggle">
+                    <button class="active" onclick="setViewport('mobile')">Mobile</button>
+                    <button onclick="setViewport('desktop')">Desktop</button>
+                </div>
+
+                <span class="config-label" style="margin-left: 24px;">Submit CTA:</span>
+                <div class="config-toggle" id="ctaPositionToggle">
+                    <button class="active" onclick="setCtaPosition('below-progress')">A: Below Progress</button>
+                    <button onclick="setCtaPosition('bottom')">B: Bottom of Page</button>
+                </div>
+
+                <button class="reset-btn" onclick="resetActivities()">↺ Reset</button>
+            </div>
+            <div class="config-row">
+                <span class="config-label">Card Display:</span>
+                <div class="config-toggle" id="cardDisplayToggle">
+                    <button class="active" onclick="setCardDisplay('summary')">A: Summary</button>
+                    <button onclick="setCardDisplay('all-months')">B: All Months</button>
+                </div>
+
+                <span class="config-label" style="margin-left: 24px;">Flow:</span>
+                <div class="config-toggle" id="flowToggle">
+                    <button onclick="setFlow('application')">Application</button>
+                    <button class="active" onclick="setFlow('renewal')">Renewal</button>
+                </div>
+
+                <span class="config-label" style="margin-left: 24px;" id="appMonthsLabel">Months shown:</span>
+                <div class="config-toggle hidden" id="appMonthsToggle">
+                    <button onclick="setAppMonths(1)">1</button>
+                    <button onclick="setAppMonths(2)">2</button>
+                    <button class="active" onclick="setAppMonths(3)">3</button>
+                </div>
+
+                <span class="config-label" style="margin-left: 24px;" id="renewalReqLabel">Months required:</span>
+                <div class="config-toggle" id="renewalReqToggle">
+                    <button onclick="setRenewalRequired(1)">1</button>
+                    <button onclick="setRenewalRequired(2)">2</button>
+                    <button class="active" onclick="setRenewalRequired(3)">3</button>
+                    <button onclick="setRenewalRequired(4)">4</button>
+                    <button onclick="setRenewalRequired(5)">5</button>
+                    <button onclick="setRenewalRequired(6)">6</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="viewport-container">
+        <div class="viewport-frame mobile" id="viewportFrame">
+            <!-- Government Banner -->
+            <div class="gov-banner">A website in partnership with example state</div>
+
+            <!-- Site Header -->
+            <div class="site-header">
+                <div class="site-header-logo">Eligibility Made Easy | State</div>
+                <button class="site-header-menu mobile-only">MENU</button>
+                <div class="site-header-nav desktop-only" style="display: none;">
+                    <a href="#">Help</a>
+                    <a href="#">Español</a>
+                </div>
+            </div>
+
+            <!-- Page Content -->
+            <div class="page-content" id="pageContent">
+                <div class="page-header">
+                    <h1>Add activities to your Community Engagement report</h1>
+                    <p id="reportingPeriod">July - December 2026</p>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section" id="progressSection">
+                    <div class="progress-content" id="progressContent">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Activities Section -->
+                <div class="activities-section" id="activitiesSection">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="site-footer">
+                <div class="site-footer-content">
+                    <div class="site-footer-logo">Eligibility Made Easy</div>
+                    <button class="site-footer-btn">💬 Share feedback</button>
+                </div>
+            </div>
+
+            <!-- Details Panel Overlay -->
+            <div class="details-panel-overlay" id="detailsPanelOverlay" onclick="closeDetailsPanel(event)">
+                <div class="details-panel" id="detailsPanel" onclick="event.stopPropagation()">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let viewport = 'mobile';
+        let flow = 'renewal';
+        let appMonths = 3;
+        let renewalRequired = 3;
+        let cardDisplay = 'summary';
+        let ctaPosition = 'below-progress';
+
+        // Track added activities per category
+        let addedActivities = {
+            'employment': [],
+            'education': [],
+            'community-service': [],
+            'work-programs': []
+        };
+
+        // All 6 months for renewal
+        const ALL_MONTHS = [
+            { key: 'jul', label: 'Jul', full: 'July' },
+            { key: 'aug', label: 'Aug', full: 'August' },
+            { key: 'sep', label: 'Sep', full: 'September' },
+            { key: 'oct', label: 'Oct', full: 'October' },
+            { key: 'nov', label: 'Nov', full: 'November' },
+            { key: 'dec', label: 'Dec', full: 'December' }
+        ];
+
+        // Activity categories
+        const CATEGORIES = [
+            { key: 'employment', label: 'Employment', emptyText: 'No employment added' },
+            { key: 'education', label: 'Education', emptyText: 'No education added' },
+            { key: 'community-service', label: 'Community service', emptyText: 'No community service added' },
+            { key: 'work-programs', label: 'Work programs', emptyText: 'No work programs added' }
+        ];
+
+        // Pool of activities per category (max 3 each)
+        const ACTIVITY_POOL = {
+            'employment': [
+                {
+                    name: 'Jamba Juice',
+                    category: 'employment',
+                    documents: ['paystub-jul.pdf', 'paystub-aug.pdf', 'paystub-sep.pdf'],
+                    months: {
+                        jul: { hours: 87, income: 339 },
+                        aug: { hours: 99, income: 339 },
+                        sep: { hours: 80, income: 339 },
+                        oct: { hours: 0, income: 0 },
+                        nov: { hours: 31.5, income: 339 },
+                        dec: { hours: 101, income: 339 }
+                    }
+                },
+                {
+                    name: 'Target',
+                    category: 'employment',
+                    documents: ['paystub-oct.pdf', 'paystub-nov.pdf'],
+                    months: {
+                        jul: { hours: 0, income: 0 },
+                        aug: { hours: 0, income: 0 },
+                        sep: { hours: 0, income: 0 },
+                        oct: { hours: 45, income: 675 },
+                        nov: { hours: 52, income: 780 },
+                        dec: { hours: 48, income: 720 }
+                    }
+                },
+                {
+                    name: 'DoorDash Driver',
+                    category: 'employment',
+                    documents: ['earnings-summary.pdf'],
+                    months: {
+                        jul: { hours: 20, income: 380 },
+                        aug: { hours: 15, income: 285 },
+                        sep: { hours: 25, income: 475 },
+                        oct: { hours: 30, income: 570 },
+                        nov: { hours: 35, income: 665 },
+                        dec: { hours: 40, income: 760 }
+                    }
+                }
+            ],
+            'education': [
+                {
+                    name: 'Colorado Springs Community College',
+                    category: 'education',
+                    documents: ['enrollment-verification.pdf'],
+                    months: {
+                        jul: { enrollmentStatus: 'Not enrolled', creditHours: 0 },
+                        aug: { enrollmentStatus: 'Half-time', creditHours: 6 },
+                        sep: { enrollmentStatus: 'Half-time', creditHours: 6 },
+                        oct: { enrollmentStatus: 'Half-time', creditHours: 6 },
+                        nov: { enrollmentStatus: 'Not enrolled', creditHours: 0 },
+                        dec: { enrollmentStatus: 'Not enrolled', creditHours: 0 }
+                    }
+                },
+                {
+                    name: 'Pikes Peak State College',
+                    category: 'education',
+                    documents: ['transcript.pdf'],
+                    months: {
+                        jul: { enrollmentStatus: 'Full-time', creditHours: 12 },
+                        aug: { enrollmentStatus: 'Full-time', creditHours: 12 },
+                        sep: { enrollmentStatus: 'Full-time', creditHours: 12 },
+                        oct: { enrollmentStatus: 'Full-time', creditHours: 12 },
+                        nov: { enrollmentStatus: 'Full-time', creditHours: 12 },
+                        dec: { enrollmentStatus: 'Not enrolled', creditHours: 0 }
+                    }
+                },
+                {
+                    name: 'Online Tech Bootcamp',
+                    category: 'education',
+                    documents: ['certificate.pdf'],
+                    months: {
+                        jul: { enrollmentStatus: 'Not enrolled', creditHours: 0 },
+                        aug: { enrollmentStatus: 'Not enrolled', creditHours: 0 },
+                        sep: { enrollmentStatus: 'Half-time', creditHours: 6 },
+                        oct: { enrollmentStatus: 'Half-time', creditHours: 6 },
+                        nov: { enrollmentStatus: 'Half-time', creditHours: 6 },
+                        dec: { enrollmentStatus: 'Half-time', creditHours: 6 }
+                    }
+                }
+            ],
+            'community-service': [
+                {
+                    name: 'Monte Vista Wildlife Conservation Corps',
+                    category: 'community-service',
+                    documents: ['volunteer-hours.pdf'],
+                    months: {
+                        jul: { hours: 0 },
+                        aug: { hours: 12 },
+                        sep: { hours: 9.5 },
+                        oct: { hours: 0 },
+                        nov: { hours: 0 },
+                        dec: { hours: 0 }
+                    }
+                },
+                {
+                    name: 'Food Bank of the Rockies',
+                    category: 'community-service',
+                    documents: ['service-log.pdf'],
+                    months: {
+                        jul: { hours: 8 },
+                        aug: { hours: 8 },
+                        sep: { hours: 12 },
+                        oct: { hours: 16 },
+                        nov: { hours: 20 },
+                        dec: { hours: 24 }
+                    }
+                },
+                {
+                    name: 'Habitat for Humanity',
+                    category: 'community-service',
+                    documents: ['volunteer-certificate.pdf'],
+                    months: {
+                        jul: { hours: 16 },
+                        aug: { hours: 16 },
+                        sep: { hours: 8 },
+                        oct: { hours: 8 },
+                        nov: { hours: 0 },
+                        dec: { hours: 0 }
+                    }
+                }
+            ],
+            'work-programs': [
+                {
+                    name: 'Avondale Workforce Development',
+                    category: 'work-programs',
+                    documents: ['program-completion.pdf'],
+                    months: {
+                        jul: { hours: 0 },
+                        aug: { hours: 0 },
+                        sep: { hours: 0 },
+                        oct: { hours: 0 },
+                        nov: { hours: 0 },
+                        dec: { hours: 101 }
+                    }
+                },
+                {
+                    name: 'State Job Training Program',
+                    category: 'work-programs',
+                    documents: ['attendance-record.pdf'],
+                    months: {
+                        jul: { hours: 40 },
+                        aug: { hours: 40 },
+                        sep: { hours: 40 },
+                        oct: { hours: 20 },
+                        nov: { hours: 0 },
+                        dec: { hours: 0 }
+                    }
+                },
+                {
+                    name: 'Community Work Experience',
+                    category: 'work-programs',
+                    documents: ['supervisor-sign-off.pdf'],
+                    months: {
+                        jul: { hours: 0 },
+                        aug: { hours: 0 },
+                        sep: { hours: 20 },
+                        oct: { hours: 40 },
+                        nov: { hours: 40 },
+                        dec: { hours: 40 }
+                    }
+                }
+            ]
+        };
+
+        const MAX_ACTIVITIES_PER_CATEGORY = 3;
+
+        // Toggle handlers
+        function setViewport(v) {
+            viewport = v;
+            updateToggle('viewportToggle', v === 'mobile' ? 0 : 1);
+            render();
+        }
+
+        function setFlow(f) {
+            flow = f;
+            updateToggle('flowToggle', f === 'application' ? 0 : 1);
+            updateFlowToggles();
+            render();
+        }
+
+        function setAppMonths(m) {
+            appMonths = m;
+            updateToggle('appMonthsToggle', m - 1);
+            render();
+        }
+
+        function setRenewalRequired(r) {
+            renewalRequired = r;
+            updateToggle('renewalReqToggle', r - 1);
+            render();
+        }
+
+        function addActivity(categoryKey) {
+            const pool = ACTIVITY_POOL[categoryKey];
+            const added = addedActivities[categoryKey];
+
+            if (added.length >= MAX_ACTIVITIES_PER_CATEGORY) return;
+
+            // Add the next activity from the pool
+            const nextActivity = pool[added.length];
+            if (nextActivity) {
+                added.push(nextActivity);
+                render();
+            }
+        }
+
+        function removeActivity(categoryKey, activityName) {
+            addedActivities[categoryKey] = addedActivities[categoryKey].filter(a => a.name !== activityName);
+            render();
+        }
+
+        function resetActivities() {
+            addedActivities = {
+                'employment': [],
+                'education': [],
+                'community-service': [],
+                'work-programs': []
+            };
+            render();
+        }
+
+        function setCtaPosition(pos) {
+            ctaPosition = pos;
+            const idx = ['below-progress', 'bottom'].indexOf(pos);
+            updateToggle('ctaPositionToggle', idx);
+            render();
+        }
+
+        function setCardDisplay(d) {
+            cardDisplay = d;
+            const idx = ['summary', 'all-months'].indexOf(d);
+            updateToggle('cardDisplayToggle', idx);
+            render();
+        }
+
+        // Track expanded state for cards
+        let expandedCards = {};
+
+        function updateToggle(toggleId, activeIndex) {
+            const toggle = document.getElementById(toggleId);
+            if (!toggle) return;
+            const buttons = toggle.querySelectorAll('button');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === activeIndex);
+            });
+        }
+
+        function updateFlowToggles() {
+            const appToggle = document.getElementById('appMonthsToggle');
+            const appLabel = document.getElementById('appMonthsLabel');
+            const renewalToggle = document.getElementById('renewalReqToggle');
+            const renewalLabel = document.getElementById('renewalReqLabel');
+
+            if (flow === 'application') {
+                appToggle.classList.remove('hidden');
+                appLabel.style.display = '';
+                renewalToggle.classList.add('hidden');
+                renewalLabel.style.display = 'none';
+            } else {
+                appToggle.classList.add('hidden');
+                appLabel.style.display = 'none';
+                renewalToggle.classList.remove('hidden');
+                renewalLabel.style.display = '';
+            }
+        }
+
+        function getMonths() {
+            if (flow === 'application') {
+                // Return last N months based on appMonths setting
+                return ALL_MONTHS.slice(6 - appMonths);
+            }
+            return ALL_MONTHS;
+        }
+
+        function getMonthsRequired() {
+            if (flow === 'application') {
+                return appMonths; // All shown months must be completed
+            }
+            return renewalRequired;
+        }
+
+        // Render functions
+        function render() {
+            const frame = document.getElementById('viewportFrame');
+            const months = getMonths();
+
+            // Update viewport frame - always use two-column on desktop
+            frame.className = `viewport-frame ${viewport}`;
+            if (viewport === 'desktop') {
+                frame.classList.add('layout-two-column');
+            }
+
+            // Update header nav visibility
+            const mobileMenu = frame.querySelector('.mobile-only');
+            const desktopNav = frame.querySelector('.desktop-only');
+            if (viewport === 'mobile') {
+                mobileMenu.style.display = 'block';
+                desktopNav.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'none';
+                desktopNav.style.display = 'flex';
+            }
+
+            renderProgressCard(months);
+            renderActivityCards(months);
+            updateReportingPeriod(months);
+        }
+
+        function updateReportingPeriod(months) {
+            const periodEl = document.getElementById('reportingPeriod');
+            if (months.length === 1) {
+                periodEl.textContent = `${months[0].full} 2026`;
+            } else {
+                periodEl.textContent = `${months[0].full} - ${months[months.length - 1].full} 2026`;
+            }
+        }
+
+        function getActivitiesForCategory(categoryKey) {
+            return addedActivities[categoryKey] || [];
+        }
+
+        function getAllAddedActivities() {
+            return Object.values(addedActivities).flat();
+        }
+
+        function hasAnyActivities() {
+            return getAllAddedActivities().length > 0;
+        }
+
+        function renderProgressCard(months) {
+            const container = document.getElementById('progressContent');
+            const monthsRequired = getMonthsRequired();
+            const activities = getAllAddedActivities();
+
+            // Calculate progress for each month
+            const monthProgress = months.map(month => {
+                let totalHours = 0;
+                let hasQualifyingEducation = false;
+
+                activities.forEach(activity => {
+                    if (activity.months[month.key]) {
+                        const data = activity.months[month.key];
+                        if (data.hours !== undefined) {
+                            totalHours += data.hours;
+                        }
+                        // Half-time or full-time education counts as 80 hours
+                        if (data.enrollmentStatus && data.enrollmentStatus !== 'Not enrolled') {
+                            hasQualifyingEducation = true;
+                        }
+                    }
+                });
+
+                // Add 80 hours if enrolled in qualifying education
+                if (hasQualifyingEducation) {
+                    totalHours += 80;
+                }
+
+                return {
+                    ...month,
+                    hours: totalHours,
+                    complete: totalHours >= 80,
+                    partial: totalHours > 0 && totalHours < 80
+                };
+            });
+
+            const completedMonths = monthProgress.filter(m => m.complete).length;
+            const allRequired = completedMonths >= monthsRequired;
+
+            // Single month view (application with 1 month)
+            if (flow === 'application' && appMonths === 1) {
+                const month = monthProgress[0];
+                const percent = Math.min(100, (month.hours / 80) * 100);
+                let barClass = 'empty';
+                let hoursClass = '';
+
+                if (month.complete) {
+                    barClass = 'complete';
+                    hoursClass = 'complete';
+                } else if (month.partial) {
+                    barClass = 'partial';
+                    hoursClass = 'partial';
+                }
+
+                const showCtaHere = ctaPosition === 'below-progress' && hasAnyActivities();
+                container.innerHTML = `
+                    <h2>Your ${month.full} progress</h2>
+                    <p class="progress-description">We calculate your community engagement from the activities you add to your report.</p>
+                    <div class="single-month-progress">
+                        <div class="month-progress-bar">
+                            <div class="month-progress-bar-fill ${barClass}" style="width: ${percent}%;"></div>
+                        </div>
+                        <div class="single-month-hours ${hoursClass}">${month.hours} / 80 hours</div>
+                    </div>
+                    ${showCtaHere ? '<button class="submit-cta in-progress-section">Review and submit</button>' : ''}
+                `;
+                return;
+            }
+
+            // Multi-month view
+            const showCtaHere = ctaPosition === 'below-progress' && hasAnyActivities();
+            container.innerHTML = `
+                <h2>Your progress</h2>
+                <p class="progress-description">We calculate your community engagement from the activities you add to your report.</p>
+
+                <div class="months-completed">
+                    ${allRequired ? '<span class="check-icon">✓</span>' : ''}
+                    ${completedMonths} / ${monthsRequired} months completed
+                </div>
+                ${flow === 'renewal' && monthsRequired < 6 ? `<p class="months-required-hint">Complete any ${monthsRequired} months in the reporting period to meet requirements.</p>` : ''}
+
+                <div class="month-progress-list">
+                    ${monthProgress.map(month => {
+                        const percent = Math.min(100, (month.hours / 80) * 100);
+                        let barClass = 'empty';
+                        let hoursClass = '';
+                        let labelClass = '';
+                        let checkIcon = '';
+
+                        if (month.complete) {
+                            barClass = 'complete';
+                            hoursClass = 'complete';
+                            labelClass = 'complete';
+                            checkIcon = '<span class="check-icon">✓</span>';
+                        } else if (month.partial) {
+                            barClass = 'partial';
+                            hoursClass = 'partial';
+                        }
+
+                        return `
+                            <div class="month-progress-row">
+                                <div class="month-progress-header">
+                                    <span class="month-progress-label ${labelClass}">${checkIcon}${month.full}</span>
+                                    <span class="month-progress-hours ${hoursClass}">${month.hours} / 80 hours</span>
+                                </div>
+                                <div class="month-progress-bar">
+                                    <div class="month-progress-bar-fill ${barClass}" style="width: ${percent}%;"></div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                ${showCtaHere ? '<button class="submit-cta in-progress-section">Review and submit</button>' : ''}
+            `;
+        }
+
+        function renderActivityCards(months) {
+            const container = document.getElementById('activitiesSection');
+
+            let html = '';
+
+            CATEGORIES.forEach(category => {
+                const categoryActivities = getActivitiesForCategory(category.key);
+                const hasActivities = categoryActivities.length > 0;
+                const canAddMore = categoryActivities.length < MAX_ACTIVITIES_PER_CATEGORY;
+
+                html += `
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h3 class="category-title">${category.label}</h3>
+                            <button class="category-add-btn${!canAddMore ? ' disabled' : ''}"
+                                    onclick="addActivity('${category.key}')"
+                                    ${!canAddMore ? 'disabled' : ''}>
+                                ⊕ Add
+                            </button>
+                        </div>
+                        <div class="category-cards">
+                `;
+
+                if (hasActivities) {
+                    categoryActivities.forEach(activity => {
+                        html += renderActivityCard(activity, months, category);
+                    });
+                } else {
+                    html += `<div class="category-empty">${category.emptyText}</div>`;
+                }
+
+                html += `
+                        </div>
+                    </div>`;
+            });
+
+            // Add CTA at bottom if that position is selected and activities exist
+            if (ctaPosition === 'bottom' && hasAnyActivities()) {
+                html += '<button class="submit-cta at-bottom">Review and submit</button>';
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderActivityCard(activity, months, category) {
+            const cardId = `${category.key}-${activity.name.replace(/\s+/g, '-')}`;
+            const isExpanded = expandedCards[cardId];
+
+            // Get active months for this activity
+            const activeMonths = months.filter(m => {
+                const data = activity.months[m.key];
+                if (!data) return false;
+                if (data.hours !== undefined && data.hours > 0) return true;
+                if (data.enrollmentStatus && data.enrollmentStatus !== 'Not enrolled') return true;
+                return false;
+            });
+
+            const monthsReported = activeMonths.length;
+
+            // SUMMARY VIEW
+            if (cardDisplay === 'summary') {
+                let statsHtml = '';
+                if (category.key === 'employment') {
+                    const totalIncome = months.reduce((sum, m) => sum + (activity.months[m.key]?.income || 0), 0);
+                    const totalHours = months.reduce((sum, m) => sum + (activity.months[m.key]?.hours || 0), 0);
+                    statsHtml = `
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Months reported</span>
+                            <span class="activity-stat-value">${monthsReported}</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Total gross income</span>
+                            <span class="activity-stat-value">$${totalIncome.toLocaleString()}</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Total hours</span>
+                            <span class="activity-stat-value">${totalHours}</span>
+                        </div>
+                    `;
+                } else if (category.key === 'education') {
+                    const enrolledMonths = months.filter(m =>
+                        activity.months[m.key]?.enrollmentStatus &&
+                        activity.months[m.key]?.enrollmentStatus !== 'Not enrolled'
+                    ).length;
+                    const latestEnrolled = activeMonths.length > 0 ?
+                        activity.months[activeMonths[activeMonths.length - 1].key]?.enrollmentStatus : 'N/A';
+                    statsHtml = `
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Months reported</span>
+                            <span class="activity-stat-value">${enrolledMonths}</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Enrollment status</span>
+                            <span class="activity-stat-value">${latestEnrolled}</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Credit hours</span>
+                            <span class="activity-stat-value">N/A</span>
+                        </div>
+                    `;
+                } else {
+                    const totalHours = months.reduce((sum, m) => sum + (activity.months[m.key]?.hours || 0), 0);
+                    statsHtml = `
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Months reported</span>
+                            <span class="activity-stat-value">${monthsReported}</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-label">Total hours</span>
+                            <span class="activity-stat-value">${totalHours}</span>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="activity-card">
+                        <div class="activity-card-header">
+                            <div class="activity-card-title">${activity.name}</div>
+                            <button class="activity-card-link" onclick="openDetailsPanel('${activity.name}', '${category.key}')">View details</button>
+                        </div>
+                        <div class="activity-card-body">
+                            <div class="activity-card-stats">
+                                ${statsHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // ALL MONTHS VIEW (expand/collapse)
+            const INITIAL_MONTHS_SHOWN = 3;
+            const hasMoreMonths = activeMonths.length > INITIAL_MONTHS_SHOWN;
+            const visibleMonths = isExpanded ? activeMonths : activeMonths.slice(0, INITIAL_MONTHS_SHOWN);
+
+            let monthRowsHtml = '';
+            visibleMonths.forEach(month => {
+                const data = activity.months[month.key];
+                if (category.key === 'employment') {
+                    monthRowsHtml += `
+                        <div class="month-detail-row">
+                            <div class="month-detail-name">${month.full}</div>
+                            <div class="month-detail-stat">
+                                <span class="month-detail-label">Gross income</span>
+                                <span class="month-detail-value">$${(data.income || 0).toLocaleString()}</span>
+                            </div>
+                            <div class="month-detail-stat">
+                                <span class="month-detail-label">Hours</span>
+                                <span class="month-detail-value">${data.hours || 0}</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (category.key === 'education') {
+                    monthRowsHtml += `
+                        <div class="month-detail-row">
+                            <div class="month-detail-name">${month.full}</div>
+                            <div class="month-detail-stat">
+                                <span class="month-detail-label">Status</span>
+                                <span class="month-detail-value">${data.enrollmentStatus}</span>
+                            </div>
+                            <div class="month-detail-stat">
+                                <span class="month-detail-label">Credits</span>
+                                <span class="month-detail-value">${data.creditHours || 0}</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    monthRowsHtml += `
+                        <div class="month-detail-row">
+                            <div class="month-detail-name">${month.full}</div>
+                            <div class="month-detail-stat">
+                                <span class="month-detail-label">Hours</span>
+                                <span class="month-detail-value">${data.hours || 0}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            const expandToggleHtml = hasMoreMonths ? `
+                <button class="expand-months-btn" onclick="toggleCardExpand('${cardId}')">
+                    ${isExpanded ? 'Show less ▲' : `Show ${activeMonths.length - INITIAL_MONTHS_SHOWN} more months ▼`}
+                </button>
+            ` : '';
+
+            return `
+                <div class="activity-card all-months">
+                    <div class="activity-card-header">
+                        <div class="activity-card-title">${activity.name}</div>
+                        <button class="activity-card-link" onclick="openDetailsPanel('${activity.name}', '${category.key}')">Edit</button>
+                    </div>
+                    <div class="activity-card-body">
+                        <div class="month-details-list">
+                            ${monthRowsHtml}
+                        </div>
+                        ${expandToggleHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleCardExpand(cardId) {
+            expandedCards[cardId] = !expandedCards[cardId];
+            render();
+        }
+
+        function openDetailsPanel(activityName, categoryKey) {
+            const activity = addedActivities[categoryKey].find(a => a.name === activityName);
+            const category = CATEGORIES.find(c => c.key === categoryKey);
+            const months = getMonths();
+
+            if (!activity || !category) return;
+
+            const panel = document.getElementById('detailsPanel');
+            const overlay = document.getElementById('detailsPanelOverlay');
+
+            // Get active months for this activity
+            const activeMonths = months.filter(m => {
+                const data = activity.months[m.key];
+                if (!data) return false;
+                if (data.hours !== undefined && data.hours > 0) return true;
+                if (data.enrollmentStatus && data.enrollmentStatus !== 'Not enrolled') return true;
+                return false;
+            });
+
+            let monthDetailsHtml = '';
+            activeMonths.forEach(month => {
+                const data = activity.months[month.key];
+                let statsHtml = '';
+
+                if (categoryKey === 'employment') {
+                    statsHtml = `
+                        <div class="details-month-stat">
+                            <span class="details-month-stat-label">Gross income</span>
+                            <span class="details-month-stat-value">$${(data.income || 0).toLocaleString()}</span>
+                        </div>
+                        <div class="details-month-stat">
+                            <span class="details-month-stat-label">Hours</span>
+                            <span class="details-month-stat-value">${data.hours || 0}</span>
+                        </div>
+                    `;
+                } else if (categoryKey === 'education') {
+                    statsHtml = `
+                        <div class="details-month-stat">
+                            <span class="details-month-stat-label">Enrollment status</span>
+                            <span class="details-month-stat-value">${data.enrollmentStatus}</span>
+                        </div>
+                        <div class="details-month-stat">
+                            <span class="details-month-stat-label">Credit hours</span>
+                            <span class="details-month-stat-value">${data.creditHours || 'N/A'}</span>
+                        </div>
+                    `;
+                } else {
+                    statsHtml = `
+                        <div class="details-month-stat">
+                            <span class="details-month-stat-label">Hours</span>
+                            <span class="details-month-stat-value">${data.hours || 0}</span>
+                        </div>
+                    `;
+                }
+
+                monthDetailsHtml += `
+                    <div class="details-month">
+                        <div class="details-month-name">${month.full}</div>
+                        <div class="details-month-stats">
+                            ${statsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            const documentsHtml = activity.documents && activity.documents.length > 0 ? `
+                <div class="details-documents">
+                    <div class="details-documents-header">${activity.documents.length} files selected</div>
+                    <div class="details-document-list">
+                        ${activity.documents.map(doc => `
+                            <div class="details-document-item">
+                                <div class="details-document-icon">📄</div>
+                                <span>${doc}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : '';
+
+            panel.innerHTML = `
+                <div class="details-panel-header">
+                    <span class="details-panel-title">Activity details</span>
+                    <button class="details-panel-close" onclick="closeDetailsPanel()">Close ✕</button>
+                </div>
+                <div class="details-panel-content">
+                    <div class="details-category-badge">${category.label.toUpperCase()}</div>
+                    <div class="details-activity-name">${activity.name}</div>
+
+                    <div class="details-section-title">Monthly details</div>
+                    ${monthDetailsHtml}
+
+                    ${documentsHtml ? `
+                        <div class="details-section-title" style="margin-top: 24px;">Supporting documents</div>
+                        ${documentsHtml}
+                    ` : ''}
+
+                    <button class="details-edit-btn">Edit details</button>
+                    <button class="details-remove-btn" onclick="removeActivity('${categoryKey}', '${activity.name}'); closeDetailsPanel();">Remove activity</button>
+                </div>
+            `;
+
+            overlay.classList.add('open');
+        }
+
+        function closeDetailsPanel(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const overlay = document.getElementById('detailsPanelOverlay');
+            overlay.classList.remove('open');
+        }
+
+        // Initial setup
+        updateFlowToggles();
+        render();
+    </script>
+</body>
+</html>
