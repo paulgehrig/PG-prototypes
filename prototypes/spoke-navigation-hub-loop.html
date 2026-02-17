@@ -28,6 +28,11 @@
            ============================================ */
         .gov-banner {
             background: #162e51;
+        }
+
+        .gov-banner-inner {
+            max-width: 640px;
+            margin: 0 auto;
             padding: 8px 16px;
         }
 
@@ -37,15 +42,21 @@
         }
 
         .emmy-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             border-bottom: 1px solid #dfe1e2;
             background: white;
         }
 
+        .emmy-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
         .emmy-header-title {
-            padding: 12px 16px;
+            padding: 12px 0;
             font-size: 14px;
             font-weight: 700;
             color: #1b1b1b;
@@ -67,8 +78,13 @@
            ============================================ */
         .site-footer {
             background: #162e51;
-            padding: 20px 16px;
             margin-top: 32px;
+        }
+
+        .site-footer-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 20px 16px;
         }
 
         .site-footer-title {
@@ -167,6 +183,12 @@
             font-family: 'Public Sans', sans-serif;
             font-size: 20px;
             font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 4px;
+        }
+
+        .progress-section-desc {
+            font-size: 16px;
             color: #1b1b1b;
             margin-bottom: 12px;
         }
@@ -360,29 +382,30 @@
         }
 
         /* ============================================
-           SPOKE VIEW
+           SPOKE VIEW — CHROME (sticky)
            ============================================ */
 
-        /* Spoke chrome (sticky) */
         .spoke-chrome {
             position: sticky;
             top: 0;
             z-index: 10;
             background: white;
             border-bottom: 1px solid #dfe1e2;
-            padding: 8px 16px 16px;
         }
 
+        /* Row 1: Flow label + Exit (shared by both options) */
         .spoke-chrome-row1 {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 10px 16px;
         }
 
         .spoke-flow-label {
             font-family: 'Public Sans', sans-serif;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: #1b1b1b;
         }
@@ -396,13 +419,31 @@
             cursor: pointer;
             background: none;
             border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        /* Step indicator bar */
+        /* ============================================
+           STEP INDICATOR (Option 1 only)
+           ============================================ */
+
+        .spoke-step-indicator {
+            display: none;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        body.nav-step-indicator .spoke-step-indicator {
+            display: block;
+        }
+
+        /* Segmented progress bar */
         .spoke-step-bar {
             display: flex;
-            gap: 2px;
-            margin-bottom: 16px;
+            gap: 3px;
+            margin-bottom: 12px;
         }
 
         .spoke-step-segment {
@@ -417,7 +458,7 @@
             background: #005ea2;
         }
 
-        /* Step counter */
+        /* Step counter: circle + text */
         .spoke-step-counter {
             display: flex;
             align-items: center;
@@ -425,8 +466,8 @@
         }
 
         .spoke-step-circle {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: #005ea2;
             color: white;
@@ -434,24 +475,28 @@
             align-items: center;
             justify-content: center;
             font-family: 'Public Sans', sans-serif;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             flex-shrink: 0;
         }
 
         .spoke-step-text {
             font-family: 'Public Sans', sans-serif;
-            font-size: 17px;
+            font-size: 16px;
             color: #005ea2;
         }
 
         .spoke-step-phase {
             font-family: 'Public Sans', sans-serif;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             color: #1b1b1b;
-            margin-left: 4px;
+            margin-left: 2px;
         }
+
+        /* ============================================
+           SPOKE VIEW — CONTENT
+           ============================================ */
 
         /* Exit warning */
         .exit-warning {
@@ -511,38 +556,37 @@
             padding: 24px 0 40px;
         }
 
-        /* Back button (pill style) */
-        .back-btn {
+        /* Back link (simple text link — GOV.UK style) */
+        .back-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 20px;
-            border: 2px solid #005ea2;
-            border-radius: 999px;
-            background: transparent;
             color: #005ea2;
-            font-family: 'Public Sans', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 400;
+            text-decoration: underline;
             cursor: pointer;
-            margin-bottom: 24px;
-            transition: background 0.15s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            margin-bottom: 20px;
         }
 
-        .back-btn:hover {
-            background: #f0f7ff;
+        .back-link:hover {
+            color: #1a4480;
         }
 
-        .back-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: #005ea2;
+        .back-link svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
         }
 
         /* Month sub-counter */
         .month-sub-counter {
             font-family: 'Public Sans', sans-serif;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: #005ea2;
             margin-bottom: 8px;
@@ -553,9 +597,16 @@
             font-family: 'Public Sans', sans-serif;
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             color: #1b1b1b;
             line-height: 1.15;
+        }
+
+        .spoke-content h1 + .form-intro {
+            font-size: 16px;
+            color: #1b1b1b;
+            margin-bottom: 24px;
+            line-height: 1.5;
         }
 
         /* Form elements */
@@ -726,23 +777,35 @@
         }
 
         .suggested-docs-toggle {
-            color: #005ea2;
-            font-size: 16px;
-            text-decoration: underline;
-            cursor: pointer;
-            background: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 12px 16px;
+            background: #f0f0f0;
             border: none;
+            border-radius: 4px;
             font-family: inherit;
-            padding: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1b1b1b;
+            cursor: pointer;
+        }
+
+        .suggested-docs-toggle svg {
+            transition: transform 0.2s ease;
+        }
+
+        .suggested-docs-toggle.open svg {
+            transform: rotate(45deg);
         }
 
         .suggested-docs-content {
             display: none;
-            margin-top: 12px;
-            padding: 16px;
+            padding: 12px 16px;
             background: #f0f0f0;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 0 0 4px 4px;
+            font-size: 16px;
             color: #1b1b1b;
         }
 
@@ -758,15 +821,22 @@
             margin-bottom: 4px;
         }
 
-        /* Review sections */
+        /* ============================================
+           REVIEW SCREEN
+           ============================================ */
+
+        .review-intro {
+            font-size: 16px;
+            color: #1b1b1b;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
         .review-section {
             margin-bottom: 32px;
         }
 
         .review-section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             font-family: 'Public Sans', sans-serif;
             font-size: 17px;
             font-weight: 700;
@@ -774,17 +844,6 @@
             padding-bottom: 8px;
             border-bottom: 1px solid #1b1b1b;
             margin-bottom: 16px;
-        }
-
-        .change-link {
-            color: #005ea2;
-            font-size: 16px;
-            font-weight: 400;
-            text-decoration: underline;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-family: inherit;
         }
 
         .review-row {
@@ -803,27 +862,70 @@
             color: #1b1b1b;
         }
 
-        .review-month-group {
+        /* Monthly review rows with per-month Edit links */
+        .review-month-block {
             border-top: 1px solid #dfe1e2;
             padding-top: 12px;
             margin-top: 12px;
         }
 
-        .review-month-group:first-child {
+        .review-month-block:first-child {
             border-top: none;
             padding-top: 0;
             margin-top: 0;
+        }
+
+        .review-month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
         }
 
         .review-month-name {
             font-size: 16px;
             font-weight: 700;
             color: #1b1b1b;
-            margin-bottom: 4px;
         }
 
         .review-month-name.no-data {
             color: #71767a;
+        }
+
+        .edit-link {
+            color: #005ea2;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+
+        .change-link {
+            color: #005ea2;
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .review-section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Public Sans', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #1b1b1b;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #1b1b1b;
+            margin-bottom: 16px;
         }
 
         .review-month-detail {
@@ -842,6 +944,25 @@
             color: #1b1b1b;
         }
 
+        /* Additional comments */
+        .form-textarea {
+            width: 100%;
+            max-width: 100%;
+            min-height: 100px;
+            padding: 8px;
+            border: 1px solid #1b1b1b;
+            font-size: 16px;
+            font-family: inherit;
+            color: #1b1b1b;
+            background: white;
+            resize: vertical;
+        }
+
+        .form-textarea:focus {
+            outline: 3px solid #2491ff;
+            outline-offset: 0;
+        }
+
         /* Spoke screen hidden by default */
         .spoke-screen {
             display: none;
@@ -852,199 +973,85 @@
         }
 
         /* ============================================
-           OPTION B: On-page nav (GOV.UK pattern)
+           CONFIG HEADER
            ============================================ */
-
-        /* When Option B is active, hide the chrome-bar elements that don't apply */
-        body.nav-onpage .spoke-flow-label,
-        body.nav-onpage .spoke-step-bar,
-        body.nav-onpage .spoke-step-counter {
-            display: none;
-        }
-
-        /* Option B: sticky bar becomes just back + exit */
-        body.nav-onpage .spoke-chrome {
-            padding: 8px 16px;
-        }
-
-        body.nav-onpage .spoke-chrome-row1 {
-            margin-bottom: 0;
-        }
-
-        /* Option B: Back button in the sticky bar (outlined, not pill) */
-        .spoke-chrome-back-btn {
-            display: none; /* hidden by default (Option A) */
-        }
-
-        body.nav-onpage .spoke-chrome-back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border: 2px solid #005ea2;
-            border-radius: 4px;
-            background: transparent;
-            color: #005ea2;
-            font-family: 'Public Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.15s ease;
-        }
-
-        body.nav-onpage .spoke-chrome-back-btn:hover {
-            background: #f0f7ff;
-        }
-
-        body.nav-onpage .spoke-chrome-back-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: #005ea2;
-        }
-
-        /* Option B: flow label in content area */
-        .content-flow-label {
-            display: none; /* hidden by default (Option A) */
-        }
-
-        body.nav-onpage .content-flow-label {
-            display: block;
-            font-family: 'Public Sans', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: #005ea2;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-
-        /* Option B: hide in-content back button (it's in the chrome bar instead) */
-        body.nav-onpage .back-btn {
-            display: none;
-        }
-
-        /* Option B: hide in-content month sub-counter (merged into flow label) */
-        body.nav-onpage .month-sub-counter {
-            display: none;
-        }
-
-        /* ============================================
-           CONFIG PANEL
-           ============================================ */
-        .config-panel {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            z-index: 100;
+        .config-header {
             background: #1b1b1b;
             color: white;
-            border-radius: 8px;
-            font-family: 'Public Sans', sans-serif;
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .config-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .config-label {
             font-size: 13px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            overflow: hidden;
-            min-width: 260px;
+            color: #a0a0a0;
+        }
+
+        .config-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .config-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .config-toggle {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            cursor: pointer;
-            background: #1b1b1b;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .config-toggle button {
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
             border: none;
-            color: white;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 700;
-            width: 100%;
-            text-align: left;
-        }
-
-        .config-toggle:hover {
-            background: #2e2e2e;
-        }
-
-        .config-toggle svg {
-            transition: transform 0.2s ease;
-        }
-
-        .config-toggle.open svg {
-            transform: rotate(180deg);
-        }
-
-        .config-body {
-            display: none;
-            padding: 0 14px 14px;
-        }
-
-        .config-body.open {
-            display: block;
-        }
-
-        .config-option {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px 12px;
-            border-radius: 6px;
+            background: transparent;
+            color: #a0a0a0;
             cursor: pointer;
-            margin-bottom: 4px;
-            transition: background 0.15s ease;
+            transition: all 0.15s ease;
         }
 
-        .config-option:hover {
-            background: #2e2e2e;
-        }
-
-        .config-option.selected {
+        .config-toggle button.active {
             background: #005ea2;
+            color: white;
         }
 
-        .config-radio {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 2px solid #71767a;
-            flex-shrink: 0;
-            margin-top: 1px;
-            position: relative;
-        }
-
-        .config-option.selected .config-radio {
-            border-color: white;
-        }
-
-        .config-option.selected .config-radio::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .config-option-text {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .config-option-label {
-            font-weight: 700;
+        .config-select {
+            padding: 6px 10px;
             font-size: 13px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #333;
+            color: white;
+            cursor: pointer;
         }
 
-        .config-option-desc {
+        .flow-label {
+            padding: 4px 12px;
+            border-radius: 4px;
             font-size: 12px;
-            color: #a9aeb1;
-            line-height: 1.3;
-        }
-
-        .config-option.selected .config-option-desc {
-            color: #c9d6e5;
+            font-weight: 700;
+            background: #005ea2;
+            color: white;
         }
 
         /* Reduced motion */
@@ -1063,10 +1070,45 @@
             .hub-title {
                 font-size: 24px;
             }
+
+            .config-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
-<body>
+<body class="nav-step-indicator">
+
+<!-- Prototype config header -->
+<div class="config-header">
+    <div class="config-row">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="config-label">Prototype</span>
+            <span class="flow-label">Spoke Navigation</span>
+        </div>
+        <div class="config-controls">
+            <div class="config-group">
+                <span class="config-label">Nav:</span>
+                <div class="config-toggle">
+                    <button id="toggleStepIndicator" class="active" onclick="setNavMode('step-indicator')">Step indicator</button>
+                    <button id="toggleMinimal" onclick="setNavMode('minimal')">Minimal</button>
+                </div>
+            </div>
+            <div class="config-group">
+                <span class="config-label">Months:</span>
+                <select class="config-select" id="monthsSelect" onchange="setMonthCount(parseInt(this.value))">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ============================================
      HUB VIEW
@@ -1074,13 +1116,17 @@
 <div class="view active" id="hubView">
     <!-- Government Banner -->
     <div class="gov-banner">
-        <p class="gov-banner-text">A website in partnership with example state</p>
+        <div class="gov-banner-inner">
+            <p class="gov-banner-text">A website in partnership with example state</p>
+        </div>
     </div>
 
     <!-- EMMY Header -->
     <div class="emmy-header">
-        <div class="emmy-header-title">Eligibility Made Easy | State</div>
-        <button class="emmy-header-menu">MENU</button>
+        <div class="emmy-header-inner">
+            <div class="emmy-header-title">Eligibility Made Easy | State</div>
+            <button class="emmy-header-menu">MENU</button>
+        </div>
     </div>
 
     <div class="container">
@@ -1094,6 +1140,7 @@
             <!-- Progress Section -->
             <div class="progress-section" id="progressSection">
                 <h2>Your progress</h2>
+                <p class="progress-section-desc">We calculate your community engagement from the activities you add to your report.</p>
                 <div class="months-completed-counter" id="monthsCompletedCounter">0 / 3 months completed</div>
                 <div class="month-progress-list" id="monthProgressList">
                     <!-- Rendered by JS -->
@@ -1110,11 +1157,13 @@
 
     <!-- Footer -->
     <div class="site-footer">
-        <div class="site-footer-title">Eligibility Made Easy</div>
-        <button class="site-footer-button">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-            Share feedback
-        </button>
+        <div class="site-footer-inner">
+            <div class="site-footer-title">Eligibility Made Easy</div>
+            <button class="site-footer-button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                Share feedback
+            </button>
+        </div>
     </div>
 </div>
 
@@ -1124,37 +1173,40 @@
 <div class="view" id="spokeView">
     <!-- Government Banner -->
     <div class="gov-banner">
-        <p class="gov-banner-text">A website in partnership with example state</p>
+        <div class="gov-banner-inner">
+            <p class="gov-banner-text">A website in partnership with example state</p>
+        </div>
     </div>
 
     <!-- EMMY Header -->
     <div class="emmy-header">
-        <div class="emmy-header-title">Eligibility Made Easy | State</div>
-        <button class="emmy-header-menu">MENU</button>
+        <div class="emmy-header-inner">
+            <div class="emmy-header-title">Eligibility Made Easy | State</div>
+            <button class="emmy-header-menu">MENU</button>
+        </div>
     </div>
 
     <!-- Spoke Chrome (sticky) -->
     <div class="spoke-chrome" id="spokeChrome">
+        <!-- Row 1: Flow label + Exit (always visible) -->
         <div class="spoke-chrome-row1">
-            <!-- Option A: flow label here -->
             <span class="spoke-flow-label" id="spokeFlowLabel">Add employment</span>
-            <!-- Option B: back button here -->
-            <button class="spoke-chrome-back-btn" id="spokeChomeBackBtn" onclick="spokeBack()">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="#005ea2"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                Back
-            </button>
-            <button class="spoke-exit-link" onclick="handleExit()">Exit</button>
+            <button class="spoke-exit-link" onclick="handleExit()">Exit &times;</button>
         </div>
-        <div class="spoke-step-bar" id="spokeStepBar">
-            <div class="spoke-step-segment"></div>
-            <div class="spoke-step-segment"></div>
-            <div class="spoke-step-segment"></div>
-            <div class="spoke-step-segment"></div>
-        </div>
-        <div class="spoke-step-counter" id="spokeStepCounter">
-            <div class="spoke-step-circle" id="spokeStepNumber">1</div>
-            <span class="spoke-step-text">of 4</span>
-            <span class="spoke-step-phase" id="spokeStepPhase">Organization info</span>
+
+        <!-- Step indicator (Option 1 only — hidden when nav-minimal) -->
+        <div class="spoke-step-indicator" id="spokeStepIndicator">
+            <div class="spoke-step-bar" id="spokeStepBar">
+                <div class="spoke-step-segment"></div>
+                <div class="spoke-step-segment"></div>
+                <div class="spoke-step-segment"></div>
+                <div class="spoke-step-segment"></div>
+            </div>
+            <div class="spoke-step-counter" id="spokeStepCounter">
+                <div class="spoke-step-circle" id="spokeStepNumber">1</div>
+                <span class="spoke-step-text">of 4</span>
+                <span class="spoke-step-phase" id="spokeStepPhase">Organization info</span>
+            </div>
         </div>
     </div>
 
@@ -1179,99 +1231,62 @@
 
     <!-- Footer -->
     <div class="site-footer" id="spokeFooter">
-        <div class="site-footer-title">Eligibility Made Easy</div>
-        <button class="site-footer-button">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-            Share feedback
-        </button>
+        <div class="site-footer-inner">
+            <div class="site-footer-title">Eligibility Made Easy</div>
+            <button class="site-footer-button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                Share feedback
+            </button>
+        </div>
     </div>
 </div>
 
-<!-- ============================================
-     CONFIG PANEL
-     ============================================ -->
-<div class="config-panel" id="configPanel">
-    <button class="config-toggle" id="configToggle" onclick="toggleConfig()">
-        Navigation pattern
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-    </button>
-    <div class="config-body" id="configBody">
-        <div class="config-option selected" data-mode="chrome-bar" onclick="setNavMode('chrome-bar')">
-            <div class="config-radio"></div>
-            <div class="config-option-text">
-                <span class="config-option-label">A: Spoke chrome bar</span>
-                <span class="config-option-desc">Sticky bar with flow label, step indicator, and exit. Back in content area.</span>
-            </div>
-        </div>
-        <div class="config-option" data-mode="onpage" onclick="setNavMode('onpage')">
-            <div class="config-radio"></div>
-            <div class="config-option-text">
-                <span class="config-option-label">B: On-page navigation</span>
-                <span class="config-option-desc">Sticky bar with back + exit only. Flow label in content area. No step indicator.</span>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     // ============================================
     // SVG ICONS
     // ============================================
 
-    const ICONS = {
-        arrowBack: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#005ea2"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>',
-        addCircle: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>',
-        check: '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+    var ICONS = {
+        arrowBack: '<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>',
+        addCircle: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>'
     };
 
     // ============================================
-    // CONFIG
+    // CONFIG STATE
     // ============================================
 
-    let navMode = 'chrome-bar'; // 'chrome-bar' (A) or 'onpage' (B)
-
-    function toggleConfig() {
-        var toggle = document.getElementById('configToggle');
-        var body = document.getElementById('configBody');
-        toggle.classList.toggle('open');
-        body.classList.toggle('open');
-    }
+    var navMode = 'step-indicator';
+    var monthCount = 3;
 
     function setNavMode(mode) {
         navMode = mode;
-
-        // Update body class
-        document.body.classList.toggle('nav-onpage', mode === 'onpage');
-
-        // Update config panel selection
-        document.querySelectorAll('.config-option').forEach(function(opt) {
-            opt.classList.toggle('selected', opt.dataset.mode === mode);
-        });
-
-        // Update chrome back button visibility for step 1
-        updateChromeBackVisibility();
-
-        // Re-render current spoke screen if in spoke view
+        document.body.classList.remove('nav-step-indicator', 'nav-minimal');
+        document.body.classList.add('nav-' + mode);
+        document.getElementById('toggleStepIndicator').classList.toggle('active', mode === 'step-indicator');
+        document.getElementById('toggleMinimal').classList.toggle('active', mode === 'minimal');
         if (document.getElementById('spokeView').classList.contains('active')) {
-            renderSpokeScreen();
+            updateSpokeChrome();
         }
     }
 
-    function updateChromeBackVisibility() {
-        var btn = document.getElementById('spokeChomeBackBtn');
-        if (!btn) return;
-        btn.style.visibility = 'visible';
-    }
-
-    function isOnpageMode() {
-        return navMode === 'onpage';
+    function setMonthCount(n) {
+        monthCount = n;
+        document.getElementById('monthsSelect').value = n;
+        // If in a spoke, re-initialize months and restart from org info
+        if (document.getElementById('spokeView').classList.contains('active') && currentSpokeData) {
+            spokeFormData.months = buildBlankMonths();
+            currentSpokeStep = 0;
+            currentMonthSub = 0;
+            renderSpokeScreen();
+        }
     }
 
     // ============================================
     // DATA
     // ============================================
 
-    const MONTHS = [
+    var MONTHS = [
         { key: 'jul', label: 'July' },
         { key: 'aug', label: 'August' },
         { key: 'sep', label: 'September' },
@@ -1280,45 +1295,41 @@
         { key: 'dec', label: 'December' }
     ];
 
-    // Months used in the spoke flow
-    const SPOKE_MONTHS = ['oct', 'nov', 'dec'];
-    const SPOKE_MONTH_LABELS = { oct: 'October', nov: 'November', dec: 'December' };
+    function getSpokeMonths() {
+        return MONTHS.slice(0, monthCount);
+    }
 
-    const STEP_PHASES = ['Organization info', 'Monthly details', 'Supporting documents', 'Review'];
+    function buildBlankMonths() {
+        var months = {};
+        getSpokeMonths().forEach(function(m) {
+            months[m.key] = { noData: false, income: '', hours: '' };
+        });
+        return months;
+    }
 
-    // Pre-filled data for employment spoke
-    const EMPLOYMENT_DATA = {
+    var STEP_PHASES = ['Organization info', 'Monthly details', 'Supporting documents', 'Review'];
+
+    var EMPLOYMENT_DATA = {
         type: 'employment',
         flowLabel: 'Add employment',
         orgName: 'Gainesville Wrecking',
         orgAddress: '942 W Harlan Ave, Gainesville, FL',
         orgEmail: 'donny@gainesvillewrecking.net',
         orgCoordinator: '',
-        orgCoordinatorEmail: '',
-        months: {
-            oct: { noData: false, income: '339', hours: '45' },
-            nov: { noData: false, income: '399', hours: '52' },
-            dec: { noData: true, income: '', hours: '' }
-        }
+        orgCoordinatorEmail: ''
     };
 
-    // Pre-filled data for community service spoke
-    const COMMUNITY_SERVICE_DATA = {
+    var COMMUNITY_SERVICE_DATA = {
         type: 'community-service',
-        flowLabel: 'Add community service',
+        flowLabel: 'Community service',
         orgName: 'Habitat for Humanity \u2014 Alachua County',
         orgAddress: '2630 NW 41st St, Gainesville, FL',
         orgEmail: '',
         orgCoordinator: 'Maria Santos',
-        orgCoordinatorEmail: 'maria@alachuahabitat.org',
-        months: {
-            oct: { noData: false, income: '', hours: '45' },
-            nov: { noData: false, income: '', hours: '12' },
-            dec: { noData: true, income: '', hours: '' }
-        }
+        orgCoordinatorEmail: 'maria@alachuahabitat.org'
     };
 
-    const CATEGORIES = [
+    var CATEGORIES = [
         { key: 'employment', label: 'Employment', emptyText: 'No employment added', enabled: true },
         { key: 'education', label: 'Education', emptyText: 'No education added', enabled: false },
         { key: 'community-service', label: 'Community service', emptyText: 'No community service added', enabled: true },
@@ -1329,14 +1340,11 @@
     // STATE
     // ============================================
 
-    // Hub state: track completed activities
-    let completedActivities = {};  // key: category key, value: activity summary object
-
-    // Spoke state
-    let currentSpokeData = null;
-    let currentSpokeStep = 0;  // 0-based: 0=org, 1=monthly(sub), 2=upload, 3=review
-    let currentMonthSub = 0;   // 0-2 for the 3 months in step 2
-    let spokeFormData = {};     // live form data within the spoke
+    var completedActivities = {};
+    var currentSpokeData = null;
+    var currentSpokeStep = 0;
+    var currentMonthSub = 0;
+    var spokeFormData = {};
 
     // ============================================
     // HUB RENDERING
@@ -1348,118 +1356,60 @@
     }
 
     function renderProgressBars() {
-        const list = document.getElementById('monthProgressList');
-        let html = '';
-
-        MONTHS.forEach(month => {
-            html += `
-                <div class="month-progress-row">
-                    <div class="month-progress-header">
-                        <span class="month-progress-label">${month.label}</span>
-                        <span class="month-progress-hours">0 / 80 hours</span>
-                    </div>
-                    <div class="month-progress-bar">
-                        <div class="month-progress-bar-fill" style="width: 0%;"></div>
-                    </div>
-                </div>
-            `;
+        var list = document.getElementById('monthProgressList');
+        var html = '';
+        MONTHS.forEach(function(month) {
+            html += '<div class="month-progress-row">' +
+                '<div class="month-progress-header">' +
+                '<span class="month-progress-label">' + month.label + '</span>' +
+                '<span class="month-progress-hours">0 / 80 hours</span></div>' +
+                '<div class="month-progress-bar">' +
+                '<div class="month-progress-bar-fill" style="width: 0%;"></div></div></div>';
         });
-
         list.innerHTML = html;
         document.getElementById('monthsCompletedCounter').textContent = '0 / 3 months completed';
     }
 
     function renderCategories() {
-        const container = document.getElementById('activityCategories');
-        let html = '';
-
-        CATEGORIES.forEach(cat => {
-            const activity = completedActivities[cat.key];
-            const hasActivity = !!activity;
-            const isEnabled = cat.enabled;
-
-            html += `<div class="category-section">`;
-            html += `<div class="category-header">`;
-            html += `<h2 class="category-title">${cat.label}</h2>`;
-
-            if (isEnabled && !hasActivity) {
-                html += `<button class="category-add-btn" onclick="enterSpoke('${cat.key}')">
-                    ${ICONS.addCircle} Add
-                </button>`;
-            } else if (!isEnabled) {
-                html += `<button class="category-add-btn" disabled>
-                    ${ICONS.addCircle} Add
-                </button>`;
+        var container = document.getElementById('activityCategories');
+        var html = '';
+        CATEGORIES.forEach(function(cat) {
+            var activity = completedActivities[cat.key];
+            var hasActivity = !!activity;
+            html += '<div class="category-section"><div class="category-header">';
+            html += '<h2 class="category-title">' + cat.label + '</h2>';
+            if (cat.enabled && !hasActivity) {
+                html += '<button class="category-add-btn" onclick="enterSpoke(\'' + cat.key + '\')">' + ICONS.addCircle + ' Add</button>';
+            } else if (!cat.enabled) {
+                html += '<button class="category-add-btn" disabled>' + ICONS.addCircle + ' Add</button>';
             }
-
-            html += `</div>`;
-
-            if (hasActivity) {
-                html += renderActivityCard(activity, cat.key);
-            } else {
-                html += `<div class="category-empty">${cat.emptyText}</div>`;
-            }
-
-            html += `</div>`;
+            html += '</div>';
+            html += hasActivity ? renderActivityCard(activity, cat.key) : '<div class="category-empty">' + cat.emptyText + '</div>';
+            html += '</div>';
         });
-
         container.innerHTML = html;
     }
 
     function renderActivityCard(activity, categoryKey) {
-        let statsHtml = '';
-
+        var stats = '<div class="activity-stat"><span class="activity-stat-label">Months reported</span>' +
+            '<span class="activity-stat-value">' + activity.monthsReported + '</span></div>' +
+            '<div class="activity-stat"><span class="activity-stat-label">Total hours</span>' +
+            '<span class="activity-stat-value">' + activity.totalHours + '</span></div>';
         if (categoryKey === 'employment') {
-            statsHtml = `
-                <div class="activity-stat">
-                    <span class="activity-stat-label">Months reported</span>
-                    <span class="activity-stat-value">${activity.monthsReported}</span>
-                </div>
-                <div class="activity-stat">
-                    <span class="activity-stat-label">Total hours</span>
-                    <span class="activity-stat-value">${activity.totalHours}</span>
-                </div>
-                <div class="activity-stat">
-                    <span class="activity-stat-label">Total gross income</span>
-                    <span class="activity-stat-value">$${activity.totalIncome}</span>
-                </div>
-            `;
-        } else {
-            statsHtml = `
-                <div class="activity-stat">
-                    <span class="activity-stat-label">Months reported</span>
-                    <span class="activity-stat-value">${activity.monthsReported}</span>
-                </div>
-                <div class="activity-stat">
-                    <span class="activity-stat-label">Total hours</span>
-                    <span class="activity-stat-value">${activity.totalHours}</span>
-                </div>
-            `;
+            stats += '<div class="activity-stat"><span class="activity-stat-label">Total gross income</span>' +
+                '<span class="activity-stat-value">$' + activity.totalIncome + '</span></div>';
         }
-
-        return `
-            <div class="activity-card">
-                <div class="activity-card-header">
-                    <div class="activity-card-name">${activity.orgName}</div>
-                    <button class="activity-card-link">View details</button>
-                </div>
-                <div class="activity-card-body">
-                    <div class="activity-card-stats">
-                        ${statsHtml}
-                    </div>
-                </div>
-            </div>
-        `;
+        return '<div class="activity-card"><div class="activity-card-header">' +
+            '<div class="activity-card-name">' + activity.orgName + '</div>' +
+            '<button class="activity-card-link">View details</button></div>' +
+            '<div class="activity-card-body"><div class="activity-card-stats">' + stats + '</div></div></div>';
     }
 
     function showSuccessBanner(orgName) {
-        const banner = document.getElementById('successBanner');
+        var banner = document.getElementById('successBanner');
         banner.textContent = '\u2713 ' + orgName + ' added to your report';
         banner.style.display = 'block';
-
-        setTimeout(function() {
-            banner.style.display = 'none';
-        }, 4000);
+        setTimeout(function() { banner.style.display = 'none'; }, 4000);
     }
 
     // ============================================
@@ -1475,25 +1425,21 @@
             return;
         }
 
-        // Initialize spoke form state from prefilled data
         spokeFormData = {
             orgName: currentSpokeData.orgName,
             orgAddress: currentSpokeData.orgAddress,
             orgEmail: currentSpokeData.orgEmail,
             orgCoordinator: currentSpokeData.orgCoordinator || '',
             orgCoordinatorEmail: currentSpokeData.orgCoordinatorEmail || '',
-            months: JSON.parse(JSON.stringify(currentSpokeData.months))
+            months: buildBlankMonths()
         };
 
         currentSpokeStep = 0;
         currentMonthSub = 0;
 
-        // Switch views
         document.getElementById('hubView').classList.remove('active');
         document.getElementById('spokeView').classList.add('active');
         document.getElementById('exitWarning').classList.remove('visible');
-
-        // Update spoke chrome
         document.getElementById('spokeFlowLabel').textContent = currentSpokeData.flowLabel;
 
         renderSpokeScreen();
@@ -1505,16 +1451,11 @@
     // ============================================
 
     function updateSpokeChrome() {
-        // Determine the visual step (1-4)
-        let visualStep = currentSpokeStep + 1;
-
-        // Update step segments
-        const segments = document.querySelectorAll('#spokeStepBar .spoke-step-segment');
+        var visualStep = currentSpokeStep + 1;
+        var segments = document.querySelectorAll('#spokeStepBar .spoke-step-segment');
         segments.forEach(function(seg, i) {
             seg.classList.toggle('completed', i < visualStep);
         });
-
-        // Update step counter
         document.getElementById('spokeStepNumber').textContent = visualStep;
         document.getElementById('spokeStepPhase').textContent = STEP_PHASES[currentSpokeStep];
     }
@@ -1525,19 +1466,8 @@
 
     function renderSpokeScreen() {
         updateSpokeChrome();
-        updateChromeBackVisibility();
-
-        const content = document.getElementById('spokeContent');
-        let html = '';
-
-        // In Option B, add content-area flow label
-        if (isOnpageMode()) {
-            var flowLabelText = escapeHtml(currentSpokeData.flowLabel);
-            if (currentSpokeStep === 1) {
-                flowLabelText += '<br>(Month ' + (currentMonthSub + 1) + '/3)';
-            }
-            html += '<div class="content-flow-label">' + flowLabelText + '</div>';
-        }
+        var content = document.getElementById('spokeContent');
+        var html = '<button class="back-link" onclick="spokeBack()">' + ICONS.arrowBack + ' Back</button>';
 
         if (currentSpokeStep === 0) {
             html += renderOrgInfoScreen();
@@ -1550,145 +1480,108 @@
         }
 
         content.innerHTML = html;
-
-        // Re-apply checkbox states for tile checkboxes
-        if (currentSpokeStep === 1) {
-            initMonthScreen();
-        }
-
+        if (currentSpokeStep === 1) initMonthScreen();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Step 1: Organization Info
     function renderOrgInfoScreen() {
-        const isEmployment = currentSpokeData.type === 'employment';
-
-        let title, fieldsHtml;
+        var isEmployment = currentSpokeData.type === 'employment';
+        var title, introText, fieldsHtml;
 
         if (isEmployment) {
             title = 'Tell us about your employer or business';
-            fieldsHtml = `
-                <div class="form-group">
-                    <label class="form-label" for="orgNameInput">Employer or business name</label>
-                    <p class="form-hint">If you work for yourself, enter your name</p>
-                    <input type="text" class="form-input" id="orgNameInput" value="${escapeHtml(spokeFormData.orgName)}">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="orgAddressInput">Employer or business address</label>
-                    <p class="form-hint">If you work for yourself, enter your address</p>
-                    <input type="text" class="form-input" id="orgAddressInput" value="${escapeHtml(spokeFormData.orgAddress)}">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="orgEmailInput">Employer or business contact email</label>
-                    <input type="email" class="form-input" id="orgEmailInput" value="${escapeHtml(spokeFormData.orgEmail)}">
-                </div>
-            `;
+            introText = 'Enter as much information as you can. This will help <Agency initials> get in touch with your employer, if needed.';
+            fieldsHtml = '<div class="form-group">' +
+                '<label class="form-label" for="orgNameInput">Employer or business name</label>' +
+                '<p class="form-hint">If you work for yourself, enter your name</p>' +
+                '<input type="text" class="form-input" id="orgNameInput" value="' + escapeHtml(spokeFormData.orgName) + '"></div>' +
+                '<div class="form-group">' +
+                '<label class="form-label" for="orgAddressInput">Employer or business address</label>' +
+                '<p class="form-hint">If you work for yourself, enter your address</p>' +
+                '<input type="text" class="form-input" id="orgAddressInput" value="' + escapeHtml(spokeFormData.orgAddress) + '"></div>' +
+                '<div class="form-group">' +
+                '<label class="form-label" for="orgEmailInput">Employer or business contact email</label>' +
+                '<input type="email" class="form-input" id="orgEmailInput" value="' + escapeHtml(spokeFormData.orgEmail) + '"></div>';
         } else {
             title = 'Tell us about your community service organization';
-            fieldsHtml = `
-                <div class="form-group">
-                    <label class="form-label" for="orgNameInput">Organization name</label>
-                    <input type="text" class="form-input" id="orgNameInput" value="${escapeHtml(spokeFormData.orgName)}">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="orgAddressInput">Organization address</label>
-                    <input type="text" class="form-input" id="orgAddressInput" value="${escapeHtml(spokeFormData.orgAddress)}">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="orgCoordinatorInput">Coordinator name</label>
-                    <input type="text" class="form-input" id="orgCoordinatorInput" value="${escapeHtml(spokeFormData.orgCoordinator)}">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="orgCoordinatorEmailInput">Coordinator email</label>
-                    <input type="email" class="form-input" id="orgCoordinatorEmailInput" value="${escapeHtml(spokeFormData.orgCoordinatorEmail)}">
-                </div>
-            `;
+            introText = 'Enter as much information as you can. This will help <Agency initials> get in touch with your community service organization, if needed.';
+            fieldsHtml = '<h2 style="font-family: Public Sans, sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px; margin-top: 8px;">Organization information</h2>' +
+                '<div class="form-group">' +
+                '<label class="form-label" for="orgNameInput">Organization name</label>' +
+                '<p class="form-hint">Enter the full and official name</p>' +
+                '<input type="text" class="form-input" id="orgNameInput" value="' + escapeHtml(spokeFormData.orgName) + '"></div>' +
+                '<div class="form-group">' +
+                '<label class="form-label" for="orgAddressInput">Street address</label>' +
+                '<input type="text" class="form-input" id="orgAddressInput" value="' + escapeHtml(spokeFormData.orgAddress) + '"></div>' +
+                '<h2 style="font-family: Public Sans, sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 16px; margin-top: 32px;">Coordinator information</h2>' +
+                '<div class="form-group">' +
+                '<label class="form-label" for="orgCoordinatorInput">Coordinator\'s name</label>' +
+                '<p class="form-hint">The person you worked most closely with or reported to</p>' +
+                '<input type="text" class="form-input" id="orgCoordinatorInput" value="' + escapeHtml(spokeFormData.orgCoordinator) + '"></div>' +
+                '<div class="form-group">' +
+                '<label class="form-label" for="orgCoordinatorEmailInput">Coordinator\'s email</label>' +
+                '<input type="email" class="form-input" id="orgCoordinatorEmailInput" value="' + escapeHtml(spokeFormData.orgCoordinatorEmail) + '"></div>';
         }
 
-        // No back button on step 1
-        return `
-            <h1>${title}</h1>
-            ${fieldsHtml}
-            <button class="btn-primary" onclick="saveOrgAndContinue()">Continue</button>
-        `;
+        return '<h1>' + title + '</h1>' +
+            '<p class="form-intro">' + introText + '</p>' +
+            fieldsHtml +
+            '<button class="btn-primary" onclick="saveOrgAndContinue()">Continue</button>';
     }
 
     // Step 2: Monthly Details
     function renderMonthlyScreen() {
-        const monthKey = SPOKE_MONTHS[currentMonthSub];
-        const monthLabel = SPOKE_MONTH_LABELS[monthKey];
-        const monthData = spokeFormData.months[monthKey];
-        const isEmployment = currentSpokeData.type === 'employment';
-        const orgName = spokeFormData.orgName;
+        var spokeMonths = getSpokeMonths();
+        var monthObj = spokeMonths[currentMonthSub];
+        var monthKey = monthObj.key;
+        var monthLabel = monthObj.label;
+        var monthData = spokeFormData.months[monthKey];
+        var isEmployment = currentSpokeData.type === 'employment';
+        var orgName = spokeFormData.orgName;
 
-        let title;
+        var title = isEmployment
+            ? 'Enter the hours and income you worked at ' + escapeHtml(orgName) + ' in ' + monthLabel
+            : 'Add your ' + monthLabel + ' community service hours with ' + escapeHtml(orgName);
+
+        var noDataLabel = isEmployment
+            ? 'No ' + monthLabel + ' income'
+            : 'No community service hours with ' + escapeHtml(orgName) + ' in ' + monthLabel;
+
+        var isChecked = monthData.noData;
+        var checkedClass = isChecked ? 'checked' : '';
+        var checkedAttr = isChecked ? 'checked' : '';
+
+        var fieldsHtml = '';
         if (isEmployment) {
-            title = `Enter the hours and income you worked at ${escapeHtml(orgName)} in ${monthLabel}`;
+            fieldsHtml = '<div id="monthFields" style="' + (isChecked ? 'display:none' : '') + '">' +
+                '<div class="form-group"><label class="form-label" for="incomeInput">Gross income</label>' +
+                '<p class="form-hint">How much you made before taxes</p>' +
+                '<div class="input-prefix-wrapper"><span class="input-prefix">$</span>' +
+                '<input type="number" class="form-input" id="incomeInput" value="' + escapeHtml(monthData.income) + '" min="0" step="0.01"></div></div>' +
+                '<div class="form-group"><label class="form-label" for="hoursInput">Total hours worked</label>' +
+                '<input type="number" class="form-input" id="hoursInput" value="' + escapeHtml(monthData.hours) + '" min="0" step="1"></div></div>';
         } else {
-            title = `Add your ${monthLabel} community service hours with ${escapeHtml(orgName)}`;
+            fieldsHtml = '<div id="monthFields" style="' + (isChecked ? 'display:none' : '') + '">' +
+                '<div class="form-group"><label class="form-label" for="hoursInput">' + monthLabel + ' community service hours</label>' +
+                '<input type="number" class="form-input" id="hoursInput" value="' + escapeHtml(monthData.hours) + '" min="0" step="1"></div></div>';
         }
 
-        let noDataLabel;
-        if (isEmployment) {
-            noDataLabel = `No ${monthLabel} income`;
-        } else {
-            noDataLabel = `No ${monthLabel} hours`;
-        }
-
-        const isChecked = monthData.noData;
-        const checkedClass = isChecked ? 'checked' : '';
-        const checkedAttr = isChecked ? 'checked' : '';
-
-        let fieldsHtml = '';
-        if (isEmployment) {
-            fieldsHtml = `
-                <div id="monthFields" style="${isChecked ? 'display:none' : ''}">
-                    <div class="form-group">
-                        <label class="form-label" for="incomeInput">Gross income</label>
-                        <p class="form-hint">How much you made before taxes</p>
-                        <div class="input-prefix-wrapper">
-                            <span class="input-prefix">$</span>
-                            <input type="number" class="form-input" id="incomeInput" value="${escapeHtml(monthData.income)}" min="0" step="0.01">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="hoursInput">Total hours worked</label>
-                        <input type="number" class="form-input" id="hoursInput" value="${escapeHtml(monthData.hours)}" min="0" step="1">
-                    </div>
-                </div>
-            `;
-        } else {
-            fieldsHtml = `
-                <div id="monthFields" style="${isChecked ? 'display:none' : ''}">
-                    <div class="form-group">
-                        <label class="form-label" for="hoursInput">Total hours</label>
-                        <input type="number" class="form-input" id="hoursInput" value="${escapeHtml(monthData.hours)}" min="0" step="1">
-                    </div>
-                </div>
-            `;
-        }
-
-        return `
-            <button class="back-btn" onclick="spokeBack()">
-                ${ICONS.arrowBack} Back
-            </button>
-            <div class="month-sub-counter">Month ${currentMonthSub + 1} / 3</div>
-            <h1>${title}</h1>
-            <div class="tile-checkbox ${checkedClass}" id="noDataTile" onclick="toggleNoData()">
-                <input type="checkbox" id="noDataCheck" ${checkedAttr}>
-                <label for="noDataCheck">${noDataLabel}</label>
-            </div>
-            ${fieldsHtml}
-            <button class="btn-primary" onclick="saveMonthAndContinue()">Continue</button>
-        `;
+        return '<div class="month-sub-counter">Month ' + (currentMonthSub + 1) + ' / ' + spokeMonths.length + '</div>' +
+            '<h1>' + title + '</h1>' +
+            '<div class="tile-checkbox ' + checkedClass + '" id="noDataTile" onclick="toggleNoData()">' +
+            '<input type="checkbox" id="noDataCheck" ' + checkedAttr + '>' +
+            '<label for="noDataCheck">' + noDataLabel + '</label></div>' +
+            fieldsHtml +
+            '<button class="btn-primary" onclick="saveMonthAndContinue()">Continue</button>';
     }
 
     function initMonthScreen() {
-        // Set up tile checkbox visual state
-        const monthKey = SPOKE_MONTHS[currentMonthSub];
-        const monthData = spokeFormData.months[monthKey];
-        const tile = document.getElementById('noDataTile');
-        const check = document.getElementById('noDataCheck');
+        var spokeMonths = getSpokeMonths();
+        var monthKey = spokeMonths[currentMonthSub].key;
+        var monthData = spokeFormData.months[monthKey];
+        var tile = document.getElementById('noDataTile');
+        var check = document.getElementById('noDataCheck');
         if (tile && check) {
             check.checked = monthData.noData;
             tile.classList.toggle('checked', monthData.noData);
@@ -1696,20 +1589,19 @@
     }
 
     function toggleNoData() {
-        const monthKey = SPOKE_MONTHS[currentMonthSub];
-        const monthData = spokeFormData.months[monthKey];
+        var spokeMonths = getSpokeMonths();
+        var monthKey = spokeMonths[currentMonthSub].key;
+        var monthData = spokeFormData.months[monthKey];
         monthData.noData = !monthData.noData;
 
-        const tile = document.getElementById('noDataTile');
-        const check = document.getElementById('noDataCheck');
-        const fields = document.getElementById('monthFields');
-
+        var tile = document.getElementById('noDataTile');
+        var check = document.getElementById('noDataCheck');
+        var fields = document.getElementById('monthFields');
         if (tile && check && fields) {
             check.checked = monthData.noData;
             tile.classList.toggle('checked', monthData.noData);
             fields.style.display = monthData.noData ? 'none' : '';
         }
-
         if (monthData.noData) {
             monthData.income = '';
             monthData.hours = '';
@@ -1718,188 +1610,119 @@
 
     // Step 3: Supporting Documents
     function renderUploadScreen() {
-        const orgName = spokeFormData.orgName;
-        const isEmployment = currentSpokeData.type === 'employment';
+        var orgName = spokeFormData.orgName;
+        var isEmployment = currentSpokeData.type === 'employment';
+        var spokeMonths = getSpokeMonths();
 
-        // Which months have data?
-        const monthsWithData = SPOKE_MONTHS.filter(function(mk) {
-            return !spokeFormData.months[mk].noData;
-        }).map(function(mk) {
-            return SPOKE_MONTH_LABELS[mk];
+        var monthsWithData = spokeMonths.filter(function(m) {
+            return !spokeFormData.months[m.key].noData;
         });
 
-        let instructionText;
+        var monthSummaryHtml = '';
         if (monthsWithData.length > 0) {
-            instructionText = `Upload documents that show your ${isEmployment ? 'income and hours' : 'hours'} for ${formatList(monthsWithData)}.`;
-        } else {
-            instructionText = 'You reported no data for any months. You can still upload documents if you have them.';
+            monthSummaryHtml = '<ul style="margin: 0 0 0 20px; padding: 0;">';
+            monthsWithData.forEach(function(m) {
+                var md = spokeFormData.months[m.key];
+                monthSummaryHtml += '<li><strong>' + m.label + ' 2026</strong> (' + (md.hours || '0') + ' hours)</li>';
+            });
+            monthSummaryHtml += '</ul>';
         }
 
-        let suggestedDocs;
-        if (isEmployment) {
-            suggestedDocs = '<ul><li>Pay stubs</li><li>Employer letter</li><li>Bank statements showing deposits</li></ul>';
-        } else {
-            suggestedDocs = '<ul><li>Volunteer log or timesheet</li><li>Letter from coordinator</li><li>Organization attendance records</li></ul>';
-        }
+        var instructionText = monthsWithData.length > 0
+            ? 'Upload documents that verify the information you entered for:'
+            : 'You reported no data for any months. You can still upload documents if you have them.';
+        if (monthsWithData.length === 0) monthSummaryHtml = '';
 
-        return `
-            <button class="back-btn" onclick="spokeBack()">
-                ${ICONS.arrowBack} Back
-            </button>
-            <h1>Upload supporting documents for ${escapeHtml(orgName)}</h1>
-            <p class="upload-instructions">${instructionText}</p>
-            <div class="form-group">
-                <label class="form-label">Documents</label>
-                <p class="form-hint">Select PDF, PNG, JPG, or HEIC files</p>
-                <div class="file-upload-area" onclick="simulateUpload()">
-                    <div class="file-upload-icon">
-                        <svg viewBox="0 0 24 24" fill="#71767a" width="32" height="32"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
-                    </div>
-                    <p>Drag files here or <a href="#" onclick="event.preventDefault()">choose from folder</a></p>
-                </div>
-            </div>
-            <div class="suggested-docs">
-                <button class="suggested-docs-toggle" onclick="toggleSuggestedDocs()">See suggested documents</button>
-                <div class="suggested-docs-content" id="suggestedDocsContent">
-                    <strong>Suggested documents:</strong>
-                    ${suggestedDocs}
-                </div>
-            </div>
-            <button class="btn-primary" onclick="continueToReview()">Continue to review</button>
-        `;
+        var suggestedDocs = isEmployment
+            ? '<ul><li>Pay stubs</li><li>Employer letter</li><li>Bank statements showing deposits</li></ul>'
+            : '<ul><li>Volunteer log or timesheet</li><li>Letter from coordinator</li><li>Organization attendance records</li></ul>';
+
+        return '<h1>Upload supporting documents for ' + escapeHtml(orgName) + '</h1>' +
+            '<p class="upload-instructions">' + instructionText + '</p>' +
+            monthSummaryHtml +
+            '<div class="form-group" style="margin-top: 24px;">' +
+            '<label class="form-label">Documents</label>' +
+            '<p class="form-hint">Select PDF, PNG, JPG, or HEIC files</p>' +
+            '<div class="file-upload-area" onclick="simulateUpload()">' +
+            '<div class="file-upload-icon"><svg viewBox="0 0 24 24" fill="#71767a" width="32" height="32"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg></div>' +
+            '<p>Drag files here or <a href="#" onclick="event.preventDefault()">choose from folder</a></p></div></div>' +
+            '<div class="suggested-docs">' +
+            '<button class="suggested-docs-toggle" id="suggestedDocsToggle" onclick="toggleSuggestedDocs()">' +
+            'Suggested documents <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>' +
+            '<div class="suggested-docs-content" id="suggestedDocsContent">' + suggestedDocs + '</div></div>' +
+            '<button class="btn-primary" onclick="continueToReview()">Continue to review</button>';
     }
 
     function toggleSuggestedDocs() {
-        var content = document.getElementById('suggestedDocsContent');
-        content.classList.toggle('open');
+        document.getElementById('suggestedDocsContent').classList.toggle('open');
+        document.getElementById('suggestedDocsToggle').classList.toggle('open');
     }
 
-    function simulateUpload() {
-        // No-op for prototype; area is interactive but doesn't do anything
-    }
+    function simulateUpload() {}
 
     // Step 4: Review
     function renderReviewScreen() {
-        const isEmployment = currentSpokeData.type === 'employment';
-        const orgName = spokeFormData.orgName;
-        const activityLabel = isEmployment ? 'employment' : 'community service';
+        var isEmployment = currentSpokeData.type === 'employment';
+        var orgName = spokeFormData.orgName;
+        var activityLabel = isEmployment ? 'employment' : 'community service';
+        var spokeMonths = getSpokeMonths();
 
-        // Org info section
-        let orgInfoRows = '';
+        var introText = 'Review all the information you\'ve added for ' + escapeHtml(orgName) +
+            ' before adding it to your Community Engagement Report.';
+
+        // Org info
+        var orgInfoRows = '';
         if (isEmployment) {
-            orgInfoRows = `
-                <div class="review-row">
-                    <div class="review-label">Employer name</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgName)}</div>
-                </div>
-                <div class="review-row">
-                    <div class="review-label">Address</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgAddress)}</div>
-                </div>
-                <div class="review-row">
-                    <div class="review-label">Contact email</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgEmail)}</div>
-                </div>
-            `;
+            orgInfoRows = '<div class="review-row"><div class="review-label">Employer name</div><div class="review-value">' + escapeHtml(spokeFormData.orgName) + '</div></div>' +
+                '<div class="review-row"><div class="review-label">Address</div><div class="review-value">' + escapeHtml(spokeFormData.orgAddress) + '</div></div>' +
+                '<div class="review-row"><div class="review-label">Contact email</div><div class="review-value">' + escapeHtml(spokeFormData.orgEmail) + '</div></div>';
         } else {
-            orgInfoRows = `
-                <div class="review-row">
-                    <div class="review-label">Organization name</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgName)}</div>
-                </div>
-                <div class="review-row">
-                    <div class="review-label">Address</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgAddress)}</div>
-                </div>
-                <div class="review-row">
-                    <div class="review-label">Coordinator</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgCoordinator)}</div>
-                </div>
-                <div class="review-row">
-                    <div class="review-label">Coordinator email</div>
-                    <div class="review-value">${escapeHtml(spokeFormData.orgCoordinatorEmail)}</div>
-                </div>
-            `;
+            orgInfoRows = '<div class="review-row"><div class="review-label">Name</div><div class="review-value">' + escapeHtml(spokeFormData.orgName) + '</div></div>' +
+                '<div class="review-row"><div class="review-label">Address</div><div class="review-value">' + escapeHtml(spokeFormData.orgAddress) + '</div></div>' +
+                '<div class="review-row"><div class="review-label">Coordinator\'s name</div><div class="review-value">' + escapeHtml(spokeFormData.orgCoordinator) + '</div></div>' +
+                '<div class="review-row"><div class="review-label">Coordinator\'s email</div><div class="review-value">' + escapeHtml(spokeFormData.orgCoordinatorEmail) + '</div></div>';
         }
 
-        // Monthly details section
-        let monthRows = '';
-        SPOKE_MONTHS.forEach(function(mk) {
-            const md = spokeFormData.months[mk];
-            const label = SPOKE_MONTH_LABELS[mk];
-
+        // Monthly details
+        var monthRows = '';
+        spokeMonths.forEach(function(m, idx) {
+            var md = spokeFormData.months[m.key];
             if (md.noData) {
-                monthRows += `
-                    <div class="review-month-group">
-                        <div class="review-month-name no-data">${label} (No ${isEmployment ? 'income' : 'hours'})</div>
-                    </div>
-                `;
+                monthRows += '<div class="review-month-block"><div class="review-month-header">' +
+                    '<span class="review-month-name no-data">' + m.label + '</span>' +
+                    '<button class="edit-link" onclick="editMonthFromReview(' + idx + ')">Edit</button></div>' +
+                    '<div class="review-month-detail"><span class="review-month-detail-label">' +
+                    (isEmployment ? 'No income reported' : 'No hours reported') + '</span></div></div>';
             } else if (isEmployment) {
-                monthRows += `
-                    <div class="review-month-group">
-                        <div class="review-month-name">${label}</div>
-                        <div class="review-month-detail">
-                            <span class="review-month-detail-label">Gross income</span>
-                            <span class="review-month-detail-value">$${md.income || '0'}</span>
-                        </div>
-                        <div class="review-month-detail">
-                            <span class="review-month-detail-label">Total hours worked</span>
-                            <span class="review-month-detail-value">${md.hours || '0'}</span>
-                        </div>
-                    </div>
-                `;
+                monthRows += '<div class="review-month-block"><div class="review-month-header">' +
+                    '<span class="review-month-name">' + m.label + '</span>' +
+                    '<button class="edit-link" onclick="editMonthFromReview(' + idx + ')">Edit</button></div>' +
+                    '<div class="review-month-detail"><span class="review-month-detail-label">Gross income</span>' +
+                    '<span class="review-month-detail-value">$' + (md.income || '0') + '</span></div>' +
+                    '<div class="review-month-detail"><span class="review-month-detail-label">Total hours worked</span>' +
+                    '<span class="review-month-detail-value">' + (md.hours || '0') + '</span></div></div>';
             } else {
-                monthRows += `
-                    <div class="review-month-group">
-                        <div class="review-month-name">${label}</div>
-                        <div class="review-month-detail">
-                            <span class="review-month-detail-label">Hours</span>
-                            <span class="review-month-detail-value">${md.hours || '0'}</span>
-                        </div>
-                    </div>
-                `;
+                monthRows += '<div class="review-month-block"><div class="review-month-header">' +
+                    '<span class="review-month-name">' + m.label + '</span>' +
+                    '<button class="edit-link" onclick="editMonthFromReview(' + idx + ')">Edit</button></div>' +
+                    '<div class="review-month-detail"><span class="review-month-detail-label">Community service hours</span>' +
+                    '<span class="review-month-detail-value">' + (md.hours || '0') + '</span></div></div>';
             }
         });
 
-        // Documents section
-        let docsContent = `
-            <div class="review-row">
-                <div class="review-value" style="color: #71767a;">No documents uploaded</div>
-            </div>
-        `;
+        var docsContent = '<div class="review-row"><div class="review-value" style="color: #71767a;">No documents uploaded</div></div>';
 
-        return `
-            <button class="back-btn" onclick="spokeBack()">
-                ${ICONS.arrowBack} Back
-            </button>
-            <h1>Review your ${activityLabel} information</h1>
-
-            <div class="review-section">
-                <div class="review-section-header">
-                    <span>${isEmployment ? 'Employer information' : 'Organization information'}</span>
-                    <button class="change-link">Change</button>
-                </div>
-                ${orgInfoRows}
-            </div>
-
-            <div class="review-section">
-                <div class="review-section-header">
-                    <span>${isEmployment ? 'Hours and income' : 'Monthly hours'}</span>
-                    <button class="change-link">Change</button>
-                </div>
-                ${monthRows}
-            </div>
-
-            <div class="review-section">
-                <div class="review-section-header">
-                    <span>Supporting documents</span>
-                    <button class="change-link">Change</button>
-                </div>
-                ${docsContent}
-            </div>
-
-            <button class="btn-primary" onclick="saveAndAddToReport()">Save and add to my report</button>
-        `;
+        return '<h1>Review your ' + activityLabel + ' information for ' + escapeHtml(orgName) + '</h1>' +
+            '<p class="review-intro">' + introText + '</p>' +
+            '<div class="review-section"><div class="review-section-header-row"><span>' + (isEmployment ? 'Employer information' : 'Organization information') + '</span>' +
+            '<button class="change-link" onclick="changeFromReview(0)">Change</button></div>' + orgInfoRows + '</div>' +
+            '<div class="review-section"><div class="review-section-header">' + (isEmployment ? 'Hours and income' : 'Community service hours') + '</div>' + monthRows + '</div>' +
+            '<div class="review-section"><div class="review-section-header-row"><span>Supporting documents</span>' +
+            '<button class="change-link" onclick="changeFromReview(2)">Change</button></div>' + docsContent + '</div>' +
+            '<div class="form-group" style="margin-top: 32px;"><label class="form-label">Additional comments (optional)</label>' +
+            '<p class="form-hint">Share any comments or additional information that you\'d like <Agency name> to know.</p>' +
+            '<textarea class="form-textarea" placeholder=""></textarea></div>' +
+            '<button class="btn-primary" onclick="saveAndAddToReport()">Save and add to my report</button>';
     }
 
     // ============================================
@@ -1907,29 +1730,32 @@
     // ============================================
 
     function saveOrgAndContinue() {
-        // Save org form data
         var nameEl = document.getElementById('orgNameInput');
         var addrEl = document.getElementById('orgAddressInput');
         var emailEl = document.getElementById('orgEmailInput');
         var coordEl = document.getElementById('orgCoordinatorInput');
         var coordEmailEl = document.getElementById('orgCoordinatorEmailInput');
-
         if (nameEl) spokeFormData.orgName = nameEl.value;
         if (addrEl) spokeFormData.orgAddress = addrEl.value;
         if (emailEl) spokeFormData.orgEmail = emailEl.value;
         if (coordEl) spokeFormData.orgCoordinator = coordEl.value;
         if (coordEmailEl) spokeFormData.orgCoordinatorEmail = coordEmailEl.value;
 
+        if (returnToReview) {
+            returnToReview = false;
+            currentSpokeStep = 3;
+            renderSpokeScreen();
+            return;
+        }
         currentSpokeStep = 1;
         currentMonthSub = 0;
         renderSpokeScreen();
     }
 
     function saveMonthAndContinue() {
-        // Save current month fields
-        var monthKey = SPOKE_MONTHS[currentMonthSub];
+        var spokeMonths = getSpokeMonths();
+        var monthKey = spokeMonths[currentMonthSub].key;
         var md = spokeFormData.months[monthKey];
-
         if (!md.noData) {
             var incomeEl = document.getElementById('incomeInput');
             var hoursEl = document.getElementById('hoursInput');
@@ -1937,44 +1763,64 @@
             if (hoursEl) md.hours = hoursEl.value;
         }
 
-        if (currentMonthSub < 2) {
+        if (returnToReview) {
+            returnToReview = false;
+            currentSpokeStep = 3;
+            renderSpokeScreen();
+            return;
+        }
+        if (currentMonthSub < spokeMonths.length - 1) {
             currentMonthSub++;
             renderSpokeScreen();
         } else {
-            // Move to upload step
             currentSpokeStep = 2;
             renderSpokeScreen();
         }
     }
 
     function continueToReview() {
+        returnToReview = false;
         currentSpokeStep = 3;
         renderSpokeScreen();
     }
 
-    function spokeBack() {
-        // Save any current form data before navigating back
-        saveCurrentFormState();
+    // Edit from review — jump to a specific screen, then return to review on save
+    var returnToReview = false;
 
+    function editMonthFromReview(monthIdx) {
+        returnToReview = true;
+        currentSpokeStep = 1;
+        currentMonthSub = monthIdx;
+        renderSpokeScreen();
+    }
+
+    function changeFromReview(step) {
+        returnToReview = true;
+        currentSpokeStep = step;
+        renderSpokeScreen();
+    }
+
+    function spokeBack() {
+        saveCurrentFormState();
+        if (returnToReview) {
+            returnToReview = false;
+            currentSpokeStep = 3;
+            renderSpokeScreen();
+            return;
+        }
         if (currentSpokeStep === 0) {
-            // Step 1 (org info) — back goes to hub
-            // In Option B, back is in the chrome bar and visible on all screens
-            // In Option A, this shouldn't be reachable (back hidden on step 1)
             handleExit();
             return;
         } else if (currentSpokeStep === 1) {
-            // Monthly details
             if (currentMonthSub === 0) {
                 currentSpokeStep = 0;
             } else {
                 currentMonthSub--;
             }
         } else if (currentSpokeStep === 2) {
-            // Upload -> back to last month
             currentSpokeStep = 1;
-            currentMonthSub = 2;
+            currentMonthSub = getSpokeMonths().length - 1;
         } else if (currentSpokeStep === 3) {
-            // Review -> back to upload
             currentSpokeStep = 2;
         }
         renderSpokeScreen();
@@ -1993,7 +1839,8 @@
             if (coordEl) spokeFormData.orgCoordinator = coordEl.value;
             if (coordEmailEl) spokeFormData.orgCoordinatorEmail = coordEmailEl.value;
         } else if (currentSpokeStep === 1) {
-            var monthKey = SPOKE_MONTHS[currentMonthSub];
+            var spokeMonths = getSpokeMonths();
+            var monthKey = spokeMonths[currentMonthSub].key;
             var md = spokeFormData.months[monthKey];
             if (!md.noData) {
                 var incomeEl = document.getElementById('incomeInput');
@@ -2020,7 +1867,6 @@
         document.getElementById('exitWarning').classList.remove('visible');
         currentSpokeData = null;
         spokeFormData = {};
-
         document.getElementById('spokeView').classList.remove('active');
         document.getElementById('hubView').classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2033,20 +1879,15 @@
     function saveAndAddToReport() {
         var isEmployment = currentSpokeData.type === 'employment';
         var categoryKey = currentSpokeData.type;
+        var spokeMonths = getSpokeMonths();
+        var totalHours = 0, totalIncome = 0, monthsReported = 0;
 
-        // Calculate summary stats
-        var totalHours = 0;
-        var totalIncome = 0;
-        var monthsReported = 0;
-
-        SPOKE_MONTHS.forEach(function(mk) {
-            var md = spokeFormData.months[mk];
+        spokeMonths.forEach(function(m) {
+            var md = spokeFormData.months[m.key];
             if (!md.noData) {
                 monthsReported++;
                 totalHours += parseInt(md.hours) || 0;
-                if (isEmployment) {
-                    totalIncome += parseInt(md.income) || 0;
-                }
+                if (isEmployment) totalIncome += parseFloat(md.income) || 0;
             }
         });
 
@@ -2057,13 +1898,10 @@
             totalIncome: totalIncome
         };
 
-        // Return to hub
         currentSpokeData = null;
         spokeFormData = {};
-
         document.getElementById('spokeView').classList.remove('active');
         document.getElementById('hubView').classList.add('active');
-
         renderHub();
         showSuccessBanner(completedActivities[categoryKey].orgName);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2076,13 +1914,6 @@
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-
-    function formatList(items) {
-        if (items.length === 0) return '';
-        if (items.length === 1) return items[0];
-        if (items.length === 2) return items[0] + ' and ' + items[1];
-        return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
     }
 
     // ============================================
