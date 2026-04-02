@@ -1,0 +1,3366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End-to-End Demo — Emmy Medicaid CE Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.12.0/css/uswds.min.css" />
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #e8e8e8;
+            line-height: 1.5;
+            color: #1b1b1b;
+            font-size: 16px;
+        }
+
+        /* ============================================
+           CONFIG HEADER
+           ============================================ */
+        .config-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #1b1b1b;
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            gap: 16px;
+        }
+
+        .config-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .config-label {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #a9aeb1;
+        }
+
+        .config-btn {
+            padding: 4px 14px;
+            border: 1px solid #71767a;
+            border-radius: 4px;
+            background: transparent;
+            color: #a9aeb1;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .config-btn:hover { background: #3d4551; }
+
+        .config-toggle-stepper {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border: 1px solid #71767a;
+            border-radius: 4px;
+            background: transparent;
+            color: #a9aeb1;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .config-toggle-stepper:hover { background: #3d4551; }
+
+        .config-toggle-stepper.open {
+            background: #3d4551;
+            border-color: #a9aeb1;
+        }
+
+        .config-toggle-stepper .chevron {
+            display: inline-block;
+            transition: transform 0.2s ease;
+            font-size: 10px;
+        }
+
+        .config-toggle-stepper.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        /* ============================================
+           PROCESS STEPPER DRAWER
+           ============================================ */
+        .stepper-drawer {
+            max-height: 0;
+            overflow: hidden;
+            background: #252525;
+            transition: max-height 0.3s ease;
+            border-top: 1px solid #3d4551;
+        }
+
+        .stepper-drawer.open {
+            max-height: 600px;
+        }
+
+        .stepper-inner {
+            padding: 16px 20px;
+            display: flex;
+            gap: 32px;
+        }
+
+        .stepper-phase {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stepper-phase-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #71767a;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #3d4551;
+        }
+
+        .stepper-phase-title.phase-state { color: #a9aeb1; }
+        .stepper-phase-title.phase-emmy { color: #73b3e7; }
+
+        .stepper-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stepper-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #a9aeb1;
+            transition: background 0.1s ease, color 0.1s ease;
+            border: none;
+            background: none;
+            font-family: inherit;
+            text-align: left;
+            width: 100%;
+        }
+
+        .stepper-step:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .stepper-step.active {
+            background: rgba(0,94,162,0.25);
+            color: white;
+            font-weight: 600;
+        }
+
+        .stepper-step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: #71767a;
+        }
+
+        .stepper-step.active .stepper-step-dot {
+            background: #73b3e7;
+        }
+
+        .stepper-step.visited .stepper-step-dot {
+            background: #2e6e2e;
+        }
+
+        .stepper-no-scenario {
+            font-size: 13px;
+            color: #71767a;
+            font-style: italic;
+            padding: 8px 10px;
+        }
+
+        @media (max-width: 700px) {
+            .stepper-inner {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        /* ============================================
+           SCREEN CONTEXT LABEL
+           ============================================ */
+        .screen-context {
+            background: #f0f0f0;
+            border-bottom: 1px solid #dfe1e2;
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #3d4551;
+        }
+
+        .screen-context-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .screen-context-who {
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .screen-context-sep {
+            color: #a9aeb1;
+        }
+
+        .screen-context-system {
+            color: #3d4551;
+        }
+
+        /* Narrator screens get their own context bar style */
+        .screen-context.narrator-context {
+            background: #0b1526;
+            border-bottom: none;
+        }
+
+        .screen-context.narrator-context .screen-context-who {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .screen-context.narrator-context .screen-context-sep {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .screen-context.narrator-context .screen-context-system {
+            color: #fef0c8;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           VIEWPORT FRAME
+           ============================================ */
+        .viewport-frame {
+            max-width: 1024px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ============================================
+           SCREEN SYSTEM
+           ============================================ */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: screenFadeIn 0.35s ease;
+        }
+
+        @keyframes screenFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .screen.active { animation: none; }
+            .narrator-check { animation: none !important; }
+            .month-progress-bar-fill { transition: none !important; }
+        }
+
+        /* ============================================
+           INTRO SCREEN
+           ============================================ */
+        .intro-hero {
+            background: linear-gradient(135deg, #162e51 0%, #1a4480 100%);
+            padding: 48px 24px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .intro-hero h1 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .intro-hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            max-width: 540px;
+            margin: 0 auto 24px;
+        }
+
+        .intro-context-label {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .intro-body {
+            padding: 32px 24px 40px;
+        }
+
+        .intro-body h2 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 8px;
+        }
+
+        .intro-body > p {
+            font-size: 16px;
+            color: #3d4551;
+            margin-bottom: 24px;
+        }
+
+        /* Process flow diagram */
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 32px;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .process-step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 40px;
+        }
+
+        .process-step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .process-step-number.state-step {
+            background: #162e51;
+            color: white;
+        }
+
+        .process-step-number.emmy-step {
+            background: #005ea2;
+            color: white;
+        }
+
+        .process-step-number.outcome-step {
+            background: #00a91c;
+            color: white;
+        }
+
+        .process-step-line {
+            width: 2px;
+            flex-grow: 1;
+            min-height: 16px;
+            background: #dfe1e2;
+        }
+
+        .process-step-content {
+            padding: 6px 0 24px;
+            flex-grow: 1;
+        }
+
+        .process-step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 2px;
+        }
+
+        .process-step-desc {
+            font-size: 14px;
+            color: #71767a;
+            line-height: 1.4;
+        }
+
+        .process-step-owner {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-top: 4px;
+        }
+
+        .owner-state {
+            background: #e8e8e8;
+            color: #3d4551;
+        }
+
+        .owner-emmy {
+            background: #d9e8f6;
+            color: #1a4480;
+        }
+
+        .process-legend {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #71767a;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .intro-cta {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: #005ea2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .intro-cta:hover { background: #1a4480; }
+
+        /* ============================================
+           SCENARIO SELECTOR
+           ============================================ */
+        .selector-header {
+            background: #f0f0f0;
+            padding: 32px 24px 24px;
+            border-bottom: 1px solid #dfe1e2;
+        }
+
+        .selector-header h1 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 4px;
+        }
+
+        .selector-header p {
+            font-size: 16px;
+            color: #3d4551;
+        }
+
+        .selector-cards {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .scenario-card {
+            background: white;
+            border: 2px solid #dfe1e2;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .scenario-card:hover {
+            border-color: #005ea2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .scenario-card:focus {
+            outline: 3px solid #2491ff;
+            outline-offset: 2px;
+        }
+
+        .scenario-card-top {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .scenario-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .scenario-avatar.marcus { background: #1a4480; }
+        .scenario-avatar.keisha { background: #54278f; }
+        .scenario-avatar.darius { background: #b50909; }
+
+        .scenario-card-info h3 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 2px;
+        }
+
+        .scenario-card-info p {
+            font-size: 14px;
+            color: #3d4551;
+            line-height: 1.4;
+        }
+
+        .scenario-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .scenario-tag {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tag-application { background: #d9e8f6; color: #1a4480; }
+        .tag-renewal { background: #f0e0f6; color: #54278f; }
+        .tag-income { background: #fef0c8; color: #936218; }
+        .tag-education { background: #d4e7d0; color: #2e6e2e; }
+        .tag-employment { background: #d9e8f6; color: #1a4480; }
+
+        /* ============================================
+           NARRATOR SCREENS (State System)
+           ============================================ */
+        .narrator-screen {
+            background: linear-gradient(180deg, #0b1526 0%, #162e51 100%);
+            min-height: 100%;
+            color: white;
+        }
+
+        .narrator-bar {
+            background: rgba(229,160,0,0.12);
+            border-bottom: 2px solid #e5a000;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .narrator-bar-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e5a000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #162e51;
+        }
+
+        .narrator-bar-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fef0c8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .narrator-content {
+            padding: 32px 24px 40px;
+        }
+
+        .narrator-content h2 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .narrator-content > p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+        }
+
+        .narrator-persona-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .narrator-persona-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .narrator-persona-info {
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .narrator-persona-info strong {
+            display: block;
+            font-size: 16px;
+            color: white;
+        }
+
+        /* Data source checks */
+        .narrator-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .narrator-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .narrator-check.revealed {
+            animation: checkReveal 0.4s ease forwards;
+        }
+
+        @keyframes checkReveal {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .narrator-check-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .check-icon-querying {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        .narrator-check-body {
+            flex-grow: 1;
+        }
+
+        .narrator-check-source {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, monospace;
+        }
+
+        .narrator-check-result {
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .narrator-check-badge {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+
+        .badge-confirmed {
+            background: rgba(0,169,28,0.2);
+            color: #7dca87;
+            border: 1px solid rgba(0,169,28,0.3);
+        }
+
+        .badge-partial {
+            background: rgba(255,190,46,0.15);
+            color: #ffbe2e;
+            border: 1px solid rgba(255,190,46,0.3);
+        }
+
+        .badge-not-found {
+            background: rgba(213,67,9,0.15);
+            color: #f2938c;
+            border: 1px solid rgba(213,67,9,0.3);
+        }
+
+        .badge-flagged {
+            background: rgba(213,67,9,0.2);
+            color: #f2938c;
+            border: 1px solid rgba(213,67,9,0.3);
+        }
+
+        .badge-not-exempt {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* Narrator result box */
+        .narrator-result {
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .narrator-result.revealed {
+            animation: checkReveal 0.4s ease forwards;
+        }
+
+        .narrator-result.result-action {
+            background: rgba(255,190,46,0.1);
+            border: 1px solid rgba(255,190,46,0.3);
+        }
+
+        .narrator-result.result-pass {
+            background: rgba(0,169,28,0.1);
+            border: 1px solid rgba(0,169,28,0.3);
+        }
+
+        .narrator-result.result-fail {
+            background: rgba(213,67,9,0.1);
+            border: 1px solid rgba(213,67,9,0.3);
+        }
+
+        .narrator-result-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .result-action .narrator-result-title { color: #ffbe2e; }
+        .result-pass .narrator-result-title { color: #7dca87; }
+        .result-fail .narrator-result-title { color: #f2938c; }
+
+        .narrator-result-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .narrator-next-btn {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.15s ease;
+        }
+
+        .narrator-next-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ============================================
+           EMMY PRODUCT UI (Beneficiary screens)
+           ============================================ */
+
+        /* Gov banner */
+        .gov-banner {
+            background: #162e51;
+        }
+
+        .gov-banner-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 8px 16px;
+        }
+
+        .gov-banner-text {
+            font-size: 12px;
+            color: white;
+        }
+
+        /* Emmy header */
+        .emmy-header {
+            border-bottom: 1px solid #dfe1e2;
+            background: white;
+        }
+
+        .emmy-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .emmy-header-title {
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .emmy-header-menu {
+            background: #005ea2;
+            color: white;
+            padding: 14px 12px;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 400;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #162e51;
+            margin-top: 32px;
+        }
+
+        .site-footer-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .site-footer-title {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        /* Container */
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Hub */
+        .hub-content { padding: 24px 0 40px; }
+
+        .hub-title {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1b1b1b;
+            line-height: 1.15;
+        }
+
+        .hub-period {
+            font-size: 16px;
+            color: #1b1b1b;
+            margin-bottom: 24px;
+        }
+
+        .hub-period strong { font-weight: 700; }
+
+        /* Progress section */
+        .progress-section { margin-bottom: 32px; }
+
+        .progress-section h2 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 4px;
+        }
+
+        .progress-section-desc {
+            font-size: 16px;
+            color: #1b1b1b;
+            margin-bottom: 12px;
+        }
+
+        .months-completed-counter {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 16px;
+        }
+
+        .month-progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .month-progress-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .month-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .month-progress-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: #1b1b1b;
+        }
+
+        .month-progress-hours {
+            font-size: 14px;
+            color: #1b1b1b;
+        }
+
+        .month-progress-hours.complete {
+            color: #2e6e2e;
+            font-weight: 700;
+        }
+
+        .month-progress-bar {
+            height: 8px;
+            background: #d9e8f6;
+            border: 1px solid #0050d8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .month-progress-bar.complete {
+            border-color: #2e6e2e;
+            background: #d4e7d0;
+        }
+
+        .month-progress-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.8s ease;
+            background: #005ea2;
+            width: 0%;
+        }
+
+        .month-progress-bar.complete .month-progress-bar-fill {
+            background: #2e6e2e;
+        }
+
+        /* Category sections */
+        .category-section { margin-bottom: 32px; }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .category-title {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .category-add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 2px solid #005ea2;
+            border-radius: 4px;
+            background: transparent;
+            color: #005ea2;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .category-add-btn:hover { background: #f0f7ff; }
+
+        .category-empty {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            color: #71767a;
+            font-size: 16px;
+        }
+
+        /* Activity card */
+        .activity-card {
+            background: white;
+            border: 1px solid #dfe1e2;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .activity-card-header {
+            padding: 16px 20px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .activity-card-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .activity-card-link {
+            color: #005ea2;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+
+        .activity-card-body { padding: 8px 20px 16px; }
+
+        .activity-month-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .activity-month-row:last-child { border-bottom: none; }
+
+        .activity-month-label { color: #3d4551; }
+        .activity-month-value { font-weight: 600; color: #1b1b1b; }
+
+        /* Spoke chrome */
+        .spoke-chrome {
+            position: sticky;
+            top: 41px; /* below config header */
+            z-index: 10;
+            background: white;
+            border-bottom: 1px solid #dfe1e2;
+        }
+
+        .spoke-chrome-row1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 10px 16px;
+        }
+
+        .spoke-flow-label {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .spoke-exit-link {
+            font-size: 16px;
+            color: #005ea2;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .spoke-content { padding: 24px 0 40px; }
+
+        /* Buttons */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: #005ea2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary:hover { background: #1a4480; }
+
+        .btn-outline {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: transparent;
+            color: #005ea2;
+            border: 2px solid #005ea2;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-outline:hover { background: #f0f7ff; }
+
+        /* Narrator annotation on beneficiary screens */
+        .narrator-annotation {
+            background: #fef0c8;
+            border-left: 3px solid #e5a000;
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-style: italic;
+            color: #3d4551;
+        }
+
+        /* Form styles */
+        .form-group { margin-bottom: 20px; }
+
+        .form-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #71767a;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        .form-input:focus {
+            outline: 3px solid #2491ff;
+            outline-offset: 0;
+        }
+
+        .form-hint {
+            font-size: 14px;
+            color: #71767a;
+            margin-top: 4px;
+        }
+
+        /* Checkbox */
+        .form-checkbox {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: #005ea2;
+        }
+
+        .form-checkbox label {
+            font-size: 16px;
+            color: #1b1b1b;
+            line-height: 1.4;
+        }
+
+        /* Success screen */
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #ecf3ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .success-icon svg {
+            width: 32px;
+            height: 32px;
+            color: #00a91c;
+        }
+
+        /* Entry page icon list */
+        .entry-icon-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 20px 0 24px;
+        }
+
+        .entry-icon-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .entry-icon-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #d9e8f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
+        .entry-icon-item-text {
+            font-size: 16px;
+            color: #1b1b1b;
+            padding-top: 8px;
+        }
+
+        /* Notice screen */
+        .notice-card {
+            background: white;
+            border: 1px solid #dfe1e2;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .notice-card h3 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 8px;
+        }
+
+        .notice-card p {
+            font-size: 15px;
+            color: #3d4551;
+            margin-bottom: 16px;
+        }
+
+        .notice-emmy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: #005ea2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .notice-emmy-link:hover { background: #1a4480; }
+
+        /* Loading spinner */
+        .sync-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+            gap: 16px;
+        }
+
+        .spinner-ring {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #d9e8f6;
+            border-top-color: #005ea2;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .sync-spinner p {
+            font-size: 16px;
+            color: #3d4551;
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            border-top: 1px solid #dfe1e2;
+            margin: 24px 0;
+        }
+
+        /* Review table */
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .review-table th,
+        .review-table td {
+            text-align: left;
+            padding: 10px 12px;
+            font-size: 15px;
+            border-bottom: 1px solid #dfe1e2;
+        }
+
+        .review-table th {
+            font-weight: 600;
+            color: #3d4551;
+            background: #f0f0f0;
+        }
+
+        .review-table td { color: #1b1b1b; }
+
+        /* Desktop hub layout */
+        @media (min-width: 768px) {
+            .hub-two-col {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                gap: 0;
+            }
+
+            .hub-two-col .progress-section {
+                position: sticky;
+                top: 80px;
+                align-self: start;
+                padding-right: 32px;
+                border-right: 1px solid #dfe1e2;
+            }
+
+            .hub-two-col .hub-activities {
+                padding-left: 32px;
+            }
+        }
+
+        /* Application form styles */
+        .app-form-section {
+            padding: 24px 0;
+        }
+
+        .app-form-section h2 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1b1b1b;
+        }
+
+        .attestation-box {
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+        }
+
+        .attestation-box h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1b1b1b;
+        }
+
+        .attestation-box p {
+            font-size: 14px;
+            color: #3d4551;
+            margin-bottom: 8px;
+        }
+
+        .attestation-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #005ea2;
+        }
+
+        /* Step indicator for multi-step forms */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 24px;
+            padding: 16px 0;
+        }
+
+        .step-indicator-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #71767a;
+            white-space: nowrap;
+        }
+
+        .step-indicator-item.current {
+            color: #1b1b1b;
+            font-weight: 700;
+        }
+
+        .step-indicator-item.completed {
+            color: #2e6e2e;
+        }
+
+        .step-indicator-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            border: 2px solid #a9aeb1;
+            color: #71767a;
+            background: white;
+        }
+
+        .step-indicator-item.current .step-indicator-dot {
+            background: #005ea2;
+            border-color: #005ea2;
+            color: white;
+        }
+
+        .step-indicator-item.completed .step-indicator-dot {
+            background: #2e6e2e;
+            border-color: #2e6e2e;
+            color: white;
+        }
+
+        .step-indicator-line {
+            width: 20px;
+            height: 2px;
+            background: #dfe1e2;
+            flex-shrink: 0;
+            margin: 0 4px;
+        }
+
+        .step-indicator-line.completed {
+            background: #2e6e2e;
+        }
+
+        /* State portal header */
+        .state-portal-header {
+            background: #1a4480;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .state-portal-title {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .state-portal-user {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Radio group for CE attestation */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 1px solid #dfe1e2;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .radio-option:hover {
+            background: #f0f7ff;
+            border-color: #005ea2;
+        }
+
+        .radio-option.selected {
+            background: #eff6fb;
+            border-color: #005ea2;
+            border-width: 2px;
+            padding: 11px 15px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 1px;
+            flex-shrink: 0;
+            accent-color: #005ea2;
+        }
+
+        .radio-option-content {
+            flex-grow: 1;
+        }
+
+        .radio-option-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1b1b1b;
+            display: block;
+        }
+
+        .radio-option-desc {
+            font-size: 14px;
+            color: #71767a;
+            margin-top: 2px;
+        }
+
+        /* CE activity section in application */
+        .ce-activity-section {
+            background: white;
+            border: 1px solid #dfe1e2;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .ce-activity-section h3 {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 4px;
+        }
+
+        .ce-activity-section p {
+            font-size: 14px;
+            color: #71767a;
+            margin-bottom: 12px;
+        }
+
+        .ce-skip-label {
+            font-size: 14px;
+            color: #71767a;
+            font-style: italic;
+        }
+
+        .ce-added-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2e6e2e;
+            background: #ecf3ec;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* Inline employer form in application */
+        .employer-attestation {
+            background: #f9f9f9;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        /* Entry page attestation summary */
+        .entry-summary-card {
+            border: 1px solid #dfe1e2;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .entry-summary-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #f0f0f0;
+            border-bottom: 1px solid #dfe1e2;
+        }
+
+        .entry-summary-header-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1b1b1b;
+        }
+
+        .entry-summary-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-verified {
+            background: #ecf3ec;
+            color: #2e6e2e;
+        }
+
+        .status-not-verified {
+            background: #fef0c8;
+            color: #936218;
+        }
+
+        .status-skipped {
+            background: #f0f0f0;
+            color: #71767a;
+        }
+
+        .entry-summary-body {
+            padding: 12px 16px;
+        }
+
+        .entry-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+
+        .entry-summary-row-label {
+            color: #71767a;
+        }
+
+        .entry-summary-row-value {
+            color: #1b1b1b;
+            font-weight: 600;
+        }
+
+        .entry-action-needed {
+            background: #fef0c8;
+            border-left: 3px solid #e5a000;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 24px;
+        }
+
+        .entry-action-needed-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1b1b1b;
+            margin-bottom: 4px;
+        }
+
+        .entry-action-needed-list {
+            font-size: 14px;
+            color: #3d4551;
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           FLOW NAVIGATION BAR
+           ============================================ */
+        .flow-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 24px;
+            border-top: 1px solid #dfe1e2;
+            background: #f9f9f9;
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
+        }
+
+        .flow-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 1px solid #dfe1e2;
+            border-radius: 4px;
+            background: white;
+            color: #005ea2;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .flow-nav-btn:hover {
+            background: #f0f7ff;
+            border-color: #005ea2;
+        }
+
+        .flow-nav-btn.disabled {
+            color: #a9aeb1;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .flow-nav-btn.disabled:hover {
+            background: white;
+            border-color: #dfe1e2;
+        }
+
+        .flow-nav-center {
+            font-size: 12px;
+            color: #71767a;
+            text-align: center;
+        }
+
+        /* Narrator screens get a dark nav bar */
+        .flow-nav.narrator-nav {
+            background: #0b1526;
+            border-top-color: rgba(255,255,255,0.1);
+        }
+
+        .flow-nav.narrator-nav .flow-nav-btn {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .flow-nav.narrator-nav .flow-nav-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .flow-nav.narrator-nav .flow-nav-btn.disabled {
+            color: rgba(255,255,255,0.25);
+        }
+
+        .flow-nav.narrator-nav .flow-nav-center {
+            color: rgba(255,255,255,0.4);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================
+     CONFIG HEADER
+     ============================================ -->
+<div class="config-header">
+    <div class="config-header-left">
+        <span class="config-label">Emmy Demo</span>
+        <button class="config-toggle-stepper" id="stepper-toggle" onclick="toggleStepper()">
+            Steps <span class="chevron">&#9660;</span>
+        </button>
+    </div>
+    <button class="config-btn" onclick="goTo('selector')">&larr; Back to scenarios</button>
+</div>
+<div class="stepper-drawer" id="stepper-drawer">
+    <div class="stepper-inner" id="stepper-content">
+        <div class="stepper-no-scenario">Choose a scenario to see the process steps.</div>
+    </div>
+</div>
+
+<!-- ============================================
+     VIEWPORT FRAME
+     ============================================ -->
+<div class="viewport-frame" id="viewport">
+
+<!-- ============================================
+     SCREEN: INTRO
+     ============================================ -->
+<div class="screen" id="intro">
+    <div class="intro-hero">
+        <div class="intro-context-label">Interactive Demo</div>
+        <h1>How Emmy Helps States Determine Medicaid Eligibility</h1>
+        <p>Under HR1, Medicaid expansion adults must meet community engagement requirements in addition to income eligibility. This demo walks through how the state system and Emmy work together to verify both.</p>
+    </div>
+    <div class="intro-body">
+        <h2>The eligibility process</h2>
+        <p>When someone applies for or renews Medicaid, states follow these steps:</p>
+
+        <div class="process-legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #162e51;"></div>
+                State system
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #005ea2;"></div>
+                Emmy
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #00a91c;"></div>
+                Outcome
+            </div>
+        </div>
+
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="process-step-indicator">
+                    <div class="process-step-number state-step">1</div>
+                    <div class="process-step-line"></div>
+                </div>
+                <div class="process-step-content">
+                    <div class="process-step-title">Application or renewal submitted</div>
+                    <div class="process-step-desc">The person submits their application or renewal form, including income and community engagement self-attestation.</div>
+                    <span class="process-step-owner owner-state">State system</span>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-indicator">
+                    <div class="process-step-number state-step">2</div>
+                    <div class="process-step-line"></div>
+                </div>
+                <div class="process-step-content">
+                    <div class="process-step-title">Income eligibility verified</div>
+                    <div class="process-step-desc">The state checks income against the Medicaid threshold using federal and state data sources (FDSH, Work Number, SWICA).</div>
+                    <span class="process-step-owner owner-state">State system</span>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-indicator">
+                    <div class="process-step-number state-step">3</div>
+                    <div class="process-step-line"></div>
+                </div>
+                <div class="process-step-content">
+                    <div class="process-step-title">Exemption screening</div>
+                    <div class="process-step-desc">The system checks if the person qualifies for a CE exemption (pregnancy, disability, caregiving, tribal status, and others).</div>
+                    <span class="process-step-owner owner-state">State system</span>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-indicator">
+                    <div class="process-step-number state-step">4</div>
+                    <div class="process-step-line"></div>
+                </div>
+                <div class="process-step-content">
+                    <div class="process-step-title">Ex parte CE verification attempted</div>
+                    <div class="process-step-desc">The state tries to confirm community engagement activities using electronic data. This often fails due to gaps in available data.</div>
+                    <span class="process-step-owner owner-state">State system</span>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-indicator">
+                    <div class="process-step-number emmy-step">5</div>
+                    <div class="process-step-line"></div>
+                </div>
+                <div class="process-step-content">
+                    <div class="process-step-title">Emmy activates</div>
+                    <div class="process-step-desc">The person receives a link to Emmy, where they report and verify their activities: connect payroll, document education, log volunteer hours.</div>
+                    <span class="process-step-owner owner-emmy">Emmy</span>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="process-step-indicator">
+                    <div class="process-step-number outcome-step">6</div>
+                    <div class="process-step-line" style="background: transparent;"></div>
+                </div>
+                <div class="process-step-content">
+                    <div class="process-step-title">Determination</div>
+                    <div class="process-step-desc">The caseworker reviews income, exemption, and CE data (including Emmy's report) and makes an eligibility decision.</div>
+                    <span class="process-step-owner owner-state">State system</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="intro-cta" onclick="goTo('selector')">See it in action</button>
+    </div>
+</div>
+
+<!-- ============================================
+     SCREEN: SCENARIO SELECTOR
+     ============================================ -->
+<div class="screen active" id="selector">
+    <div class="selector-header">
+        <h1>Choose a scenario</h1>
+        <p>Each scenario shows a different reason Emmy gets activated and how it helps.</p>
+    </div>
+    <div class="selector-cards">
+
+        <div class="scenario-card" tabindex="0" role="button" aria-label="Marcus scenario" onclick="startScenario('marcus')">
+            <div class="scenario-card-top">
+                <div class="scenario-avatar marcus">M</div>
+                <div class="scenario-card-info">
+                    <h3>Marcus</h3>
+                    <p>Works at a small landscaping company. His employer is too small to appear in the state's data sources, so his income can't be validated.</p>
+                </div>
+            </div>
+            <div class="scenario-tags">
+                <span class="scenario-tag tag-application">Application</span>
+                <span class="scenario-tag tag-income">Income not found</span>
+                <span class="scenario-tag tag-employment">Payroll verification</span>
+            </div>
+        </div>
+
+        <div class="scenario-card" tabindex="0" role="button" aria-label="Keisha scenario" onclick="startScenario('keisha')">
+            <div class="scenario-card-top">
+                <div class="scenario-avatar keisha">K</div>
+                <div class="scenario-card-info">
+                    <h3>Keisha</h3>
+                    <p>Says she's a full-time student, but records show only 6 credit hours (below half-time). She needs to report additional activities to meet the requirement.</p>
+                </div>
+            </div>
+            <div class="scenario-tags">
+                <span class="scenario-tag tag-renewal">Renewal</span>
+                <span class="scenario-tag tag-education">Education shortfall</span>
+                <span class="scenario-tag tag-employment">Combined activities</span>
+            </div>
+        </div>
+
+        <div class="scenario-card" tabindex="0" role="button" aria-label="Darius scenario" onclick="startScenario('darius')">
+            <div class="scenario-card-top">
+                <div class="scenario-avatar darius">D</div>
+                <div class="scenario-card-info">
+                    <h3>Darius</h3>
+                    <p>Works two part-time jobs. The Work Number shows stale data from a job he left, pushing his income over the Medicaid threshold. He needs to correct his income and verify CE.</p>
+                </div>
+            </div>
+            <div class="scenario-tags">
+                <span class="scenario-tag tag-application">Application</span>
+                <span class="scenario-tag tag-income">Income over threshold</span>
+                <span class="scenario-tag tag-employment">Income dispute</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+     MARCUS SCENARIO SCREENS
+     ============================================ -->
+
+<!-- Marcus: Application Step 1 — Personal Information -->
+<div class="screen" id="marcus-app-form">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">State Medicaid application portal</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the State of Nebraska</span></div></div>
+    <div class="state-portal-header">
+        <span class="state-portal-title">Nebraska Medicaid</span>
+        <span class="state-portal-user">Apply for benefits</span>
+    </div>
+    <div style="padding: 24px;">
+        <div class="step-indicator">
+            <div class="step-indicator-item current"><div class="step-indicator-dot">1</div> Personal</div>
+            <div class="step-indicator-line"></div>
+            <div class="step-indicator-item"><div class="step-indicator-dot">2</div> Income</div>
+            <div class="step-indicator-line"></div>
+            <div class="step-indicator-item"><div class="step-indicator-dot">3</div> Activities</div>
+            <div class="step-indicator-line"></div>
+            <div class="step-indicator-item"><div class="step-indicator-dot">4</div> Review</div>
+        </div>
+
+        <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 4px;">Personal information</h1>
+        <p style="font-size: 15px; color: #3d4551; margin-bottom: 24px;">Tell us about yourself and your household.</p>
+
+        <div class="form-group">
+            <label class="form-label">First name</label>
+            <input class="form-input" type="text" value="Marcus" readonly>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Last name</label>
+            <input class="form-input" type="text" value="Johnson" readonly>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Date of birth</label>
+            <input class="form-input" type="text" value="03/15/1992" readonly>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Household size</label>
+            <input class="form-input" type="text" value="1" readonly>
+            <div class="form-hint">Include yourself and anyone who lives with you and shares income.</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">State of residence</label>
+            <input class="form-input" type="text" value="Nebraska" readonly>
+        </div>
+
+        <button class="btn-primary" style="margin-top: 8px;" onclick="goTo('marcus-app-income')">Continue</button>
+    </div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('selector')">&larr; Scenarios</button>
+        <div class="flow-nav-center">Step 1 of 4</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-income')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Application Step 2 — Income & Employer -->
+<div class="screen" id="marcus-app-income">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">State Medicaid application portal</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the State of Nebraska</span></div></div>
+    <div class="state-portal-header">
+        <span class="state-portal-title">Nebraska Medicaid</span>
+        <span class="state-portal-user">Apply for benefits</span>
+    </div>
+    <div style="padding: 24px;">
+        <div class="step-indicator">
+            <div class="step-indicator-item completed"><div class="step-indicator-dot">&#10003;</div> Personal</div>
+            <div class="step-indicator-line completed"></div>
+            <div class="step-indicator-item current"><div class="step-indicator-dot">2</div> Income</div>
+            <div class="step-indicator-line"></div>
+            <div class="step-indicator-item"><div class="step-indicator-dot">3</div> Activities</div>
+            <div class="step-indicator-line"></div>
+            <div class="step-indicator-item"><div class="step-indicator-dot">4</div> Review</div>
+        </div>
+
+        <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 4px;">Income and employment</h1>
+        <p style="font-size: 15px; color: #3d4551; margin-bottom: 24px;">Tell us about your current income. We'll use this to check if you qualify for Medicaid.</p>
+
+        <div class="form-group">
+            <label class="form-label">Are you currently employed?</label>
+            <div class="radio-group">
+                <label class="radio-option selected">
+                    <input type="radio" name="marcus-employed" checked>
+                    <div class="radio-option-content">
+                        <span class="radio-option-label">Yes</span>
+                    </div>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="marcus-employed">
+                    <div class="radio-option-content">
+                        <span class="radio-option-label">No</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="employer-attestation">
+            <div class="form-group">
+                <label class="form-label">Employer name</label>
+                <input class="form-input" type="text" value="Greenfield Landscaping LLC" readonly>
+            </div>
+            <div class="form-group" style="display: flex; gap: 16px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Monthly income (before taxes)</label>
+                    <input class="form-input" type="text" value="$2,100" readonly>
+                </div>
+                <div style="flex: 1;">
+                    <label class="form-label">Hours per week</label>
+                    <input class="form-input" type="text" value="40" readonly>
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Type of employment</label>
+                <div class="radio-group">
+                    <label class="radio-option selected">
+                        <input type="radio" name="marcus-emp-type" checked>
+                        <div class="radio-option-content">
+                            <span class="radio-option-label">W-2 employee</span>
+                            <span class="radio-option-desc">You receive a regular paycheck with taxes withheld</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="marcus-emp-type">
+                        <div class="radio-option-content">
+                            <span class="radio-option-label">Self-employed</span>
+                            <span class="radio-option-desc">You work for yourself or own a business</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="marcus-emp-type">
+                        <div class="radio-option-content">
+                            <span class="radio-option-label">Gig or app-based work</span>
+                            <span class="radio-option-desc">DoorDash, Uber, TaskRabbit, etc.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-primary" style="margin-top: 24px;" onclick="goTo('marcus-app-activities')">Continue</button>
+    </div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-form')">&larr; Back</button>
+        <div class="flow-nav-center">Step 2 of 4</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-activities')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Application Step 3 — Community Engagement Activities -->
+<div class="screen" id="marcus-app-activities">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">State Medicaid application portal</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the State of Nebraska</span></div></div>
+    <div class="state-portal-header">
+        <span class="state-portal-title">Nebraska Medicaid</span>
+        <span class="state-portal-user">Apply for benefits</span>
+    </div>
+    <div style="padding: 24px;">
+        <div class="step-indicator">
+            <div class="step-indicator-item completed"><div class="step-indicator-dot">&#10003;</div> Personal</div>
+            <div class="step-indicator-line completed"></div>
+            <div class="step-indicator-item completed"><div class="step-indicator-dot">&#10003;</div> Income</div>
+            <div class="step-indicator-line completed"></div>
+            <div class="step-indicator-item current"><div class="step-indicator-dot">3</div> Activities</div>
+            <div class="step-indicator-line"></div>
+            <div class="step-indicator-item"><div class="step-indicator-dot">4</div> Review</div>
+        </div>
+
+        <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 4px;">Community engagement activities</h1>
+        <p style="font-size: 15px; color: #3d4551; margin-bottom: 8px;">To qualify for Medicaid, you need to show you're working, in school, volunteering, or in a work program for at least <strong>80 hours per month</strong> (or earning at least $580/month).</p>
+        <p style="font-size: 15px; color: #3d4551; margin-bottom: 24px;">Tell us about your activities for <strong>December 2026</strong>. Add any that apply to you.</p>
+
+        <!-- Employment: Already added from income step -->
+        <div class="ce-activity-section" style="border-color: #2e6e2e; background: #f9fdf9;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3>Employment</h3>
+                    <p style="margin-bottom: 4px;">Work for an employer, self-employment, or gig work</p>
+                </div>
+                <span class="ce-added-badge">&#10003; Added</span>
+            </div>
+            <div style="background: white; border: 1px solid #dfe1e2; border-radius: 6px; padding: 12px 16px; margin-top: 8px;">
+                <div style="font-size: 15px; font-weight: 600; color: #1b1b1b;">Greenfield Landscaping LLC</div>
+                <div style="font-size: 14px; color: #3d4551;">$2,100/month &middot; 40 hrs/week &middot; W-2 employee</div>
+            </div>
+        </div>
+
+        <!-- Education: Not added -->
+        <div class="ce-activity-section" id="marcus-edu-section">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3>Education</h3>
+                    <p>College, vocational school, GED program, or other education</p>
+                </div>
+            </div>
+            <div id="marcus-edu-form" style="display: none;">
+                <div class="employer-attestation" style="margin-top: 8px;">
+                    <div class="form-group">
+                        <label class="form-label">School name</label>
+                        <input class="form-input" type="text" placeholder="e.g. Metro Community College">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Enrollment status</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="marcus-edu-status"><div class="radio-option-content"><span class="radio-option-label">Full-time</span><span class="radio-option-desc">12 or more credit hours</span></div></label>
+                            <label class="radio-option"><input type="radio" name="marcus-edu-status"><div class="radio-option-content"><span class="radio-option-label">Half-time</span><span class="radio-option-desc">6 to 11 credit hours</span></div></label>
+                            <label class="radio-option"><input type="radio" name="marcus-edu-status"><div class="radio-option-content"><span class="radio-option-label">Less than half-time</span><span class="radio-option-desc">Fewer than 6 credit hours</span></div></label>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-primary" style="flex: 1;" onclick="marcusAddActivity('edu')">Add education</button>
+                        <button class="btn-outline" style="flex: 1;" onclick="marcusToggleActivity('edu', false)">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div id="marcus-edu-actions">
+                <button class="btn-outline" style="margin-top: 12px; padding: 10px 16px; width: auto; display: inline-block; font-size: 14px;" onclick="marcusToggleActivity('edu', true)">+ Add education</button>
+                <button style="background: none; border: none; color: #71767a; font-size: 14px; margin-left: 12px; cursor: pointer; font-family: inherit; text-decoration: underline;" onclick="marcusSkipActivity('edu')">I don't have education to report</button>
+            </div>
+            <div id="marcus-edu-skipped" style="display: none; margin-top: 8px;">
+                <span class="ce-skip-label">Skipped &mdash; no education to report</span>
+            </div>
+        </div>
+
+        <!-- Community Service / Volunteering: Not added -->
+        <div class="ce-activity-section" id="marcus-vol-section">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3>Community service</h3>
+                    <p>Volunteering at a nonprofit, food bank, shelter, or other organization</p>
+                </div>
+            </div>
+            <div id="marcus-vol-form" style="display: none;">
+                <div class="employer-attestation" style="margin-top: 8px;">
+                    <div class="form-group">
+                        <label class="form-label">Organization name</label>
+                        <input class="form-input" type="text" placeholder="e.g. Omaha Food Bank">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hours per month</label>
+                        <input class="form-input" type="text" placeholder="e.g. 20">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label">Coordinator name</label>
+                        <input class="form-input" type="text" placeholder="e.g. Jane Smith">
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-top: 16px;">
+                        <button class="btn-primary" style="flex: 1;" onclick="marcusAddActivity('vol')">Add community service</button>
+                        <button class="btn-outline" style="flex: 1;" onclick="marcusToggleActivity('vol', false)">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div id="marcus-vol-actions">
+                <button class="btn-outline" style="margin-top: 12px; padding: 10px 16px; width: auto; display: inline-block; font-size: 14px;" onclick="marcusToggleActivity('vol', true)">+ Add community service</button>
+                <button style="background: none; border: none; color: #71767a; font-size: 14px; margin-left: 12px; cursor: pointer; font-family: inherit; text-decoration: underline;" onclick="marcusSkipActivity('vol')">I don't volunteer</button>
+            </div>
+            <div id="marcus-vol-skipped" style="display: none; margin-top: 8px;">
+                <span class="ce-skip-label">Skipped &mdash; no volunteering to report</span>
+            </div>
+        </div>
+
+        <!-- Work Programs: Not added -->
+        <div class="ce-activity-section" id="marcus-wp-section">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3>Work programs</h3>
+                    <p>Job training, workforce development, or state work program</p>
+                </div>
+            </div>
+            <div id="marcus-wp-form" style="display: none;">
+                <div class="employer-attestation" style="margin-top: 8px;">
+                    <div class="form-group">
+                        <label class="form-label">Program name</label>
+                        <input class="form-input" type="text" placeholder="e.g. Nebraska SNAP E&T">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hours per month</label>
+                        <input class="form-input" type="text" placeholder="e.g. 40">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label">Program provider or agency</label>
+                        <input class="form-input" type="text" placeholder="e.g. Nebraska Dept. of Labor">
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-top: 16px;">
+                        <button class="btn-primary" style="flex: 1;" onclick="marcusAddActivity('wp')">Add work program</button>
+                        <button class="btn-outline" style="flex: 1;" onclick="marcusToggleActivity('wp', false)">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div id="marcus-wp-actions">
+                <button class="btn-outline" style="margin-top: 12px; padding: 10px 16px; width: auto; display: inline-block; font-size: 14px;" onclick="marcusToggleActivity('wp', true)">+ Add work program</button>
+                <button style="background: none; border: none; color: #71767a; font-size: 14px; margin-left: 12px; cursor: pointer; font-family: inherit; text-decoration: underline;" onclick="marcusSkipActivity('wp')">I'm not in a work program</button>
+            </div>
+            <div id="marcus-wp-skipped" style="display: none; margin-top: 8px;">
+                <span class="ce-skip-label">Skipped &mdash; no work program to report</span>
+            </div>
+        </div>
+
+        <button class="btn-primary" style="margin-top: 8px;" onclick="goTo('marcus-app-review')">Continue</button>
+    </div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-income')">&larr; Back</button>
+        <div class="flow-nav-center">Step 3 of 4</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-review')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Application Step 4 — Review & Submit -->
+<div class="screen" id="marcus-app-review">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">State Medicaid application portal</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the State of Nebraska</span></div></div>
+    <div class="state-portal-header">
+        <span class="state-portal-title">Nebraska Medicaid</span>
+        <span class="state-portal-user">Apply for benefits</span>
+    </div>
+    <div style="padding: 24px;">
+        <div class="step-indicator">
+            <div class="step-indicator-item completed"><div class="step-indicator-dot">&#10003;</div> Personal</div>
+            <div class="step-indicator-line completed"></div>
+            <div class="step-indicator-item completed"><div class="step-indicator-dot">&#10003;</div> Income</div>
+            <div class="step-indicator-line completed"></div>
+            <div class="step-indicator-item completed"><div class="step-indicator-dot">&#10003;</div> Activities</div>
+            <div class="step-indicator-line completed"></div>
+            <div class="step-indicator-item current"><div class="step-indicator-dot">4</div> Review</div>
+        </div>
+
+        <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 4px;">Review your application</h1>
+        <p style="font-size: 15px; color: #3d4551; margin-bottom: 24px;">Check that everything is correct, then submit.</p>
+
+        <h2 style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #3d4551;">Personal information</h2>
+        <table class="review-table">
+            <tr><th>Name</th><td>Marcus Johnson</td></tr>
+            <tr><th>Date of birth</th><td>03/15/1992</td></tr>
+            <tr><th>Household size</th><td>1</td></tr>
+            <tr><th>State</th><td>Nebraska</td></tr>
+        </table>
+
+        <h2 style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; margin-top: 20px; color: #3d4551;">Income and employment</h2>
+        <table class="review-table">
+            <tr><th>Employer</th><td>Greenfield Landscaping LLC</td></tr>
+            <tr><th>Monthly income</th><td>$2,100</td></tr>
+            <tr><th>Hours per week</th><td>40</td></tr>
+            <tr><th>Employment type</th><td>W-2 employee</td></tr>
+        </table>
+
+        <h2 style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; margin-top: 20px; color: #3d4551;">Community engagement activities</h2>
+        <table class="review-table">
+            <tr><th>Employment</th><td>Greenfield Landscaping LLC &mdash; 40 hrs/week</td></tr>
+            <tr><th>Education</th><td>None reported</td></tr>
+            <tr><th>Community service</th><td>None reported</td></tr>
+            <tr><th>Work programs</th><td>None reported</td></tr>
+        </table>
+
+        <hr class="section-divider">
+
+        <div class="form-checkbox" style="margin-bottom: 24px;">
+            <input type="checkbox" id="marcus-app-consent" checked>
+            <label for="marcus-app-consent">I certify that the information in this application is true and correct to the best of my knowledge.</label>
+        </div>
+
+        <button class="btn-primary" onclick="goTo('marcus-check-exemptions')">Submit application</button>
+    </div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-activities')">&larr; Back</button>
+        <div class="flow-nav-center">Step 4 of 4</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-check-exemptions')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Check 1 — Exemption Screening (Narrator) -->
+<div class="screen" id="marcus-check-exemptions">
+    <div class="screen-context narrator-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">External verification data sources</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Exemption check</span>
+    </div>
+    <div class="narrator-screen">
+        <div class="narrator-bar">
+            <div class="narrator-bar-icon">&#9670;</div>
+            <span class="narrator-bar-text">Behind the scenes: State eligibility system</span>
+        </div>
+        <div class="narrator-content">
+            <h2>Checking CE exemptions</h2>
+            <p>Before verifying activities, the system checks whether Marcus qualifies for a community engagement exemption.</p>
+
+            <div class="narrator-persona-bar">
+                <div class="narrator-persona-avatar" style="background: #1a4480;">M</div>
+                <div class="narrator-persona-info">
+                    <strong>Marcus &mdash; Exemptions attested: None</strong>
+                    He didn't claim any exemptions on his application. The system checks available records anyway for age-based exemptions.
+                </div>
+            </div>
+
+            <div class="narrator-checks" id="marcus-exemption-checks">
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">VA Disability Status</div>
+                        <div class="narrator-check-result">No exemption attested — check not performed</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-exempt">Skipped</span>
+                </div>
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">Pregnancy / Caregiving</div>
+                        <div class="narrator-check-result">No exemption attested — check not performed</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-exempt">Skipped</span>
+                </div>
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">Medical Frailty / SUD</div>
+                        <div class="narrator-check-result">No exemption attested — check not performed</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-exempt">Skipped</span>
+                </div>
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">Age / Tribal / Foster / Incarceration</div>
+                        <div class="narrator-check-result">Age 34 — does not qualify for age-based exemption</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-exempt">Not exempt</span>
+                </div>
+            </div>
+
+            <div class="narrator-result result-action" id="marcus-exemption-result">
+                <div class="narrator-result-title">No exemptions apply</div>
+                <div class="narrator-result-desc">Marcus didn't attest to any exemption conditions, so most checks were skipped. His age doesn't qualify him either. He must meet CE requirements through activities.</div>
+            </div>
+        </div>
+    </div>
+    <div class="flow-nav narrator-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-app-review')">&larr; Back</button>
+        <div class="flow-nav-center">Check 1 of 3</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-check-enrollment')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Check 2 — Student Enrollment (Narrator) -->
+<div class="screen" id="marcus-check-enrollment">
+    <div class="screen-context narrator-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">External verification data sources</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Education enrollment check</span>
+    </div>
+    <div class="narrator-screen">
+        <div class="narrator-bar">
+            <div class="narrator-bar-icon">&#9670;</div>
+            <span class="narrator-bar-text">Behind the scenes: State eligibility system</span>
+        </div>
+        <div class="narrator-content">
+            <h2>Checking education enrollment</h2>
+            <p>The system checks whether Marcus is enrolled at least half-time in an educational program.</p>
+
+            <div class="narrator-persona-bar">
+                <div class="narrator-persona-avatar" style="background: #1a4480;">M</div>
+                <div class="narrator-persona-info">
+                    <strong>Marcus &mdash; Education attested: None</strong>
+                    He didn't report any education on his application. Enrollment checks are skipped.
+                </div>
+            </div>
+
+            <div class="narrator-checks" id="marcus-enrollment-checks">
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">National Student Clearinghouse</div>
+                        <div class="narrator-check-result">No education attested — check not performed</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-exempt">Skipped</span>
+                </div>
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">FAFSA Records</div>
+                        <div class="narrator-check-result">No education attested — check not performed</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-exempt">Skipped</span>
+                </div>
+            </div>
+
+            <div class="narrator-result result-action" id="marcus-enrollment-result">
+                <div class="narrator-result-title">Education path not applicable</div>
+                <div class="narrator-result-desc">Marcus didn't report any education activities, so enrollment checks were skipped. He'll need to meet CE requirements through another path (income or hours).</div>
+            </div>
+        </div>
+    </div>
+    <div class="flow-nav narrator-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-check-exemptions')">&larr; Back</button>
+        <div class="flow-nav-center">Check 2 of 3</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-check-income')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Check 3 — Income Data Sources (Narrator) -->
+<div class="screen" id="marcus-check-income">
+    <div class="screen-context narrator-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">External verification data sources</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Income verification</span>
+    </div>
+    <div class="narrator-screen">
+        <div class="narrator-bar">
+            <div class="narrator-bar-icon">&#9670;</div>
+            <span class="narrator-bar-text">Behind the scenes: State eligibility system</span>
+        </div>
+        <div class="narrator-content">
+            <h2>Verifying attested income</h2>
+            <p>The system queries wage and employment data sources to confirm what Marcus reported on his application.</p>
+
+            <div class="narrator-persona-bar">
+                <div class="narrator-persona-avatar" style="background: #1a4480;">M</div>
+                <div class="narrator-persona-info">
+                    <strong>Marcus &mdash; Income attested: $2,100/month</strong>
+                    Employer: Greenfield Landscaping LLC &middot; Medicaid threshold: ~$2,300/month
+                </div>
+            </div>
+
+            <div class="narrator-checks" id="marcus-income-checks">
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">SWICA (Quarterly Wage Data)</div>
+                        <div class="narrator-check-result">No records for Greenfield Landscaping LLC — employer too small</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-found">No match</span>
+                </div>
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">IRS Tax Records</div>
+                        <div class="narrator-check-result">No recent filings — data lags 1-2 years</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-found">No match</span>
+                </div>
+                <div class="narrator-check">
+                    <div class="narrator-check-icon check-icon-querying">&#9679;</div>
+                    <div class="narrator-check-body">
+                        <div class="narrator-check-source">FDSH / The Work Number</div>
+                        <div class="narrator-check-result">Employer not in Work Number database (~40% of small employers aren't)</div>
+                    </div>
+                    <span class="narrator-check-badge badge-not-found">No match</span>
+                </div>
+            </div>
+
+            <div class="narrator-result result-fail" id="marcus-income-result">
+                <div class="narrator-result-title">Income cannot be verified electronically</div>
+                <div class="narrator-result-desc">Greenfield Landscaping is too small to appear in any of the state's data sources. Marcus's attested income of $2,100/month is below the threshold ($2,300) but the state can't confirm it. He needs to verify directly through Emmy.</div>
+            </div>
+        </div>
+    </div>
+    <div class="flow-nav narrator-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-check-enrollment')">&larr; Back</button>
+        <div class="flow-nav-center">Check 3 of 3</div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-notice')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Caseworker Notice (Beneficiary-facing — email inbox) -->
+<div class="screen" id="marcus-notice">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Email inbox</span>
+    </div>
+
+    <!-- Mock email client chrome -->
+    <div style="background: #f7f7f7; border-bottom: 1px solid #dfe1e2; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: #1a4480; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 700;">M</div>
+            <div>
+                <div style="font-size: 14px; font-weight: 700; color: #1b1b1b;">marcus.johnson@email.com</div>
+                <div style="font-size: 12px; color: #71767a;">Inbox &middot; 1 new message</div>
+            </div>
+        </div>
+        <div style="font-size: 12px; color: #71767a;">January 8, 2027</div>
+    </div>
+
+    <!-- Email message -->
+    <div style="padding: 24px; max-width: 640px; margin: 0 auto;">
+
+        <!-- Unread email row (selected) -->
+        <div style="background: #eff6fb; border: 1px solid #73b3e7; border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; display: flex; gap: 12px; align-items: flex-start;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: #1a4480; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 700; flex-shrink: 0;">NE</div>
+            <div style="flex-grow: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px;">
+                    <div style="font-size: 14px; font-weight: 700; color: #1b1b1b;">Nebraska DHHS</div>
+                    <div style="font-size: 12px; color: #71767a; flex-shrink: 0;">8:42 AM</div>
+                </div>
+                <div style="font-size: 14px; font-weight: 700; color: #1b1b1b;">Action needed: Verify your income and activities</div>
+                <div style="font-size: 13px; color: #71767a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dear Marcus Johnson, We're processing your Medicaid application and need you to...</div>
+            </div>
+        </div>
+
+        <!-- Expanded email -->
+        <div style="background: white; border: 1px solid #dfe1e2; border-radius: 8px; overflow: hidden;">
+            <!-- Email header -->
+            <div style="padding: 20px 24px; border-bottom: 1px solid #dfe1e2;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #1a4480; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: 700; flex-shrink: 0;">NE</div>
+                    <div style="flex-grow: 1;">
+                        <div style="font-size: 15px; font-weight: 700; color: #1b1b1b;">Nebraska Department of Health and Human Services</div>
+                        <div style="font-size: 13px; color: #71767a;">noreply@dhhs.ne.gov</div>
+                    </div>
+                </div>
+                <div style="font-size: 13px; color: #3d4551; line-height: 1.6;">
+                    <div><strong>To:</strong> marcus.johnson@email.com</div>
+                    <div><strong>Subject:</strong> Action needed: Verify your income and activities for your Medicaid application</div>
+                    <div><strong>Date:</strong> January 8, 2027 at 8:42 AM CT</div>
+                </div>
+            </div>
+
+            <!-- Email body -->
+            <div style="padding: 24px;">
+                <p style="font-size: 15px; color: #1b1b1b; margin-bottom: 16px;">Dear Marcus Johnson,</p>
+
+                <p style="font-size: 15px; color: #1b1b1b; margin-bottom: 16px;">We're processing your Medicaid application (submitted January 3, 2027) and need you to verify some information before we can make an eligibility decision.</p>
+
+                <div style="background: #fef0c8; border-left: 3px solid #e5a000; padding: 14px 16px; margin-bottom: 20px; border-radius: 0 4px 4px 0;">
+                    <div style="font-size: 15px; font-weight: 700; color: #1b1b1b; margin-bottom: 6px;">What we need you to verify:</div>
+                    <ul style="font-size: 15px; color: #3d4551; margin: 0; padding-left: 20px; line-height: 1.6;">
+                        <li style="margin-bottom: 6px;"><strong>Your income</strong> &mdash; You reported earning $2,100/month from Greenfield Landscaping LLC. We weren't able to confirm this through our records.</li>
+                        <li><strong>Your community engagement activities</strong> &mdash; Under current Medicaid requirements, you need to show that you're working, in school, or volunteering. We need documentation for <strong>December 2026</strong>.</li>
+                    </ul>
+                </div>
+
+                <div style="background: #ecf3ec; border-left: 3px solid #2e6e2e; padding: 14px 16px; margin-bottom: 20px; border-radius: 0 4px 4px 0;">
+                    <div style="font-size: 15px; font-weight: 700; color: #1b1b1b; margin-bottom: 4px;">How to verify:</div>
+                    <p style="font-size: 15px; color: #3d4551; margin: 0;">Use <strong>Emmy</strong>, a secure tool that connects to your employer's payroll system to pull your income and work hours automatically. You can also upload documents like pay stubs if you prefer.</p>
+                </div>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <button class="notice-emmy-link" onclick="goTo('marcus-entry')" style="font-size: 18px; padding: 14px 32px;">Verify with Emmy &rarr;</button>
+                </div>
+
+                <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 20px 0;">
+
+                <p style="font-size: 14px; color: #3d4551; margin-bottom: 12px;"><strong>What happens if I don't respond?</strong><br>You have 30 days to submit your verification. If we don't hear from you by <strong>February 7, 2027</strong>, your application may be denied due to insufficient documentation.</p>
+
+                <p style="font-size: 13px; color: #71767a; margin-bottom: 0;">Questions? Call Nebraska Medicaid at <strong>1-800-383-4278</strong> (Monday-Friday, 8am-5pm CT) or visit AccessNebraska.ne.gov.<br>Reference case number: <strong>NE-2027-048291</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-check-income')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-entry')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Emmy Entry -->
+<div class="screen" id="marcus-entry">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Emmy</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the United States government</span></div></div>
+    <div class="emmy-header"><div class="emmy-header-inner"><span class="emmy-header-title">Emmy</span><button class="emmy-header-menu">Menu</button></div></div>
+    <div class="container">
+        <div style="padding: 24px 0 40px;">
+            <h1 style="font-family: 'Public Sans', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Verify your information</h1>
+            <p style="font-size: 16px; color: #3d4551; margin-bottom: 24px;">Here's what you reported on your Medicaid application and what still needs to be verified for <strong>December 2026</strong>.</p>
+
+            <!-- What you reported -->
+            <h2 style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1b1b1b; margin-bottom: 12px;">What you reported on your application</h2>
+
+            <!-- Income -->
+            <div class="entry-summary-card">
+                <div class="entry-summary-header">
+                    <span class="entry-summary-header-label">Income and employment</span>
+                    <span class="entry-summary-status status-not-verified">Needs verification</span>
+                </div>
+                <div class="entry-summary-body">
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">Employer</span>
+                        <span class="entry-summary-row-value">Greenfield Landscaping LLC</span>
+                    </div>
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">Monthly income (attested)</span>
+                        <span class="entry-summary-row-value">$2,100</span>
+                    </div>
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">Hours per week (attested)</span>
+                        <span class="entry-summary-row-value">40</span>
+                    </div>
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">State verification result</span>
+                        <span class="entry-summary-row-value" style="color: #b50909;">Could not be confirmed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="entry-summary-card">
+                <div class="entry-summary-header">
+                    <span class="entry-summary-header-label">Education</span>
+                    <span class="entry-summary-status status-skipped">Not reported</span>
+                </div>
+                <div class="entry-summary-body">
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">Enrollment</span>
+                        <span class="entry-summary-row-value" style="color: #71767a;">None reported on application</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteering -->
+            <div class="entry-summary-card">
+                <div class="entry-summary-header">
+                    <span class="entry-summary-header-label">Community service</span>
+                    <span class="entry-summary-status status-skipped">Not reported</span>
+                </div>
+                <div class="entry-summary-body">
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">Volunteering</span>
+                        <span class="entry-summary-row-value" style="color: #71767a;">None reported on application</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work programs -->
+            <div class="entry-summary-card">
+                <div class="entry-summary-header">
+                    <span class="entry-summary-header-label">Work programs</span>
+                    <span class="entry-summary-status status-skipped">Not reported</span>
+                </div>
+                <div class="entry-summary-body">
+                    <div class="entry-summary-row">
+                        <span class="entry-summary-row-label">Program participation</span>
+                        <span class="entry-summary-row-value" style="color: #71767a;">None reported on application</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- What the state needs -->
+            <div class="entry-action-needed">
+                <div class="entry-action-needed-title">What the state needs from you:</div>
+                <ul class="entry-action-needed-list">
+                    <li><strong>Verify your income</strong> &mdash; Your employer (Greenfield Landscaping LLC) wasn't found in state records. We need to confirm your income is below the Medicaid limit and meets the community engagement threshold ($580/month).</li>
+                    <li><strong>Verify your activities</strong> &mdash; You reported employment as your only activity. Connect your payroll account or upload documentation to verify your hours and income for December 2026.</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 15px; color: #3d4551; margin-bottom: 20px;">The fastest way to verify is to connect your payroll account. Emmy will pull your income and hours directly from your employer's payroll system. You can also upload pay stubs or other documents.</p>
+
+            <div class="form-checkbox" style="margin-bottom: 24px;">
+                <input type="checkbox" id="marcus-consent" checked>
+                <label for="marcus-consent">I agree to share my activity information with my state Medicaid agency to help determine my eligibility.</label>
+            </div>
+
+            <button class="btn-primary" onclick="goTo('marcus-hub-empty')">Get started</button>
+        </div>
+    </div>
+    <div class="site-footer"><div class="site-footer-inner"><div class="site-footer-title">Emmy</div></div></div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-notice')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-hub-empty')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Hub Empty -->
+<div class="screen" id="marcus-hub-empty">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Emmy &mdash; Activity Hub</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the United States government</span></div></div>
+    <div class="emmy-header"><div class="emmy-header-inner"><span class="emmy-header-title">Emmy</span><button class="emmy-header-menu">Menu</button></div></div>
+    <div class="container">
+        <div class="hub-content">
+            <h1 class="hub-title">Your activities</h1>
+            <div class="hub-period">Reporting period: <strong>December 2026</strong></div>
+
+            <div class="progress-section">
+                <h2>Your progress</h2>
+                <p class="progress-section-desc">Report your activities for December to meet requirements.</p>
+                <div class="month-progress-list">
+                    <div class="month-progress-row">
+                        <div class="month-progress-header">
+                            <span class="month-progress-label">December 2026</span>
+                            <span class="month-progress-hours">$0 / $580</span>
+                        </div>
+                        <div class="month-progress-bar">
+                            <div class="month-progress-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="category-section">
+                <div class="category-header">
+                    <h2 class="category-title">Employment</h2>
+                    <button class="category-add-btn" onclick="goTo('marcus-spoke')">+ Add</button>
+                </div>
+                <div class="category-empty">No employment reported yet.</div>
+            </div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <h2 class="category-title">Education</h2>
+                    <button class="category-add-btn" disabled>+ Add</button>
+                </div>
+                <div class="category-empty">No education reported yet.</div>
+            </div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <h2 class="category-title">Volunteering</h2>
+                    <button class="category-add-btn" disabled>+ Add</button>
+                </div>
+                <div class="category-empty">No volunteering reported yet.</div>
+            </div>
+        </div>
+    </div>
+    <div class="site-footer"><div class="site-footer-inner"><div class="site-footer-title">Emmy</div></div></div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-entry')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-spoke')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Employment Spoke -->
+<div class="screen" id="marcus-spoke">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Emmy &mdash; Employment verification</span>
+    </div>
+    <div class="spoke-chrome">
+        <div class="spoke-chrome-row1">
+            <span class="spoke-flow-label">Employment</span>
+            <button class="spoke-exit-link" onclick="goTo('marcus-hub-empty')">Exit</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="spoke-content">
+            <h2 style="font-family: 'Public Sans', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px;">Connect your payroll</h2>
+            <p style="color: #3d4551; margin-bottom: 24px;">We can get your income and hours directly from your employer's payroll system. This is the fastest way to verify your employment.</p>
+
+            <div class="form-group">
+                <label class="form-label">Search for your employer</label>
+                <input class="form-input" type="text" value="Greenfield Landscaping LLC" readonly>
+            </div>
+
+            <div id="marcus-sync-loading" class="sync-spinner" style="display: none;">
+                <div class="spinner-ring"></div>
+                <p>Connecting to payroll provider...</p>
+            </div>
+
+            <div id="marcus-sync-results" style="display: none;">
+                <div style="background: #ecf3ec; border-left: 4px solid #00a91c; padding: 12px 16px; margin-bottom: 20px; font-weight: 600;">
+                    Payroll data verified successfully
+                </div>
+                <h3 style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px;">December 2026</h3>
+                <table class="review-table">
+                    <tr><th>Employer</th><td>Greenfield Landscaping LLC</td></tr>
+                    <tr><th>Gross income</th><td>$2,100.00</td></tr>
+                    <tr><th>Hours worked</th><td>164 hours</td></tr>
+                    <tr><th>Pay periods</th><td>2 (bi-weekly)</td></tr>
+                    <tr><th>Data source</th><td>Verified via payroll provider</td></tr>
+                </table>
+
+                <button class="btn-primary" style="margin-top: 20px;" onclick="goTo('marcus-hub-full')">Save and return to Activity Hub</button>
+            </div>
+
+            <button id="marcus-connect-btn" class="btn-primary" onclick="marcusConnect()">Connect payroll account</button>
+        </div>
+    </div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-hub-empty')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-hub-full')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Hub Full -->
+<div class="screen" id="marcus-hub-full">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Emmy &mdash; Activity Hub</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the United States government</span></div></div>
+    <div class="emmy-header"><div class="emmy-header-inner"><span class="emmy-header-title">Emmy</span><button class="emmy-header-menu">Menu</button></div></div>
+    <div class="container">
+        <div class="hub-content">
+            <h1 class="hub-title">Your activities</h1>
+            <div class="hub-period">Reporting period: <strong>December 2026</strong></div>
+
+            <div class="progress-section">
+                <h2>Your progress</h2>
+                <p class="progress-section-desc">You've met requirements for December.</p>
+                <div class="month-progress-list">
+                    <div class="month-progress-row">
+                        <div class="month-progress-header">
+                            <span class="month-progress-label">December 2026</span>
+                            <span class="month-progress-hours complete">$2,100 / $580 &#10003;</span>
+                        </div>
+                        <div class="month-progress-bar complete">
+                            <div class="month-progress-bar-fill" data-target-width="100" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="category-section">
+                <div class="category-header">
+                    <h2 class="category-title">Employment</h2>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-card-header">
+                        <span class="activity-card-name">Greenfield Landscaping LLC</span>
+                        <button class="activity-card-link">Edit</button>
+                    </div>
+                    <div class="activity-card-body">
+                        <div class="activity-month-row">
+                            <span class="activity-month-label">December 2026</span>
+                            <span class="activity-month-value">$2,100 gross &middot; 164 hrs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="goTo('marcus-review')">Review and submit</button>
+        </div>
+    </div>
+    <div class="site-footer"><div class="site-footer-inner"><div class="site-footer-title">Emmy</div></div></div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-spoke')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-review')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Review -->
+<div class="screen" id="marcus-review">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Emmy &mdash; Review and submit</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the United States government</span></div></div>
+    <div class="emmy-header"><div class="emmy-header-inner"><span class="emmy-header-title">Emmy</span><button class="emmy-header-menu">Menu</button></div></div>
+    <div class="container">
+        <div style="padding: 24px 0 40px;">
+            <h1 style="font-family: 'Public Sans', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Review your report</h1>
+            <p style="color: #3d4551; margin-bottom: 24px;">Make sure everything looks correct before submitting to your state Medicaid agency.</p>
+
+            <h2 style="font-family: 'Public Sans', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Employment</h2>
+            <table class="review-table">
+                <tr><th>Employer</th><td>Greenfield Landscaping LLC</td></tr>
+                <tr><th>December 2026</th><td>$2,100 gross income, 164 hours</td></tr>
+                <tr><th>Verification</th><td>Payroll-verified</td></tr>
+            </table>
+
+            <h2 style="font-family: 'Public Sans', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">CE compliance</h2>
+            <table class="review-table">
+                <tr><th>Path</th><td>Income ($580/month)</td></tr>
+                <tr><th>December 2026</th><td>$2,100 — meets threshold</td></tr>
+                <tr><th>Months complete</th><td>1 of 1</td></tr>
+            </table>
+
+            <hr class="section-divider">
+
+            <div class="form-checkbox" style="margin-bottom: 24px;">
+                <input type="checkbox" id="marcus-submit-consent" checked>
+                <label for="marcus-submit-consent">I confirm that the information above is accurate and I consent to sharing this report with my state Medicaid agency.</label>
+            </div>
+
+            <button class="btn-primary" onclick="goTo('marcus-success')">Submit report</button>
+        </div>
+    </div>
+    <div class="site-footer"><div class="site-footer-inner"><div class="site-footer-title">Emmy</div></div></div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-hub-full')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('marcus-success')">Next &rarr;</button>
+    </div>
+</div>
+
+<!-- Marcus: Success -->
+<div class="screen" id="marcus-success">
+    <div class="screen-context">
+        <div class="screen-context-avatar" style="background: #1a4480;">M</div>
+        <span class="screen-context-who">Marcus, beneficiary</span>
+        <span class="screen-context-sep">&middot;</span>
+        <span class="screen-context-system">Emmy &mdash; Submission confirmed</span>
+    </div>
+    <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-text">An official website of the United States government</span></div></div>
+    <div class="emmy-header"><div class="emmy-header-inner"><span class="emmy-header-title">Emmy</span><button class="emmy-header-menu">Menu</button></div></div>
+    <div class="container">
+        <div style="padding: 40px 0; text-align: center;">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h1 style="font-family: 'Public Sans', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Report submitted</h1>
+            <p style="font-size: 16px; color: #3d4551; margin-bottom: 8px;">Your community engagement report has been sent to your state Medicaid agency.</p>
+            <p style="font-size: 14px; color: #71767a; margin-bottom: 32px;">Confirmation code: <strong>EMMY-M-48291</strong></p>
+
+            <div style="background: #f0f0f0; border-radius: 8px; padding: 20px; text-align: left; margin-bottom: 24px;">
+                <h2 style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px;">What happens next</h2>
+                <p style="font-size: 15px; color: #3d4551;">A caseworker will review your income verification and activity report alongside your application. You'll receive a notice with the eligibility decision within 45 days.</p>
+            </div>
+
+            <button class="btn-outline" onclick="goTo('selector')" style="margin-bottom: 12px;">Try another scenario</button>
+        </div>
+    </div>
+    <div class="site-footer"><div class="site-footer-inner"><div class="site-footer-title">Emmy</div></div></div>
+    <div class="flow-nav">
+        <button class="flow-nav-btn" onclick="goTo('marcus-review')">&larr; Back</button>
+        <div class="flow-nav-center"></div>
+        <button class="flow-nav-btn" onclick="goTo('selector')">Scenarios &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================
+     KEISHA SCENARIO SCREENS (placeholder)
+     ============================================ -->
+<div class="screen" id="keisha-app-form">
+    <div style="padding: 48px 24px; text-align: center; color: #71767a;">
+        <h2 style="font-family: 'Public Sans', sans-serif; font-size: 24px; color: #1b1b1b; margin-bottom: 8px;">Keisha's Scenario</h2>
+        <p>Coming in Phase 2. <button class="btn-outline" style="margin-top: 16px; width: auto; display: inline-block; padding: 10px 20px;" onclick="goTo('selector')">Back to scenarios</button></p>
+    </div>
+</div>
+
+<!-- ============================================
+     DARIUS SCENARIO SCREENS (placeholder)
+     ============================================ -->
+<div class="screen" id="darius-app-form">
+    <div style="padding: 48px 24px; text-align: center; color: #71767a;">
+        <h2 style="font-family: 'Public Sans', sans-serif; font-size: 24px; color: #1b1b1b; margin-bottom: 8px;">Darius's Scenario</h2>
+        <p>Coming in Phase 2. <button class="btn-outline" style="margin-top: 16px; width: auto; display: inline-block; padding: 10px 20px;" onclick="goTo('selector')">Back to scenarios</button></p>
+    </div>
+</div>
+
+</div><!-- end viewport-frame -->
+
+<script>
+    /* ============================================
+       NAVIGATION ENGINE
+       ============================================ */
+    let currentScreen = 'selector';
+    let currentScenario = null;
+
+    /* ============================================
+       SCENARIO STEP DEFINITIONS
+       ============================================ */
+    const scenarioSteps = {
+        marcus: {
+            application: [
+                { id: 'marcus-app-form', label: 'Personal information' },
+                { id: 'marcus-app-income', label: 'Income & employer' },
+                { id: 'marcus-app-activities', label: 'CE activities' },
+                { id: 'marcus-app-review', label: 'Review & submit' },
+            ],
+            verification: [
+                { id: 'marcus-check-exemptions', label: 'Exemption check' },
+                { id: 'marcus-check-enrollment', label: 'Education check' },
+                { id: 'marcus-check-income', label: 'Income verification' },
+                { id: 'marcus-notice', label: 'Marcus receives email' },
+            ],
+            emmy: [
+                { id: 'marcus-entry', label: 'Emmy entry' },
+                { id: 'marcus-hub-empty', label: 'Activity Hub (empty)' },
+                { id: 'marcus-spoke', label: 'Payroll connection' },
+                { id: 'marcus-hub-full', label: 'Activity Hub (complete)' },
+                { id: 'marcus-review', label: 'Review report' },
+                { id: 'marcus-success', label: 'Submitted' },
+            ]
+        },
+        keisha: {
+            application: [
+                { id: 'keisha-app-form', label: 'Renewal form' },
+            ],
+            verification: [],
+            emmy: []
+        },
+        darius: {
+            application: [
+                { id: 'darius-app-form', label: 'Application form' },
+            ],
+            verification: [],
+            emmy: []
+        }
+    };
+
+    const visitedScreens = new Set(['selector']);
+
+    /* ============================================
+       STEPPER DRAWER
+       ============================================ */
+    function toggleStepper() {
+        const drawer = document.getElementById('stepper-drawer');
+        const toggle = document.getElementById('stepper-toggle');
+        drawer.classList.toggle('open');
+        toggle.classList.toggle('open');
+    }
+
+    function buildStepper(scenario) {
+        const container = document.getElementById('stepper-content');
+        const steps = scenarioSteps[scenario];
+        if (!steps) {
+            container.innerHTML = '<div class="stepper-no-scenario">Choose a scenario to see the process steps.</div>';
+            return;
+        }
+
+        const scenarioLabel = scenario.charAt(0).toUpperCase() + scenario.slice(1);
+
+        container.innerHTML = `
+            <div class="stepper-phase">
+                <div class="stepper-phase-title phase-state">${scenarioLabel} &mdash; State Application</div>
+                <div class="stepper-steps" id="stepper-application">
+                    ${steps.application.map(s => `
+                        <button class="stepper-step${s.id === currentScreen ? ' active' : ''}${visitedScreens.has(s.id) ? ' visited' : ''}" onclick="goTo('${s.id}')" data-step-id="${s.id}">
+                            <span class="stepper-step-dot"></span>
+                            ${s.label}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+            <div class="stepper-phase">
+                <div class="stepper-phase-title phase-state">Backend systems &mdash; Verification</div>
+                <div class="stepper-steps" id="stepper-verification">
+                    ${steps.verification.length ? steps.verification.map(s => `
+                        <button class="stepper-step${s.id === currentScreen ? ' active' : ''}${visitedScreens.has(s.id) ? ' visited' : ''}" onclick="goTo('${s.id}')" data-step-id="${s.id}">
+                            <span class="stepper-step-dot"></span>
+                            ${s.label}
+                        </button>
+                    `).join('') : '<div class="stepper-no-scenario">Coming soon</div>'}
+                </div>
+            </div>
+            <div class="stepper-phase">
+                <div class="stepper-phase-title phase-emmy">${scenarioLabel} &mdash; Emmy</div>
+                <div class="stepper-steps" id="stepper-emmy">
+                    ${steps.emmy.length ? steps.emmy.map(s => `
+                        <button class="stepper-step${s.id === currentScreen ? ' active' : ''}${visitedScreens.has(s.id) ? ' visited' : ''}" onclick="goTo('${s.id}')" data-step-id="${s.id}">
+                            <span class="stepper-step-dot"></span>
+                            ${s.label}
+                        </button>
+                    `).join('') : '<div class="stepper-no-scenario">Coming soon</div>'}
+                </div>
+            </div>
+        `;
+    }
+
+    function updateStepperHighlight(screenId) {
+        visitedScreens.add(screenId);
+        const allSteps = document.querySelectorAll('.stepper-step');
+        allSteps.forEach(step => {
+            const id = step.getAttribute('data-step-id');
+            step.classList.remove('active');
+            if (visitedScreens.has(id)) step.classList.add('visited');
+            if (id === screenId) step.classList.add('active');
+        });
+    }
+
+    function goTo(screenId) {
+        const current = document.getElementById(currentScreen);
+        const target = document.getElementById(screenId);
+        if (!target) return;
+
+        if (current) current.classList.remove('active');
+        target.classList.add('active');
+        currentScreen = screenId;
+
+        // Scroll to top of viewport
+        window.scrollTo(0, 0);
+
+        // Update stepper
+        if (screenId === 'selector') {
+            currentScenario = null;
+            document.getElementById('stepper-content').innerHTML = '<div class="stepper-no-scenario">Choose a scenario to see the process steps.</div>';
+        }
+        updateStepperHighlight(screenId);
+
+        // Trigger screen-specific animations
+        triggerScreenAnimations(screenId);
+    }
+
+    /* ============================================
+       SCENARIO ROUTING
+       ============================================ */
+    function startScenario(name) {
+        currentScenario = name;
+        buildStepper(name);
+        goTo(name + '-app-form');
+    }
+
+    /* ============================================
+       SCREEN ANIMATIONS
+       ============================================ */
+    function triggerScreenAnimations(screenId) {
+        // Narrator check reveals (staggered)
+        const checksMap = {
+            'marcus-check-exemptions': 'marcus-exemption-checks',
+            'marcus-check-enrollment': 'marcus-enrollment-checks',
+            'marcus-check-income': 'marcus-income-checks',
+            'keisha-income-check': 'keisha-income-checks',
+            'keisha-exemption': 'keisha-exemption-checks',
+            'keisha-exparte': 'keisha-exparte-checks',
+            'darius-income-check': 'darius-income-checks',
+            'darius-exemption': 'darius-exemption-checks',
+            'darius-exparte': 'darius-exparte-checks',
+        };
+
+        if (checksMap[screenId]) {
+            revealChecks(checksMap[screenId], screenId);
+        }
+
+        // Progress bar animations
+        if (screenId.includes('-hub-full')) {
+            animateProgressBars(screenId);
+        }
+    }
+
+    function revealChecks(containerId, screenId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const checks = container.querySelectorAll('.narrator-check');
+        const resultId = containerId.replace('-checks', '-result');
+        const result = document.getElementById(resultId);
+
+        // Reset
+        checks.forEach(c => c.classList.remove('revealed'));
+        if (result) { result.classList.remove('revealed'); result.style.opacity = '0'; }
+
+        // Stagger reveals
+        checks.forEach((check, i) => {
+            setTimeout(() => {
+                check.classList.add('revealed');
+            }, 600 + (i * 700));
+        });
+
+        // Show result after all checks
+        if (result) {
+            setTimeout(() => {
+                result.classList.add('revealed');
+            }, 600 + (checks.length * 700) + 400);
+        }
+    }
+
+    function animateProgressBars(screenId) {
+        const screen = document.getElementById(screenId);
+        if (!screen) return;
+
+        const bars = screen.querySelectorAll('.month-progress-bar-fill[data-target-width]');
+        setTimeout(() => {
+            bars.forEach(bar => {
+                bar.style.width = bar.dataset.targetWidth + '%';
+            });
+        }, 300);
+    }
+
+    /* ============================================
+       MARCUS: APPLICATION FORM INTERACTIONS
+       ============================================ */
+    function marcusToggleActivity(type, show) {
+        const form = document.getElementById('marcus-' + type + '-form');
+        const actions = document.getElementById('marcus-' + type + '-actions');
+        const skipped = document.getElementById('marcus-' + type + '-skipped');
+        if (show) {
+            form.style.display = 'block';
+            actions.style.display = 'none';
+            skipped.style.display = 'none';
+        } else {
+            form.style.display = 'none';
+            actions.style.display = 'block';
+        }
+    }
+
+    function marcusSkipActivity(type) {
+        const form = document.getElementById('marcus-' + type + '-form');
+        const actions = document.getElementById('marcus-' + type + '-actions');
+        const skipped = document.getElementById('marcus-' + type + '-skipped');
+        form.style.display = 'none';
+        actions.style.display = 'none';
+        skipped.style.display = 'block';
+    }
+
+    function marcusAddActivity(type) {
+        // For the demo, just skip back — Marcus doesn't actually add these
+        marcusToggleActivity(type, false);
+    }
+
+    /* ============================================
+       MARCUS: PAYROLL CONNECTION SIM
+       ============================================ */
+    function marcusConnect() {
+        const btn = document.getElementById('marcus-connect-btn');
+        const loading = document.getElementById('marcus-sync-loading');
+        const results = document.getElementById('marcus-sync-results');
+
+        btn.style.display = 'none';
+        loading.style.display = 'flex';
+
+        setTimeout(() => {
+            loading.style.display = 'none';
+            results.style.display = 'block';
+        }, 2500);
+    }
+</script>
+
+</body>
+</html>
