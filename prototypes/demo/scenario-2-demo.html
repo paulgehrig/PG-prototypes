@@ -2976,25 +2976,25 @@
         /* ============================================
            STATE APPLICATION WIREFRAME
            ============================================ */
-        #alex-app-info,
-        #alex-app-income,
-        #alex-app-activities,
-        #alex-app-review {
+        #avery-app-info,
+        #avery-app-income,
+        #avery-app-activities,
+        #avery-app-review {
             font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
         }
 
-        #alex-app-info input,
-        #alex-app-info select,
-        #alex-app-info label,
-        #alex-app-income input,
-        #alex-app-income select,
-        #alex-app-income label,
-        #alex-app-activities input,
-        #alex-app-activities select,
-        #alex-app-activities label,
-        #alex-app-review input,
-        #alex-app-review select,
-        #alex-app-review label {
+        #avery-app-info input,
+        #avery-app-info select,
+        #avery-app-info label,
+        #avery-app-income input,
+        #avery-app-income select,
+        #avery-app-income label,
+        #avery-app-activities input,
+        #avery-app-activities select,
+        #avery-app-activities label,
+        #avery-app-review input,
+        #avery-app-review select,
+        #avery-app-review label {
             font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
         }
 
@@ -3431,7 +3431,7 @@
     <div class="intro-hero">
         <div class="intro-context-label">Interactive Demo</div>
         <h1>Scenario 2: Education + Community Service</h1>
-        <p>Alex applies for Medicaid and attests to half-time student enrollment. State data shows she's enrolled less than half-time. Emmy helps Alex document her credit hours, identify the gap, add community service hours, and submit a complete report.</p>
+        <p>Avery applies for Medicaid and attests to half-time student enrollment. State data shows she's enrolled less than half-time. Emmy helps Avery document her credit hours, identify the gap, add community service hours, and submit a complete report.</p>
     </div>
     <div class="intro-body">
         <h2>The process</h2>
@@ -3460,7 +3460,7 @@
                 </div>
                 <div class="process-step-content">
                     <div class="process-step-title">State Application</div>
-                    <div class="process-step-desc">Alex fills out her Medicaid application, reporting half-time student enrollment and no income.</div>
+                    <div class="process-step-desc">Avery fills out her Medicaid application, reporting half-time student enrollment and no income.</div>
                     <span class="process-step-owner owner-state">State system</span>
                 </div>
             </div>
@@ -3484,7 +3484,7 @@
                 </div>
                 <div class="process-step-content">
                     <div class="process-step-title">Caseworker Review</div>
-                    <div class="process-step-desc">A caseworker reviews the verification results and sends Alex a request for additional documentation.</div>
+                    <div class="process-step-desc">A caseworker reviews the verification results and sends Avery a request for additional documentation.</div>
                     <span class="process-step-owner owner-state">State system</span>
                 </div>
             </div>
@@ -3496,7 +3496,7 @@
                 </div>
                 <div class="process-step-content">
                     <div class="process-step-title">Email Notification</div>
-                    <div class="process-step-desc">Alex receives an email with a link to Emmy to verify activities.</div>
+                    <div class="process-step-desc">Avery receives an email with a link to Emmy to verify activities.</div>
                     <span class="process-step-owner owner-state">State system</span>
                 </div>
             </div>
@@ -3508,7 +3508,7 @@
                 </div>
                 <div class="process-step-content">
                     <div class="process-step-title">Emmy Verification</div>
-                    <div class="process-step-desc">Alex uses Emmy to document credit hours, add community service, upload documents, and submit a CE report.</div>
+                    <div class="process-step-desc">Avery uses Emmy to document credit hours, add community service, upload documents, and submit a CE report.</div>
                     <span class="process-step-owner owner-emmy">Emmy</span>
                 </div>
             </div>
@@ -3539,29 +3539,29 @@
             <div class="phase-avatar">
                 <div class="phase-avatar-circle" style="background: #54278f;">A</div>
             </div>
-            <h1 class="phase-title">Alex submits her Medicaid application</h1>
+            <h1 class="phase-title">Avery submits her Medicaid application</h1>
             <p class="phase-perspective">State Medicaid Portal</p>
 
             <div class="phase-description">
-                <p>Alex reports her student enrollment and attests to half-time status, which the state will verify against external data to determine her eligibility.</p>
+                <p>Avery reports her student enrollment and attests to half-time status, which the state will verify against external data to determine her eligibility.</p>
             </div>
 
             <div class="phase-cta-area">
-                <button class="phase-cta" onclick="goTo('alex-app-info')">Begin Application &rarr;</button>
+                <button class="phase-cta" onclick="goTo('avery-app-info')">Begin Application &rarr;</button>
             </div>
         </div>
     </div>
     <div class="flow-nav">
         <button class="flow-nav-btn" onclick="goTo('intro')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-app-info')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-info')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      STATE APPLICATION: YOUR INFORMATION (Step 1 of 4)
      ============================================ -->
-<div class="screen fillable-screen" id="alex-app-info">
+<div class="screen fillable-screen" id="avery-app-info">
     <div class="wireframe-alert">Example online Medicaid application</div>
     <div class="state-app-header">
         <div class="state-app-header-dept">State Department of Health and Human Services</div>
@@ -3597,7 +3597,7 @@
             <div class="state-form-row">
                 <div class="state-form-field">
                     <label>First name</label>
-                    <input type="text" value="" data-fill="Alex">
+                    <input type="text" value="" data-fill="Avery">
                 </div>
                 <div class="state-form-field">
                     <label>Last name</label>
@@ -3648,23 +3648,23 @@
         </div>
 
         <div class="state-submit-area">
-            <button class="state-submit-btn" onclick="goTo('alex-app-income')">Continue</button>
+            <button class="state-submit-btn" onclick="goTo('avery-app-income')">Continue</button>
             <span class="state-step-label">Step 1 of 4</span>
         </div>
     </div>
     <div class="state-app-footer">State Medicaid Application Portal &mdash; For assistance, call 1-800-555-0123</div>
-    <div class="fill-hint" id="fill-hint-alex-app-info">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-app-info">Click anywhere to fill in fields</div>
     <div class="flow-nav">
         <button class="flow-nav-btn" onclick="goTo('phase-application')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-app-income')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-income')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      STATE APPLICATION: INCOME (Step 2 of 4)
      ============================================ -->
-<div class="screen fillable-screen" id="alex-app-income">
+<div class="screen fillable-screen" id="avery-app-income">
     <div class="wireframe-alert">Example online Medicaid application</div>
     <div class="state-app-header">
         <div class="state-app-header-dept">State Department of Health and Human Services</div>
@@ -3710,23 +3710,23 @@
         </div>
 
         <div class="state-submit-area">
-            <button class="state-submit-btn" onclick="goTo('alex-app-activities')">Continue</button>
+            <button class="state-submit-btn" onclick="goTo('avery-app-activities')">Continue</button>
             <span class="state-step-label">Step 2 of 4</span>
         </div>
     </div>
     <div class="state-app-footer">State Medicaid Application Portal &mdash; For assistance, call 1-800-555-0123</div>
-    <div class="fill-hint" id="fill-hint-alex-app-income">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-app-income">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-app-info')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-info')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-app-activities')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-activities')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      STATE APPLICATION: ACTIVITIES (Step 3 of 4)
      ============================================ -->
-<div class="screen fillable-screen" id="alex-app-activities">
+<div class="screen fillable-screen" id="avery-app-activities">
     <div class="wireframe-alert">Example online Medicaid application</div>
     <div class="state-app-header">
         <div class="state-app-header-dept">State Department of Health and Human Services</div>
@@ -3802,23 +3802,23 @@
         </div>
 
         <div class="state-submit-area">
-            <button class="state-submit-btn" onclick="goTo('alex-app-review')">Continue</button>
+            <button class="state-submit-btn" onclick="goTo('avery-app-review')">Continue</button>
             <span class="state-step-label">Step 3 of 4</span>
         </div>
     </div>
     <div class="state-app-footer">State Medicaid Application Portal &mdash; For assistance, call 1-800-555-0123</div>
-    <div class="fill-hint" id="fill-hint-alex-app-activities">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-app-activities">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-app-income')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-income')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-app-review')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-review')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      STATE APPLICATION: REVIEW & SUBMIT (Step 4 of 4)
      ============================================ -->
-<div class="screen fillable-screen" id="alex-app-review">
+<div class="screen fillable-screen" id="avery-app-review">
     <div class="wireframe-alert">Example online Medicaid application</div>
     <div class="state-app-header">
         <div class="state-app-header-dept">State Department of Health and Human Services</div>
@@ -3854,7 +3854,7 @@
             <div class="state-form-card-title">Personal Information</div>
             <div class="state-summary-row">
                 <span class="state-summary-label">Name</span>
-                <span class="state-summary-value">Alex Johnson</span>
+                <span class="state-summary-value">Avery Johnson</span>
             </div>
             <div class="state-summary-row">
                 <span class="state-summary-label">Date of birth</span>
@@ -3898,9 +3898,9 @@
         <p class="state-submitted-note">Application submitted December 15, 2026</p>
     </div>
     <div class="state-app-footer">State Medicaid Application Portal &mdash; For assistance, call 1-800-555-0123</div>
-    <div class="fill-hint" id="fill-hint-alex-app-review">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-app-review">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-app-activities')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-activities')">&larr; Back</button>
         <div class="flow-nav-center"></div>
         <button class="flow-nav-btn" onclick="goTo('phase-verification')">Next &rarr;</button>
     </div>
@@ -3915,35 +3915,35 @@
             <div class="phase-avatar">
                 <div class="phase-avatar-circle" style="background: #71767a;">&#9881;</div>
             </div>
-            <h1 class="phase-title">The state checks Alex's information</h1>
+            <h1 class="phase-title">The state checks Avery's information</h1>
             <p class="phase-perspective">Backend Eligibility System</p>
 
             <div class="phase-description">
-                <p>Automated verification finds Alex is enrolled less than half-time, not half-time as she reported, so education alone won't satisfy the CE requirement.</p>
+                <p>Automated verification finds Avery is enrolled less than half-time, not half-time as she reported, so education alone won't satisfy the CE requirement.</p>
             </div>
 
             <div class="phase-cta-area">
-                <button class="phase-cta" onclick="goTo('alex-data-checks')">See Verification Results &rarr;</button>
+                <button class="phase-cta" onclick="goTo('avery-data-checks')">See Verification Results &rarr;</button>
             </div>
         </div>
     </div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-app-review')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-app-review')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-data-checks')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-data-checks')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: BACKEND DATA CHECKS (combined, state wireframe)
      ============================================ -->
-<div class="screen" id="alex-data-checks">
+<div class="screen" id="avery-data-checks">
     <div class="wireframe-alert">State backend eligibility system</div>
     <div class="cw-screen">
         <div class="cw-header" style="display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #a9aeb1;">Medicaid Eligibility System</div>
-                <div style="font-size: 16px; font-weight: 700;">Verification &mdash; Alex Johnson (MC-2026-4872)</div>
+                <div style="font-size: 16px; font-weight: 700;">Verification &mdash; Avery Johnson (MC-2026-4872)</div>
             </div>
         </div>
 
@@ -4037,7 +4037,7 @@
                 <div class="dc-alert-icon">&#9888;</div>
                 <div class="dc-alert-content">
                     <div class="dc-alert-title">Enrollment discrepancy &mdash; caseworker review required</div>
-                    <p class="dc-alert-body">Alex attested to half-time enrollment, but NSC shows <strong>less than half-time</strong>. This does not satisfy the education path for CE. A caseworker must review and may request additional documentation.</p>
+                    <p class="dc-alert-body">Avery attested to half-time enrollment, but NSC shows <strong>less than half-time</strong>. This does not satisfy the education path for CE. A caseworker must review and may request additional documentation.</p>
                 </div>
             </div>
 
@@ -4063,25 +4063,25 @@
             <p class="phase-perspective">Caseworker Eligibility Portal</p>
 
             <div class="phase-description">
-                <p>The enrollment discrepancy means Alex's eligibility can't be determined automatically, so a caseworker sends her a link to Emmy to provide documentation.</p>
+                <p>The enrollment discrepancy means Avery's eligibility can't be determined automatically, so a caseworker sends her a link to Emmy to provide documentation.</p>
             </div>
 
             <div class="phase-cta-area">
-                <button class="phase-cta" onclick="goTo('alex-cw-dashboard')">See Caseworker Review &rarr;</button>
+                <button class="phase-cta" onclick="goTo('avery-cw-dashboard')">See Caseworker Review &rarr;</button>
             </div>
         </div>
     </div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-data-checks')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-data-checks')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cw-dashboard')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cw-dashboard')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: CASEWORKER DASHBOARD (state wireframe)
      ============================================ -->
-<div class="screen" id="alex-cw-dashboard">
+<div class="screen" id="avery-cw-dashboard">
     <div class="wireframe-alert">Caseworker eligibility portal</div>
     <div class="cw-screen">
         <div class="cw-header">
@@ -4109,10 +4109,10 @@
                 <tbody>
                     <tr>
                         <td style="font-weight: 700;">MC-2026-4872</td>
-                        <td>Alex Johnson</td>
+                        <td>Avery Johnson</td>
                         <td>Dec 15, 2026</td>
                         <td><span class="cw-badge cw-badge-red">Needs Review</span></td>
-                        <td><span class="cw-link" onclick="goTo('alex-cw-case')">View Case &rarr;</span></td>
+                        <td><span class="cw-link" onclick="goTo('avery-cw-case')">View Case &rarr;</span></td>
                     </tr>
                     <tr>
                         <td>MC-2026-4871</td>
@@ -4135,14 +4135,14 @@
     <div class="flow-nav">
         <button class="flow-nav-btn" onclick="goTo('phase-caseworker')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cw-case')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cw-case')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: CASEWORKER CASE VIEW (state wireframe)
      ============================================ -->
-<div class="screen fillable-screen" id="alex-cw-case">
+<div class="screen fillable-screen" id="avery-cw-case">
     <div class="wireframe-alert">Caseworker eligibility portal</div>
     <div class="cw-screen">
         <div class="cw-header">
@@ -4154,7 +4154,7 @@
                 <h2 style="font-size: 17px; font-weight: 700; margin: 0;">APPLICATION #MC-2026-4872</h2>
                 <span class="cw-badge cw-badge-amber">Pending &mdash; Documentation Needed</span>
             </div>
-            <p style="font-size: 14px; color: #3d4551; margin-bottom: 20px;">Alex Johnson</p>
+            <p style="font-size: 14px; color: #3d4551; margin-bottom: 20px;">Avery Johnson</p>
 
             <h3 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #3d4551; margin-bottom: 8px;">Case Details</h3>
             <table class="cw-table">
@@ -4212,13 +4212,13 @@
                 <div style="display: flex; gap: 12px; align-items: center;">
                     <button class="cw-btn cw-btn-primary" style="opacity: 0.7; cursor: default;">&#10003; Request Sent</button>
                 </div>
-                <div class="cw-note">A link to Emmy has been sent to the applicant at alex@email.com.</div>
+                <div class="cw-note">A link to Emmy has been sent to the applicant at avery@email.com.</div>
             </div>
         </div>
     </div>
-    <div class="fill-hint" id="fill-hint-alex-cw-case">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-cw-case">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cw-dashboard')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cw-dashboard')">&larr; Back</button>
         <div class="flow-nav-center"></div>
         <button class="flow-nav-btn" onclick="goTo('phase-emmy')">Next &rarr;</button>
     </div>
@@ -4233,30 +4233,30 @@
             <div class="phase-avatar">
                 <div class="phase-avatar-circle" style="background: #54278f;">A</div>
             </div>
-            <h1 class="phase-title">Alex provides documentation through Emmy</h1>
+            <h1 class="phase-title">Avery provides documentation through Emmy</h1>
             <p class="phase-perspective">Emmy</p>
 
             <div class="phase-description">
-                <p>Alex uses Emmy to document her credit hours, add community service to cover the gap, and submit a complete report so the state can determine her eligibility.</p>
+                <p>Avery uses Emmy to document her credit hours, add community service to cover the gap, and submit a complete report so the state can determine her eligibility.</p>
             </div>
 
             <div class="phase-cta-area">
-                <button class="phase-cta" onclick="goTo('alex-email')">Continue &rarr;</button>
+                <button class="phase-cta" onclick="goTo('avery-email')">Continue &rarr;</button>
             </div>
         </div>
     </div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cw-case')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cw-case')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-email')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-email')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
-     SCREEN: ALEX EMAIL
+     SCREEN: AVERY EMAIL
      ============================================ -->
-<div class="screen" id="alex-email">
-    <div class="wireframe-alert">Alex's email inbox</div>
+<div class="screen" id="avery-email">
+    <div class="wireframe-alert">Avery's email inbox</div>
     <div style="background: #f0f0f0; min-height: 100%; padding: 24px;">
 
         <!-- Email card -->
@@ -4275,7 +4275,7 @@
 
                 <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; color: #1b1b1b; margin: 0 0 16px;">Action needed: verify your activities for Medicaid</h1>
 
-                <p style="margin: 0 0 16px;">Hi Alex,</p>
+                <p style="margin: 0 0 16px;">Hi Avery,</p>
 
                 <p style="margin: 0 0 24px;">We need additional information to complete your Medicaid application. Our records show your enrollment at State University may be below half-time, so we need you to verify your credit hours and provide documentation.</p>
 
@@ -4283,7 +4283,7 @@
                 <div style="background: #f0f7ff; border: 2px solid #005ea2; border-radius: 8px; padding: 24px; margin: 0 0 24px; text-align: center;">
                     <p style="font-family: 'Public Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1b1b1b; margin: 0 0 8px;">Use Emmy to verify your activities</p>
                     <p style="font-size: 14px; color: #3d4551; margin: 0 0 16px;">Emmy is a secure tool that makes it easy to submit your documentation online.</p>
-                    <button onclick="goTo('alex-emmy-welcome')" style="display: inline-block; padding: 14px 48px; background: #005ea2; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 700; font-family: 'Public Sans', sans-serif; cursor: pointer;">Get started with Emmy</button>
+                    <button onclick="goTo('avery-emmy-welcome')" style="display: inline-block; padding: 14px 48px; background: #005ea2; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 700; font-family: 'Public Sans', sans-serif; cursor: pointer;">Get started with Emmy</button>
                 </div>
 
                 <p style="margin: 0 0 8px; font-size: 14px; color: #3d4551;">You can also add other qualifying activities like community service, employment, or work programs.</p>
@@ -4303,14 +4303,14 @@
     <div class="flow-nav">
         <button class="flow-nav-btn" onclick="goTo('phase-emmy')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-welcome')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-welcome')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EMMY WELCOME (full USWDS)
      ============================================ -->
-<div class="screen" id="alex-emmy-welcome">
+<div class="screen" id="avery-emmy-welcome">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header">
         <div class="emmy-header-inner">
@@ -4326,7 +4326,7 @@
     </div>
     <div class="container">
         <div style="padding: 32px 0 40px;">
-            <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 16px;">Welcome, Alex!</h1>
+            <h1 style="font-family: 'Public Sans', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 16px;">Welcome, Avery!</h1>
             <p style="font-size: 16px; color: #1b1b1b; margin-bottom: 24px;">Your Medicaid application is almost complete.</p>
 
             <div class="emmy-info-box">
@@ -4373,7 +4373,7 @@
                 </div>
             </div>
 
-            <button class="usa-button" onclick="goTo('alex-emmy-hub-prepop')" style="margin-bottom: 0;">Get started</button>
+            <button class="usa-button" onclick="goTo('avery-emmy-hub-prepop')" style="margin-bottom: 0;">Get started</button>
 
             <div class="emmy-help-line">
                 <strong>Need help?</strong> Contact your state for more assistance.
@@ -4390,16 +4390,16 @@
         </div>
     </div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-email')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-email')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-hub-prepop')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-hub-prepop')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EMMY HUB PRE-POPULATED
      ============================================ -->
-<div class="screen" id="alex-emmy-hub-prepop">
+<div class="screen" id="avery-emmy-hub-prepop">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
 
@@ -4433,7 +4433,7 @@
                         </div>
                     </div>
                     <div style="padding: 16px 24px;">
-                        <button class="usa-button" onclick="goTo('alex-edu-credits')">Complete activity</button>
+                        <button class="usa-button" onclick="goTo('avery-edu-credits')">Complete activity</button>
                     </div>
                 </div>
             </div>
@@ -4476,16 +4476,16 @@
 
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-welcome')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-welcome')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-edu-credits')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-edu-credits')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EDUCATION SPOKE — CREDIT HOURS
      ============================================ -->
-<div class="screen fillable-screen" id="alex-edu-credits">
+<div class="screen fillable-screen" id="avery-edu-credits">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -4495,8 +4495,8 @@
         <p>We'll use your credit hours to calculate how many community engagement hours you've completed.</p>
 
         <div class="emmy-tile-checkbox">
-            <input type="checkbox" id="alex-no-classes-v2">
-            <label for="alex-no-classes-v2">I didn't take any classes at State University this term</label>
+            <input type="checkbox" id="avery-no-classes-v2">
+            <label for="avery-no-classes-v2">I didn't take any classes at State University this term</label>
         </div>
 
         <div style="max-width: 488px; margin-bottom: 32px;">
@@ -4504,21 +4504,21 @@
             <input type="text" value="" data-fill="9" style="width: 100%; padding: 8px; border: 1px solid #1b1b1b; font-size: 16px; font-family: inherit; height: 40px;">
         </div>
 
-        <button class="usa-button" onclick="goTo('alex-edu-upload')">Save and continue</button>
+        <button class="usa-button" onclick="goTo('avery-edu-upload')">Save and continue</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
-    <div class="fill-hint" id="fill-hint-alex-edu-credits">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-edu-credits">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-hub-prepop')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-hub-prepop')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-edu-upload')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-edu-upload')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EDUCATION SPOKE — UPLOAD
      ============================================ -->
-<div class="screen" id="alex-edu-upload">
+<div class="screen" id="avery-edu-upload">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -4567,20 +4567,20 @@
             </div>
         </div>
 
-        <button class="usa-button" onclick="goTo('alex-edu-review')">Continue to review</button>
+        <button class="usa-button" onclick="goTo('avery-edu-review')">Continue to review</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-edu-credits')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-edu-credits')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-edu-review')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-edu-review')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EDUCATION SPOKE — REVIEW
      ============================================ -->
-<div class="screen" id="alex-edu-review">
+<div class="screen" id="avery-edu-review">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -4632,20 +4632,20 @@
         <p style="margin-bottom: 8px;">Share any additional information that you'd like your state agency to know. This will be included in your community engagement report.</p>
         <textarea style="width: 100%; max-width: 704px; min-height: 120px; padding: 8px; border: 1px solid #1b1b1b; font-size: 16px; font-family: inherit; resize: vertical; margin-bottom: 32px;"></textarea>
 
-        <button class="usa-button" onclick="goTo('alex-emmy-hub-partial')">Save and continue</button>
+        <button class="usa-button" onclick="goTo('avery-emmy-hub-partial')">Save and continue</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-edu-upload')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-edu-upload')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-hub-partial')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-hub-partial')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EMMY HUB PARTIAL (36/80)
      ============================================ -->
-<div class="screen" id="alex-emmy-hub-partial">
+<div class="screen" id="avery-emmy-hub-partial">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
 
@@ -4668,7 +4668,7 @@
                 </div>
             </div>
 
-            <button class="usa-button" style="width: 100%; margin-bottom: 16px;" onclick="goTo('alex-emmy-submit')">Review and submit</button>
+            <button class="usa-button" style="width: 100%; margin-bottom: 16px;" onclick="goTo('avery-emmy-submit')">Review and submit</button>
             <a href="#" style="font-size: 16px; color: #005ea2; text-decoration: underline;" onclick="event.preventDefault(); openCantMeetModal();">What if I can't meet the requirements?</a>
         </div>
 
@@ -4714,7 +4714,7 @@
             <div class="hub-activity-section">
                 <div class="hub-activity-header">
                     <h2>Community service</h2>
-                    <button class="hub-add-btn" onclick="goTo('alex-cs-org')">+ Add</button>
+                    <button class="hub-add-btn" onclick="goTo('avery-cs-org')">+ Add</button>
                 </div>
                 <div class="hub-empty-card">
                     <p>No community service added</p>
@@ -4737,16 +4737,16 @@
 
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-edu-review')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-edu-review')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-org')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-org')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: COMMUNITY SERVICE SPOKE — ORG
      ============================================ -->
-<div class="screen fillable-screen" id="alex-cs-org">
+<div class="screen fillable-screen" id="avery-cs-org">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -4804,29 +4804,29 @@
             </div>
         </div>
 
-        <button class="usa-button" onclick="goTo('alex-cs-july')">Continue</button>
+        <button class="usa-button" onclick="goTo('avery-cs-july')">Continue</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
-    <div class="fill-hint" id="fill-hint-alex-cs-org">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-cs-org">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-hub-partial')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-hub-partial')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-july')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-july')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: COMMUNITY SERVICE SPOKE — JULY
      ============================================ -->
-<div class="screen fillable-screen" id="alex-cs-july">
+<div class="screen fillable-screen" id="avery-cs-july">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
         <h1>Add your March community service hours for Westbrook community garden</h1>
 
         <div class="emmy-tile-checkbox">
-            <input type="checkbox" id="alex-no-march-cs">
-            <label for="alex-no-march-cs">No community service hours with Westbrook community garden in March</label>
+            <input type="checkbox" id="avery-no-march-cs">
+            <label for="avery-no-march-cs">No community service hours with Westbrook community garden in March</label>
         </div>
 
         <div style="max-width: 488px; margin-bottom: 32px;">
@@ -4834,21 +4834,21 @@
             <input type="text" value="" data-fill="47" style="width: 100%; padding: 8px; border: 1px solid #1b1b1b; font-size: 16px; font-family: inherit; height: 40px;">
         </div>
 
-        <button class="usa-button" onclick="goTo('alex-cs-upload')">Save and continue</button>
+        <button class="usa-button" onclick="goTo('avery-cs-upload')">Save and continue</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
-    <div class="fill-hint" id="fill-hint-alex-cs-july">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-cs-july">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-org')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-org')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-upload')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-upload')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: COMMUNITY SERVICE SPOKE — UPLOAD
      ============================================ -->
-<div class="screen" id="alex-cs-upload">
+<div class="screen" id="avery-cs-upload">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -4892,20 +4892,20 @@
             </div>
         </div>
 
-        <button class="usa-button" onclick="goTo('alex-cs-review')">Continue to review</button>
+        <button class="usa-button" onclick="goTo('avery-cs-review')">Continue to review</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-july')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-july')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-review')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-review')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: COMMUNITY SERVICE SPOKE — REVIEW
      ============================================ -->
-<div class="screen" id="alex-cs-review">
+<div class="screen" id="avery-cs-review">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -4966,20 +4966,20 @@
         <p style="margin-bottom: 8px;">Share any additional information that you'd like your state agency to know. This will be included in your community engagement report.</p>
         <textarea style="width: 100%; max-width: 704px; min-height: 120px; padding: 8px; border: 1px solid #1b1b1b; font-size: 16px; font-family: inherit; resize: vertical; margin-bottom: 32px;"></textarea>
 
-        <button class="usa-button" onclick="goTo('alex-emmy-hub-complete')">Save and continue</button>
+        <button class="usa-button" onclick="goTo('avery-emmy-hub-complete')">Save and continue</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-upload')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-upload')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-hub-complete')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-hub-complete')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EMMY HUB COMPLETE (met)
      ============================================ -->
-<div class="screen" id="alex-emmy-hub-complete">
+<div class="screen" id="avery-emmy-hub-complete">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
 
@@ -5002,7 +5002,7 @@
                 </div>
             </div>
 
-            <button class="usa-button" style="width: 100%;" onclick="goTo('alex-emmy-submit')">Review and submit</button>
+            <button class="usa-button" style="width: 100%;" onclick="goTo('avery-emmy-submit')">Review and submit</button>
         </div>
 
         <div class="hub-split-divider"></div>
@@ -5079,16 +5079,16 @@
 
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cs-review')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cs-review')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-submit')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-submit')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EMMY REVIEW AND SUBMIT
      ============================================ -->
-<div class="screen fillable-screen" id="alex-emmy-submit">
+<div class="screen fillable-screen" id="avery-emmy-submit">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -5211,25 +5211,25 @@
         <h2>Legal agreement</h2>
 
         <div class="emmy-tile-checkbox" style="margin-bottom: 32px;">
-            <input type="checkbox" id="alex-submit-consent" data-fill-check>
-            <label for="alex-submit-consent">I confirm that the information in this report is accurate to the best of my knowledge. I consent to sharing this report with my state Medicaid agency to decide if I'm eligible for Medicaid.</label>
+            <input type="checkbox" id="avery-submit-consent" data-fill-check>
+            <label for="avery-submit-consent">I confirm that the information in this report is accurate to the best of my knowledge. I consent to sharing this report with my state Medicaid agency to decide if I'm eligible for Medicaid.</label>
         </div>
 
-        <button class="usa-button" onclick="goTo('alex-emmy-success')">Submit my report</button>
+        <button class="usa-button" onclick="goTo('avery-emmy-success')">Submit my report</button>
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
-    <div class="fill-hint" id="fill-hint-alex-emmy-submit">Click anywhere to fill in fields</div>
+    <div class="fill-hint" id="fill-hint-avery-emmy-submit">Click anywhere to fill in fields</div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-hub-complete')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-hub-complete')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-success')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-success')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: EMMY SUCCESS
      ============================================ -->
-<div class="screen" id="alex-emmy-success">
+<div class="screen" id="avery-emmy-success">
     <div class="gov-banner"><div class="gov-banner-inner"><span class="gov-banner-flag">&#127482;&#127480;</span><span class="gov-banner-text">An official website of the United States government</span><button class="gov-banner-link">Here's how you know &#9662;</button></div></div>
     <div class="emmy-header"><div class="emmy-header-inner"><div class="emmy-header-brand"><span class="emmy-header-title">Emmy | Eligibility Made Easy</span><span class="emmy-header-state">State</span></div><div class="emmy-header-links"><button class="emmy-header-link">Help</button><button class="emmy-header-link">Espa&ntilde;ol</button></div></div></div>
     <div class="emmy-page-content">
@@ -5258,7 +5258,7 @@
     </div>
     <div class="site-footer"><div class="site-footer-inner"><div><div class="site-footer-title">Emmy</div><div class="site-footer-subtitle">Eligibility Made Easy</div></div><button class="site-footer-feedback"><svg class="usa-icon--sm" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg> Share feedback</button></div></div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-submit')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-submit')">&larr; Back</button>
         <div class="flow-nav-center"></div>
         <button class="flow-nav-btn" onclick="goTo('phase-final-review')">Next &rarr;</button>
     </div>
@@ -5277,25 +5277,25 @@
             <p class="phase-perspective">Caseworker Eligibility Portal</p>
 
             <div class="phase-description">
-                <p>With Alex's structured Emmy report and uploaded documents, the caseworker has what they need to approve her for Medicaid coverage.</p>
+                <p>With Avery's structured Emmy report and uploaded documents, the caseworker has what they need to approve her for Medicaid coverage.</p>
             </div>
 
             <div class="phase-cta-area">
-                <button class="phase-cta" onclick="goTo('alex-cw-emmy-review')">See Final Review &rarr;</button>
+                <button class="phase-cta" onclick="goTo('avery-cw-emmy-review')">See Final Review &rarr;</button>
             </div>
         </div>
     </div>
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-emmy-success')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-emmy-success')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-cw-emmy-review')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cw-emmy-review')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: CASEWORKER EMMY REVIEW (state wireframe)
      ============================================ -->
-<div class="screen" id="alex-cw-emmy-review">
+<div class="screen" id="avery-cw-emmy-review">
     <div class="wireframe-alert">Caseworker eligibility portal</div>
     <div class="cw-screen">
         <div class="cw-header">
@@ -5309,7 +5309,7 @@
             <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
                 <div style="background: white; border: 1px solid #dfe1e2; border-radius: 4px; padding: 10px 16px; flex: 1; min-width: 140px;">
                     <div style="font-size: 11px; text-transform: uppercase; color: #71767a; letter-spacing: 0.3px;">Applicant</div>
-                    <div style="font-size: 14px; font-weight: 700;">Alex Johnson</div>
+                    <div style="font-size: 14px; font-weight: 700;">Avery Johnson</div>
                 </div>
                 <div style="background: white; border: 1px solid #dfe1e2; border-radius: 4px; padding: 10px 16px; flex: 1; min-width: 140px;">
                     <div style="font-size: 11px; text-transform: uppercase; color: #71767a; letter-spacing: 0.3px;">Application ID</div>
@@ -5381,7 +5381,7 @@
             </div>
 
             <div style="display: flex; gap: 12px;">
-                <button class="cw-btn cw-btn-primary" onclick="goTo('alex-determination')">Approve &amp; Enroll in Medicaid</button>
+                <button class="cw-btn cw-btn-primary" onclick="goTo('avery-determination')">Approve &amp; Enroll in Medicaid</button>
                 <button class="cw-btn cw-btn-outline">Request Additional Information</button>
             </div>
         </div>
@@ -5389,14 +5389,14 @@
     <div class="flow-nav">
         <button class="flow-nav-btn" onclick="goTo('phase-final-review')">&larr; Back</button>
         <div class="flow-nav-center"></div>
-        <button class="flow-nav-btn" onclick="goTo('alex-determination')">Next &rarr;</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-determination')">Next &rarr;</button>
     </div>
 </div>
 
 <!-- ============================================
      SCREEN: DETERMINATION (side-by-side)
      ============================================ -->
-<div class="screen" id="alex-determination">
+<div class="screen" id="avery-determination">
     <div class="wireframe-alert">Eligibility determination</div>
 
     <div class="determination-split">
@@ -5406,17 +5406,17 @@
                 <div class="browser-dot" style="background: #ff5f56;"></div>
                 <div class="browser-dot" style="background: #ffbd2e;"></div>
                 <div class="browser-dot" style="background: #27c93f;"></div>
-                <div class="browser-url">example-state-portal.gov/cases/alex-johnson</div>
+                <div class="browser-url">example-state-portal.gov/cases/avery-johnson</div>
             </div>
             <div class="browser-content">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-                    <h3 style="font-size: 15px; font-weight: 700;">Alex Johnson's Case</h3>
+                    <h3 style="font-size: 15px; font-weight: 700;">Avery Johnson's Case</h3>
                     <span class="cw-badge cw-badge-green">&#10003; Eligible</span>
                 </div>
 
                 <div style="background: #ecf3ec; border-left: 4px solid #2e6e2e; padding: 12px 16px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
                     <div style="font-weight: 700; font-size: 13px; color: #2e6e2e; margin-bottom: 4px;">Eligible for Medicaid</div>
-                    <div style="font-size: 12px; color: #3d4551;">Alex Johnson has been determined eligible for Medicaid coverage. Community engagement documentation reviewed and accepted.</div>
+                    <div style="font-size: 12px; color: #3d4551;">Avery Johnson has been determined eligible for Medicaid coverage. Community engagement documentation reviewed and accepted.</div>
                 </div>
 
                 <div style="font-size: 12px; color: #3d4551;">
@@ -5436,7 +5436,7 @@
             </div>
         </div>
 
-        <!-- Right: Alex's mobile view -->
+        <!-- Right: Avery's mobile view -->
         <div class="determination-panel">
             <div class="phone-frame">
                 <div class="phone-notch"></div>
@@ -5462,11 +5462,11 @@
 
     <!-- Callout box below both -->
     <div class="callout-box">
-        <p>Emmy gave Alex a structured way to provide proof of education and community service activities that the state's automated systems couldn't fully validate. Without Emmy, Alex would need to figure out what documents to gather and how to submit them &mdash; a process that often leads to delays and coverage gaps.</p>
+        <p>Emmy gave Avery a structured way to provide proof of education and community service activities that the state's automated systems couldn't fully validate. Without Emmy, Avery would need to figure out what documents to gather and how to submit them &mdash; a process that often leads to delays and coverage gaps.</p>
     </div>
 
     <div class="flow-nav">
-        <button class="flow-nav-btn" onclick="goTo('alex-cw-emmy-review')">&larr; Back</button>
+        <button class="flow-nav-btn" onclick="goTo('avery-cw-emmy-review')">&larr; Back</button>
         <div class="flow-nav-center">End of demo</div>
         <button class="flow-nav-btn" onclick="goTo('intro')">Restart &rarr;</button>
     </div>
@@ -5500,33 +5500,33 @@
     const screenOrder = [
         'intro',
         'phase-application',
-        'alex-app-info',
-        'alex-app-income',
-        'alex-app-activities',
-        'alex-app-review',
+        'avery-app-info',
+        'avery-app-income',
+        'avery-app-activities',
+        'avery-app-review',
         'phase-verification',
-        'alex-data-checks',
+        'avery-data-checks',
         'phase-caseworker',
-        'alex-cw-dashboard',
-        'alex-cw-case',
+        'avery-cw-dashboard',
+        'avery-cw-case',
         'phase-emmy',
-        'alex-email',
-        'alex-emmy-welcome',
-        'alex-emmy-hub-prepop',
-        'alex-edu-credits',
-        'alex-edu-upload',
-        'alex-edu-review',
-        'alex-emmy-hub-partial',
-        'alex-cs-org',
-        'alex-cs-july',
-        'alex-cs-upload',
-        'alex-cs-review',
-        'alex-emmy-hub-complete',
-        'alex-emmy-submit',
-        'alex-emmy-success',
+        'avery-email',
+        'avery-emmy-welcome',
+        'avery-emmy-hub-prepop',
+        'avery-edu-credits',
+        'avery-edu-upload',
+        'avery-edu-review',
+        'avery-emmy-hub-partial',
+        'avery-cs-org',
+        'avery-cs-july',
+        'avery-cs-upload',
+        'avery-cs-review',
+        'avery-emmy-hub-complete',
+        'avery-emmy-submit',
+        'avery-emmy-success',
         'phase-final-review',
-        'alex-cw-emmy-review',
-        'alex-determination'
+        'avery-cw-emmy-review',
+        'avery-determination'
     ];
 
     /* ============================================
@@ -5538,10 +5538,10 @@
             titleClass: 'phase-state',
             steps: [
                 { id: 'phase-application', label: 'Phase intro' },
-                { id: 'alex-app-info', label: 'Personal info' },
-                { id: 'alex-app-income', label: 'Income' },
-                { id: 'alex-app-activities', label: 'Activities' },
-                { id: 'alex-app-review', label: 'Review & submit' },
+                { id: 'avery-app-info', label: 'Personal info' },
+                { id: 'avery-app-income', label: 'Income' },
+                { id: 'avery-app-activities', label: 'Activities' },
+                { id: 'avery-app-review', label: 'Review & submit' },
             ]
         },
         {
@@ -5549,7 +5549,7 @@
             titleClass: 'phase-state',
             steps: [
                 { id: 'phase-verification', label: 'Phase intro' },
-                { id: 'alex-data-checks', label: 'Data source checks' },
+                { id: 'avery-data-checks', label: 'Data source checks' },
             ]
         },
         {
@@ -5557,8 +5557,8 @@
             titleClass: 'phase-state',
             steps: [
                 { id: 'phase-caseworker', label: 'Phase intro' },
-                { id: 'alex-cw-dashboard', label: 'Dashboard' },
-                { id: 'alex-cw-case', label: 'Case review & request' },
+                { id: 'avery-cw-dashboard', label: 'Dashboard' },
+                { id: 'avery-cw-case', label: 'Case review & request' },
             ]
         },
         {
@@ -5566,20 +5566,20 @@
             titleClass: 'phase-emmy',
             steps: [
                 { id: 'phase-emmy', label: 'Phase intro' },
-                { id: 'alex-email', label: 'Email notification' },
-                { id: 'alex-emmy-welcome', label: 'Welcome' },
-                { id: 'alex-emmy-hub-prepop', label: 'Activity Hub (start)' },
-                { id: 'alex-edu-credits', label: 'Education: credits' },
-                { id: 'alex-edu-upload', label: 'Education: upload' },
-                { id: 'alex-edu-review', label: 'Education: review' },
-                { id: 'alex-emmy-hub-partial', label: 'Activity Hub (36/80)' },
-                { id: 'alex-cs-org', label: 'Community svc: org' },
-                { id: 'alex-cs-july', label: 'Community svc: March' },
-                { id: 'alex-cs-upload', label: 'Community svc: upload' },
-                { id: 'alex-cs-review', label: 'Community svc: review' },
-                { id: 'alex-emmy-hub-complete', label: 'Activity Hub (met)' },
-                { id: 'alex-emmy-submit', label: 'Review & submit' },
-                { id: 'alex-emmy-success', label: 'Submission confirmed' },
+                { id: 'avery-email', label: 'Email notification' },
+                { id: 'avery-emmy-welcome', label: 'Welcome' },
+                { id: 'avery-emmy-hub-prepop', label: 'Activity Hub (start)' },
+                { id: 'avery-edu-credits', label: 'Education: credits' },
+                { id: 'avery-edu-upload', label: 'Education: upload' },
+                { id: 'avery-edu-review', label: 'Education: review' },
+                { id: 'avery-emmy-hub-partial', label: 'Activity Hub (36/80)' },
+                { id: 'avery-cs-org', label: 'Community svc: org' },
+                { id: 'avery-cs-july', label: 'Community svc: March' },
+                { id: 'avery-cs-upload', label: 'Community svc: upload' },
+                { id: 'avery-cs-review', label: 'Community svc: review' },
+                { id: 'avery-emmy-hub-complete', label: 'Activity Hub (met)' },
+                { id: 'avery-emmy-submit', label: 'Review & submit' },
+                { id: 'avery-emmy-success', label: 'Submission confirmed' },
             ]
         },
         {
@@ -5587,8 +5587,8 @@
             titleClass: 'phase-outcome',
             steps: [
                 { id: 'phase-final-review', label: 'Phase intro' },
-                { id: 'alex-cw-emmy-review', label: 'Caseworker review' },
-                { id: 'alex-determination', label: 'Eligibility decision' },
+                { id: 'avery-cw-emmy-review', label: 'Caseworker review' },
+                { id: 'avery-determination', label: 'Eligibility decision' },
             ]
         }
     ];
@@ -5665,19 +5665,19 @@
             target.querySelectorAll('.fill-files-empty').forEach(el => el.style.display = 'block');
             target.querySelectorAll('.fill-files-filled').forEach(el => el.style.display = 'none');
             // Reset activities page state
-            if (screenId === 'alex-app-activities') {
+            if (screenId === 'avery-app-activities') {
                 const eduDetails = document.getElementById('edu-details');
                 if (eduDetails) eduDetails.style.display = 'none';
                 document.querySelectorAll('.other-activity-section').forEach(s => s.classList.remove('disabled'));
             }
             // Reset file upload states
-            if (screenId === 'alex-edu-upload') {
+            if (screenId === 'avery-edu-upload') {
                 const ee = document.getElementById('edu-file-empty');
                 const ef = document.getElementById('edu-file-filled');
                 if (ee) ee.style.display = 'block';
                 if (ef) ef.style.display = 'none';
             }
-            if (screenId === 'alex-cs-upload') {
+            if (screenId === 'avery-cs-upload') {
                 const ce = document.getElementById('cs-file-empty');
                 const cf = document.getElementById('cs-file-filled');
                 if (ce) ce.style.display = 'block';
@@ -5700,12 +5700,12 @@
        ============================================ */
     function triggerScreenAnimations(screenId) {
         // Data checks staggered reveal
-        if (screenId === 'alex-data-checks') {
+        if (screenId === 'avery-data-checks') {
             revealDataChecks();
         }
 
         // Progress bar animations
-        if (screenId === 'alex-emmy-hub-partial' || screenId === 'alex-emmy-hub-complete') {
+        if (screenId === 'avery-emmy-hub-partial' || screenId === 'avery-emmy-hub-complete') {
             animateProgressBars(screenId);
         }
     }
@@ -5911,7 +5911,7 @@
         screen.querySelectorAll('.fill-files-filled').forEach(el => el.style.display = 'block');
 
         // Trigger any screen-specific side effects
-        if (screenId === 'alex-app-activities') {
+        if (screenId === 'avery-app-activities') {
             toggleActivities();
         }
     }
