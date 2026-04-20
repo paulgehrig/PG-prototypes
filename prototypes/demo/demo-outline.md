@@ -1096,17 +1096,70 @@ Documents uploaded (3 files listed). "Save and return to Activity Hub" button.
 
 **Activities:**
 - **Education** -- 48 hours counted (4 credits x 12 hrs/credit). State University details shown.
-- **Community service** -- not reported. "Add" action.
 - **Employment** -- not reported. "Add" action.
+- **Community service** -- not reported. "Add" action.
 - **Work programs** -- not reported. "Add" action.
 
 "Review and submit" button available but progress incomplete.
 
-> **Callout:** The progress bar shows the gap. Emmy guides Avery toward what to do next without requiring her to understand the three compliance paths.
+> **Callout:** The progress bar shows the gap. Avery decides to add Uber driving hours to close the gap faster while also earning income.
 
 ---
 
-#### Screen 16: Emmy -- Community service spoke: organization (`avery-cs-org`)
+#### Screen 16: Emmy -- Employment spoke: search (`avery-emmy-employment`)
+
+**Visual mode:** Full USWDS
+
+Avery searches for and selects Uber as her employer. Emmy prompts her to connect her Uber account via payroll sync (Argyle) to pull in hours and income automatically.
+
+"Connect Uber account" button.
+
+---
+
+#### Screen 17: Emmy -- Employment spoke: payroll sync (`avery-payroll-sync`)
+
+**Visual mode:** Full USWDS
+
+Argyle payroll sync flow. Avery authenticates her Uber account. Emmy retrieves her March 2026 driving activity.
+
+Loading/sync state shown, then confirmation that data has been retrieved.
+
+---
+
+#### Screen 18: Emmy -- Employment spoke: payment details (`avery-payment-details`)
+
+**Visual mode:** Full USWDS
+
+March 2026 Uber earnings pulled via payroll sync:
+- Employer: Uber
+- Hours driven: 20
+- Income: $170
+
+"Save and continue" button.
+
+---
+
+#### Screen 19: Emmy -- Activity Hub, employment added (`avery-emmy-hub-with-employment`)
+
+**Visual mode:** Full USWDS
+
+**Progress:**
+- 68 / 80 hours (progress bar at 85%)
+- "12 hours still needed"
+
+**Activities (updated):**
+- **Education** -- 48 hours (4 credits x 12 hrs/credit, State University)
+- **Employment** -- 20 hours, $170 income (Uber, March 2026)
+- **Community service** -- not reported. "Add" action.
+- **Work programs** -- not reported. "Add" action.
+
+"Review and submit" button available but progress incomplete.
+
+> **Callout:** Adding Uber brought Avery from 48/80 to 68/80. She's close — 12 hours short. She adds her community service hours to close the gap.
+
+---
+
+#### Screen 20: Emmy -- Community service spoke: organization (`avery-cs-org`)
 
 **Visual mode:** Full USWDS
 
@@ -1121,49 +1174,50 @@ Pre-filled organization details:
 
 ---
 
-#### Screen 17: Emmy -- Community service spoke: hours (`avery-cs-july`)
+#### Screen 21: Emmy -- Community service spoke: hours (`avery-cs-july`)
 
 **Visual mode:** Full USWDS
 
 Monthly hour entry for March 2026:
-- Hours: 47
+- Hours: 15
 
 "Save and continue" button.
 
 ---
 
-#### Screen 18: Emmy -- Community service spoke: review (`avery-cs-review`)
+#### Screen 22: Emmy -- Community service spoke: review (`avery-cs-review`)
 
 **Visual mode:** Full USWDS
 
 Review of community service entry:
 - Organization: Westbrook community garden
 - Coordinator: Aaron Keyes
-- March hours: 47
+- March hours: 15
 
 "Save and return to Activity Hub" button.
 
 ---
 
-#### Screen 19: Emmy -- Activity Hub, requirement met (`avery-emmy-hub-complete`)
+#### Screen 23: Emmy -- Activity Hub, requirement met (`avery-emmy-hub-complete`)
 
 **Visual mode:** Full USWDS
 
 **Progress:**
-- 95 / 80 hours (progress bar full, success state, green checkmark)
+- 83 / 80 hours (progress bar full, success state, green checkmark)
 - "1/1 months completed"
 
 **Activities (updated):**
 - **Education** -- 48 hours (4 credits x 12 hrs/credit, State University)
-- **Community service** -- 47 hours (Westbrook community garden)
+- **Employment** -- 20 hours, $170 income (Uber, March 2026)
+- **Community service** -- 15 hours (Westbrook community garden)
 
 "Review and submit" button (prominent).
 
-> **Callout:** The payoff. Progress went from 48/80 to 95/80. Emmy guided Avery from gap to completion. The framing is "hours reported," not "you're eligible" -- Emmy doesn't determine eligibility.
+> **Callout:** The payoff. Progress went from 48/80 → 68/80 → 83/80. Three activity types combined to meet the threshold. Emmy doesn't determine eligibility — it reports hours.
 
 ---
 
-#### Screen 20: Emmy -- Review and submit (`avery-emmy-submit`)
+#### Screen 24: Emmy -- Review and submit (`avery-emmy-submit`)
 
 **Visual mode:** Full USWDS
 
@@ -1175,15 +1229,21 @@ Page title: "Review and submit your community engagement report."
 - Enrollment table: Spring 2026, less than half-time, 4 credits, 48 CE hours
 - 3 documents uploaded
 
-**Activity 2: Community service**
+**Activity 2: Employment**
+- Employer: Uber
+- March hours: 20
+- March income: $170
+- Source: Connected via payroll sync
+
+**Activity 3: Community service**
 - Organization: Westbrook community garden
-- March: 47 hours
+- March: 15 hours
 
 Certification checkbox. "Submit report" button.
 
 ---
 
-#### Screen 21: Emmy -- Submitted (`avery-emmy-success`)
+#### Screen 25: Emmy -- Submitted (`avery-emmy-success`)
 
 **Visual mode:** Full USWDS
 
@@ -1208,7 +1268,7 @@ Confirmation code: MC-2026-4872. "A caseworker will review your report alongside
 
 ---
 
-#### Screen 22: Caseworker receives Emmy report (`avery-cw-emmy-review`)
+#### Screen 26: Caseworker receives Emmy report (`avery-cw-emmy-review`)
 
 **Visual mode:** Wireframe
 
@@ -1219,24 +1279,28 @@ Caseworker portal with case detail. Emmy report card showing:
 - Verification note: Documentation confirms 4 credit hours in Spring 2026, equating to 48 hours of community engagement per month.
 - Institution: State University, Term: Spring 2026, Credit Hours: 4, CE Hours: 48 (4 credits x 12 hours/credit)
 
+**Employment details** (via payroll sync):
+- Employer: Uber, March hours: 20, March income: $170
+
 **Community service details** (self-attested, no documents):
-- Organization: Westbrook community garden, Supervisor: Aaron Keyes, March: 47 hours
+- Organization: Westbrook community garden, Supervisor: Aaron Keyes, March: 15 hours
 
 **CE Summary:**
-- Education: 48 hours/month
-- Community Service: 47 hrs (March)
-- Total: 95 hrs (March)
+- Education: 48 hrs (March)
+- Employment: 20 hrs (March)
+- Community Service: 15 hrs (March)
+- Total: 83 hrs (March)
 - Exceeds 80-hour requirement (checkmark)
 
 "Approve & Enroll in Medicaid" button.
 
 ---
 
-#### Screen 23: Avery receives determination (`avery-determination`)
+#### Screen 27: Avery receives determination (`avery-determination`)
 
 **Visual mode:** Wireframe (side-by-side caseworker portal + Avery's mobile view)
 
-Caseworker side: Case approved, income eligibility confirmed, CE requirement verified (95 hrs), documentation reviewed via Emmy.
+Caseworker side: Case approved, income eligibility confirmed, CE requirement verified (83 hrs across education, employment, and community service), documentation reviewed via Emmy.
 
 Avery's mobile view: Determination notice -- "Your Medicaid application has been approved." Coverage start date. Brief next steps.
 
@@ -1249,11 +1313,11 @@ Avery's mobile view: Determination notice -- "Your Medicaid application has been
 | 1. State application | A | 5 | Wireframe |
 | 2. Backend verification | B | 1 | Wireframe |
 | 3. Caseworker + notification | C | 2 | Wireframe |
-| 4. Emmy | D | 12 (email + 11 Emmy) | Email: wireframe; Emmy: full USWDS |
+| 4. Emmy | D | 16 (email + 15 Emmy) | Email: wireframe; Emmy: full USWDS |
 | 5. Determination | E | 2 | Wireframe |
-| **Total** | **5** | **23** | |
+| **Total** | **5** | **27** | |
 
-**28 screens total** (23 content + 5 interstitials). Emmy screens are the majority (12 of 23 content screens).
+**32 screens total** (27 content + 5 interstitials). Emmy screens are the majority (16 of 27 content screens).
 
 ---
 
@@ -1272,13 +1336,15 @@ Avery's mobile view: Determination notice -- "Your Medicaid application has been
 | CE hours per credit | 12 | Screen 13 |
 | Education CE hours | 48 (4 x 12) | Screen 13 |
 | Education term | Spring 2026 (January-May) | Screen 11 |
-| Community service organization | Westbrook community garden | Screen 15 |
-| Community service coordinator | Aaron Keyes | Screen 15 |
-| Community service hours | 47 (March) | Screen 16 |
-| Total hours | 95 | Screen 19 |
+| Uber hours (March) | 20 | Screen 18 |
+| Uber income (March) | $170 | Screen 18 |
+| Community service organization | Westbrook community garden | Screen 20 |
+| Community service coordinator | Aaron Keyes | Screen 20 |
+| Community service hours | 15 (March) | Screen 21 |
+| Total hours | 83 (48 edu + 20 employment + 15 CS) | Screen 23 |
 | 80-hour threshold | 80 | Screen 14 |
 | Reporting period | March 2026 | Screen 10 |
-| Income | $0/month | Screen 2 |
+| Income | $0/month reported on application (Uber income captured in Emmy) | Screen 2 |
 | Application/submission date | April 1, 2026 | Screen 4 |
 
 > **Fixed:** All caseworker dashboard dates updated to April 2026 — Avery Johnson → April 1, Jordan Davis → March 31, Michael Chen → March 29. Submitted date in `avery-cw-emmy-review` → April 1, 2026.
