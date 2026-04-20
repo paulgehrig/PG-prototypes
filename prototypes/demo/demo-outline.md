@@ -6,8 +6,6 @@
 
 ## Pick-up notes (for resuming work)
 
-**Active file:** `/Users/paul/Documents/HR1 CE Reqs/Merged demo folder/emmy-e2e-demo.html` — single self-contained HTML file containing both scenarios + home page. All assets (Alex + Cara profile portraits) are embedded as base64.
-
 **Published demo:** https://paulgehrig.github.io/PG-prototypes/prototypes/demo/emmy-e2e-demo.html (via `paulgehrig/PG-prototypes` repo at `/tmp/PG-prototypes/prototypes/demo/emmy-e2e-demo.html`)
 
 **This outline:** `/Users/paul/Documents/HR1 CE Reqs/Merged demo folder/demo-outline.md` — authoritative spec. Also mirrored in the PG-prototypes repo.
