@@ -783,9 +783,10 @@
 
         .emmy-steps-card h2 {
             font-family: 'Public Sans', sans-serif;
-            font-size: 16px;
+            font-size: 24px;
             font-weight: 700;
             color: #1b1b1b;
+            line-height: 1.2;
             margin-bottom: 24px;
         }
 
@@ -818,7 +819,7 @@
 
         .emmy-step-body h3 {
             font-family: 'Public Sans', sans-serif;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: #1b1b1b;
             margin-bottom: 4px;
@@ -1027,7 +1028,6 @@
             -webkit-appearance: none;
             display: block;
             width: 100%;
-            max-width: 30rem;
             font-family: 'Source Sans Pro', sans-serif;
             font-size: 16px;
             color: #1b1b1b;
@@ -2853,6 +2853,103 @@
             margin-bottom: 16px;
         }
 
+        .cw-activity-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1b1b1b;
+            padding-bottom: 10px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #dfe1e2;
+        }
+        .cw-data-row {
+            display: flex;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            gap: 8px;
+        }
+        .cw-data-row:last-child { border-bottom: none; }
+        .cw-data-row:has(.cw-source-badge) {
+            background: #f0f6ff;
+        }
+        .cw-data-label {
+            font-weight: 700;
+            width: 160px;
+            flex-shrink: 0;
+            color: #3d4551;
+        }
+        .cw-data-value { flex: 1; color: #1b1b1b; }
+        .cw-source-badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 99px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .cw-emmy-verified {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ecf3ec;
+            padding: 9px 14px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #2e6e2e;
+            font-weight: 600;
+        }
+
+        .cw-card-docs {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #dfe1e2;
+        }
+        .cw-card-docs-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #71767a;
+            margin-bottom: 8px;
+        }
+        .cw-doc-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 10px;
+            background: #f0f6ff;
+            border: 1px solid #ccdcf5;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .cw-doc-row:last-child { margin-bottom: 0; }
+        .cw-doc-row a {
+            color: #005ea2;
+            text-decoration: underline;
+            font-weight: 700;
+            flex: 1;
+        }
+        .cw-doc-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #005ea2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
         .cw-checkbox-row {
             display: flex;
             align-items: flex-start;
@@ -2912,6 +3009,8 @@
         .dc-section { border: 1px solid #dfe1e2; border-radius: 4px; margin-bottom: 16px; overflow: hidden; }
         .dc-section-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #f0f0f0; border-bottom: 1px solid #dfe1e2; }
         .dc-section-title { font-size: 15px; font-weight: 700; color: #1b1b1b; }
+        .dc-section--emmy .dc-section-header { background: #f0f6ff; border-bottom-color: #ccdcf5; border-color: #ccdcf5; }
+        .dc-emmy-api-badge { display: inline-block; background: #e8f0fe; color: #1a56db; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; margin-left: 8px; font-family: 'Source Sans Pro', sans-serif; vertical-align: middle; }
         .dc-status { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.3px; }
         .dc-status-hidden { opacity: 0; transition: opacity 0.4s ease; }
         .dc-status-visible { opacity: 1 !important; }
@@ -2927,6 +3026,7 @@
         .dc-check { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
         .dc-check:last-child { border-bottom: none; }
         .dc-check-source { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; font-weight: 600; color: #71767a; min-width: 160px; flex-shrink: 0; }
+        .dc-check-source--emmy { color: #0050d8; }
         .dc-check-result { flex-grow: 1; color: #1b1b1b; font-size: 14px; }
         .dc-badge { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
         .dc-badge-confirmed { background: #ecf3ec; color: #2e6e2e; }
@@ -2947,13 +3047,13 @@
         .dc-check.dc-loading .dc-check-source::after {
             content: '';
             display: inline-block;
-            width: 12px; height: 12px;
+            width: 16px; height: 16px;
             border: 2px solid #dfe1e2;
-            border-top-color: #71767a;
+            border-top-color: #565c65;
             border-radius: 50%;
             margin-left: 8px;
             vertical-align: middle;
-            animation: dc-spin 0.8s linear infinite;
+            animation: dc-spin 0.7s linear infinite;
         }
         .dc-check.dc-loaded .dc-check-result,
         .dc-check.dc-loaded .dc-badge { opacity: 1; }
@@ -2998,19 +3098,15 @@
            ============================================ */
         .determination-split {
             display: flex;
-            gap: 24px;
-            padding: 24px;
-        }
-
-        @media (max-width: 700px) {
-            .determination-split {
-                flex-direction: column;
-            }
+            flex-direction: column;
+            gap: 28px;
+            padding: 32px 24px;
+            max-width: 1024px;
+            margin: 0 auto;
         }
 
         .determination-panel {
-            flex: 1;
-            min-width: 0;
+            width: 100%;
         }
 
         .browser-chrome {
@@ -3070,6 +3166,179 @@
             padding: 20px 16px;
             text-align: center;
             font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        /* ============================================
+           DETERMINATION — CHARACTER + SPEECH BUBBLE
+           ============================================ */
+        .det-character-panel {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 65%;
+        }
+        .det-character-panel--right {
+            margin-left: auto;
+        }
+        .det-avatar-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 88px;
+        }
+        .det-avatar-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #005ea2;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+        .det-avatar-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1b1b1b;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .det-avatar-role {
+            font-size: 12px;
+            color: #71767a;
+            text-align: center;
+        }
+        .det-bubble {
+            flex: 1;
+            background: white;
+            border: 1px solid #dfe1e2;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+        .det-bubble--left::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            right: 100%;
+            width: 0; height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 12px solid #dfe1e2;
+        }
+        .det-bubble--left::after {
+            content: '';
+            position: absolute;
+            top: 29px;
+            right: calc(100% - 1px);
+            width: 0; height: 0;
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            border-right: 12px solid white;
+        }
+        .det-bubble--right::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 100%;
+            width: 0; height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 12px solid #dfe1e2;
+        }
+        .det-bubble--right::after {
+            content: '';
+            position: absolute;
+            top: 29px;
+            left: calc(100% - 1px);
+            width: 0; height: 0;
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            border-left: 12px solid white;
+        }
+        .det-approved-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #ecf3ec;
+            color: #2e6e2e;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 99px;
+            margin-bottom: 14px;
+        }
+        .det-quote {
+            font-size: 16px;
+            color: #1b1b1b;
+            font-style: italic;
+            line-height: 1.55;
+            margin-bottom: 18px;
+        }
+        .det-check-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: #3d4551;
+            padding: 4px 0;
+        }
+        .det-check-row svg {
+            flex-shrink: 0;
+        }
+        .det-success-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #ecf3ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+        }
+        .det-enrolled-title {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .det-enrolled-status {
+            font-size: 16px;
+            color: #2e6e2e;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .det-enrolled-desc {
+            font-size: 16px;
+            color: #3d4551;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .det-next-steps {
+            background: #f0f0f0;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 15px;
+            color: #3d4551;
+        }
+        .det-next-steps-label {
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 8px;
+        }
+        .det-next-steps div + div { padding-top: 4px; }
+        .det-avatar-spacer {
+            width: 88px;
+            flex-shrink: 0;
+        }
+        .det-panel--continuation {
+            margin-top: -16px;
+        }
+        .det-bubble--continuation::before,
+        .det-bubble--continuation::after {
+            display: none;
         }
 
         /* ============================================
@@ -3293,7 +3562,8 @@
             border-left: 6px solid #005ea2;
             border-radius: 0 8px 8px 0;
             padding: 32px 36px;
-            margin: 32px 24px;
+            margin: 32px auto;
+            max-width: 1024px;
         }
 
         .callout-box .callout-heading {
@@ -5117,7 +5387,7 @@
 
         /* ============================================
            DEMO ANNOTATIONS — speech-bubble card style
-           Only visible at viewports ≥ 1440px, where the
+           Only visible at viewports ≥ 1360px, where the
            right margin of the 1024px content column is wide
            enough to hold the card without covering content.
            Each annotation is position:fixed inside a .screen
@@ -5127,9 +5397,9 @@
         .demo-annotation {
             position: fixed;
             /* anchored 12px to the right of the 1024px content column */
-            right: calc((100vw - 1024px) / 2 - 204px);
+            right: max(8px, calc((100vw - 1024px) / 2 - 228px));
             top: 180px;
-            width: 192px;
+            width: 220px;
             background: #5B5BD6;
             border-radius: 16px;
             box-shadow:
@@ -5146,12 +5416,14 @@
             animation: annotationSlideIn 0.45s cubic-bezier(0.22,1,0.36,1) 0s both;
         }
 
-        /* Speech-bubble tail pointing left toward the app */
+        /* Speech-bubble tail pointing left toward the app.
+           --tail-top is set by JS to track the anchor element
+           even when the annotation box is clamped within the viewport. */
         .demo-annotation::after {
             content: '';
             position: absolute;
             left: -11px;
-            top: 22px;
+            top: var(--tail-top, 22px);
             border-style: solid;
             border-width: 8px 12px 8px 0;
             border-color: transparent #5B5BD6 transparent transparent;
@@ -5225,10 +5497,9 @@
             margin: 10px 0;
         }
 
-        /* Only show when there is enough horizontal room so the
-           card sits fully in the right margin (content is 1024px
-           centered; at 1440px that leaves ~208px on each side). */
-        @media (max-width: 1439px) {
+        /* Hide annotations only on small mobile screens where they'd
+           cover too much of the content to be useful. */
+        @media (max-width: 639px) {
             .demo-annotation { display: none; }
         }
     </style>
@@ -5918,7 +6189,7 @@
      ============================================ -->
 <!-- SCREEN: alex-data-checks -->
 <div class="screen" id="alex-data-checks">
-    <div class="demo-annotation" data-anchor=".cw-header">
+    <div class="demo-annotation" data-anchor="#alex-anchor-income">
         <div class="demo-annotation-badge"><div class="demo-annotation-icon">🔗</div><span>Emmy API</span></div>
         <h4>Emmy API augments state data</h4>
         <p>These checks combine the state's existing data sources with additional lookups via the Emmy API.</p>
@@ -5968,7 +6239,7 @@
                 </div>
                 <div class="dc-checks" id="alex-dc-checks-exemptions">
                     <div class="dc-check dc-check-anim">
-                        <span class="dc-check-source">VA / Disability</span>
+                        <span class="dc-check-source dc-check-source--emmy">VA / Disability <span class="dc-emmy-api-badge">Emmy API</span></span>
                         <span class="dc-check-result">No record</span>
                         <span class="dc-badge dc-badge-skipped">&mdash;</span>
                     </div>
@@ -5993,7 +6264,7 @@
             <!-- ====== SECTION 3: Income ====== -->
             <div class="dc-section dc-section-anim" id="alex-dc-section-income">
                 <div class="dc-section-header">
-                    <div class="dc-section-title"><span class="dc-header-spinner" id="alex-dc-spinner-income"></span>Household income</div>
+                    <div class="dc-section-title" id="alex-anchor-income"><span class="dc-header-spinner" id="alex-dc-spinner-income"></span>Household income</div>
                     <span class="dc-status dc-status-hidden" id="alex-dc-income-status" data-type="action">Unable to verify</span>
                 </div>
                 <div class="dc-checks" id="alex-dc-checks-income">
@@ -6006,14 +6277,14 @@
             </div>
 
             <!-- ====== SECTION 4: Education ====== -->
-            <div class="dc-section dc-section-anim" id="alex-dc-section-education">
+            <div class="dc-section dc-section-anim dc-section--emmy" id="alex-dc-section-education">
                 <div class="dc-section-header">
                     <div class="dc-section-title"><span class="dc-header-spinner" id="alex-dc-spinner-education"></span>Education</div>
                     <span class="dc-status dc-status-hidden" id="alex-dc-education-status" data-type="na">Not a student</span>
                 </div>
                 <div class="dc-checks" id="alex-dc-checks-education">
                     <div class="dc-check dc-check-anim">
-                        <span class="dc-check-source">National Student Clearinghouse</span>
+                        <span class="dc-check-source dc-check-source--emmy">National Student Clearinghouse <span class="dc-emmy-api-badge">Emmy API</span></span>
                         <span class="dc-check-result">No enrollment records</span>
                         <span class="dc-badge dc-badge-na">N/A</span>
                     </div>
@@ -6765,32 +7036,53 @@ Eligibility Caseworker"></textarea>
                 </div>
             </div>
 
-            <!-- Self-employment documents -->
-            <div class="cw-section-title">Self-employment documents</div>
+            <!-- Employment -->
+            <div class="cw-section-title">Employment</div>
             <div class="cw-card">
-                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #f0f6ff; border: 1px solid #ccdcf5; border-radius: 6px; font-size: 14px;">
-                    <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 20px; height: 20px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
-                    <a href="#" style="color: #005ea2; text-decoration: underline; font-weight: 700; flex: 1;" onclick="return false;">Invoice-March-2026.pdf</a>
-                    <span class="emmy-badge">Received via Emmy</span>
-                    <button style="display: inline-flex; align-items: center; gap: 5px; background: #005ea2; color: white; border: none; border-radius: 4px; padding: 5px 12px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="return false;">
-                        <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        Download
-                    </button>
+                <div class="cw-activity-title">Freelance graphic design</div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Self-employed</span>
+                    <span class="cw-data-value">Yes</span>
                 </div>
-                <div style="background: #f0f0f0; padding: 10px 14px; margin-top: 12px; border-radius: 4px; font-size: 14px; color: #3d4551;">
-                    <strong>Verification note:</strong> Documentation confirms 80 hours/month of freelance graphic design work.
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Reporting month</span>
+                    <span class="cw-data-value">March 2026</span>
                 </div>
-                <table class="cw-table" style="margin-top: 12px; margin-bottom: 0;">
-                    <tr><td style="font-weight: 700; width: 160px;">Type</td><td>Freelance graphic design</td></tr>
-                    <tr><td style="font-weight: 700;">Hours/month</td><td>80</td></tr>
-                    <tr><td style="font-weight: 700;">Income</td><td>$600/month</td></tr>
-                </table>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Gross income</span>
+                    <span class="cw-data-value">$600/month</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Hours</span>
+                    <span class="cw-data-value">80 hrs</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">CE hours</span>
+                    <span class="cw-data-value">80</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-card-docs">
+                    <div class="cw-card-docs-label">Documents</div>
+                    <div class="cw-doc-row">
+                        <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
+                        <a href="#" onclick="return false;">Invoice-March-2026.pdf</a>
+                        <span class="cw-source-badge">via Emmy</span>
+                        <button class="cw-doc-download" onclick="return false;">
+                            <svg viewBox="0 0 24 24" fill="white" style="width: 13px; height: 13px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            Download
+                        </button>
+                    </div>
+                    <div class="cw-emmy-verified">
+                        <svg viewBox="0 0 24 24" fill="#2e6e2e" style="width: 15px; height: 15px; flex-shrink: 0;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        Information verified via Emmy API intelligent document processing
+                    </div>
+                </div>
             </div>
 
-            <!-- Eligibility determination -->
-            <div class="cw-section-title">Eligibility determination</div>
+            <!-- Community engagement summary -->
+            <div class="cw-section-title">Community engagement summary</div>
             <div style="background: white; border: 2px solid #2e6e2e; border-radius: 4px; padding: 16px 20px; margin-bottom: 20px;">
-                <h4 style="font-size: 14px; font-weight: 700; color: #2e6e2e; margin-bottom: 10px;">CE Summary</h4>
                 <table class="cw-table" style="margin-bottom: 8px;">
                     <tr><td style="font-weight: 700; width: 160px;">Employment</td><td>80 hours/month</td></tr>
                     <tr><td style="font-weight: 700;">Total</td><td>80 hrs (March)</td></tr>
@@ -6814,65 +7106,75 @@ Eligibility Caseworker"></textarea>
      ============================================ -->
 <!-- SCREEN: alex-determination -->
 <div class="screen" id="alex-determination">
-    <div class="wireframe-alert">&#9888; Example eligibility determination</div>
+    <div class="wireframe-alert">&#9888; Example determination notice</div>
 
     <div class="determination-split">
-        <!-- Left: Caseworker side -->
+        <!-- Cara: message 1 — quote -->
         <div class="determination-panel">
-            <div class="browser-chrome">
-                <div class="browser-dot" style="background: #ff5f56;"></div>
-                <div class="browser-dot" style="background: #ffbd2e;"></div>
-                <div class="browser-dot" style="background: #27c93f;"></div>
-                <div class="browser-url">example-state-portal.gov/cases/alex-smith</div>
+            <div class="det-character-panel">
+                <div class="det-avatar-wrap">
+                    <img class="det-avatar-img det-cara-img" src="" alt="Cara Martinez">
+                    <div class="det-avatar-name">Cara Martinez</div>
+                    <div class="det-avatar-role">Caseworker</div>
+                </div>
+                <div class="det-bubble det-bubble--left">
+                    <p class="det-quote" style="margin-bottom: 0;">"I've reviewed Alex's self-employment documentation through Emmy and confirmed all CE requirements are met. Approving Medicaid coverage."</p>
+                </div>
             </div>
-            <div class="browser-content">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-                    <h3 style="font-size: 15px; font-weight: 700;">Alex Smith's Case</h3>
-                    <span class="cw-badge cw-badge-green">&#10003; Eligible</span>
-                </div>
+        </div>
 
-                <div style="background: #ecf3ec; border-left: 4px solid #2e6e2e; padding: 12px 16px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-                    <div style="font-weight: 700; font-size: 14px; color: #2e6e2e; margin-bottom: 4px;">Eligible for Medicaid</div>
-                    <div style="font-size: 14px; color: #3d4551;">Alex Smith has been determined eligible for Medicaid coverage. Self-employment documentation reviewed and accepted.</div>
-                </div>
-
-                <div style="font-size: 14px; color: #3d4551;">
-                    <div style="display: flex; align-items: center; gap: 6px; padding: 4px 0;">
-                        <span style="color: #2e6e2e; font-weight: 700;">&#10003;</span>
-                        <strong>Income eligibility</strong> &mdash; Confirmed
+        <!-- Cara: message 2 — determination details -->
+        <div class="determination-panel det-panel--continuation">
+            <div class="det-character-panel">
+                <div class="det-avatar-spacer"></div>
+                <div class="det-bubble det-bubble--left det-bubble--continuation">
+                    <div class="det-approved-pill">
+                        <svg viewBox="0 0 24 24" fill="#2e6e2e" style="width:13px;height:13px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        Approved
                     </div>
-                    <div style="display: flex; align-items: center; gap: 6px; padding: 4px 0;">
-                        <span style="color: #2e6e2e; font-weight: 700;">&#10003;</span>
-                        <strong>CE requirement</strong> &mdash; Verified (80 hrs via self-employment)
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 6px; padding: 4px 0;">
-                        <span style="color: #2e6e2e; font-weight: 700;">&#10003;</span>
-                        <strong>Documentation</strong> &mdash; Reviewed via Emmy
+                    <div>
+                        <div class="det-check-row">
+                            <svg viewBox="0 0 24 24" fill="#2e6e2e" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            <span><strong>Income eligibility</strong> &mdash; Confirmed</span>
+                        </div>
+                        <div class="det-check-row">
+                            <svg viewBox="0 0 24 24" fill="#2e6e2e" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            <span><strong>CE requirement</strong> &mdash; 80 hrs via self-employment</span>
+                        </div>
+                        <div class="det-check-row">
+                            <svg viewBox="0 0 24 24" fill="#2e6e2e" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            <span><strong>Documentation</strong> &mdash; Reviewed via Emmy</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right: Alex's mobile view -->
+        <!-- Alex: message 1 — eligibility confirmation -->
         <div class="determination-panel">
-            <div class="phone-frame">
-                <div class="phone-notch"></div>
-                <div style="background: #3d4551; color: white; padding: 8px 16px; font-size: 14px; font-weight: 700;">Example state portal</div>
-                <div class="phone-content">
-                    <div style="width: 48px; height: 48px; border-radius: 50%; background: #ecf3ec; margin: 16px auto 12px; display: flex; align-items: center; justify-content: center;">
+            <div class="det-character-panel det-character-panel--right">
+                <div class="det-bubble det-bubble--right">
+                    <div class="det-success-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00a91c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </div>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">Eligible</h3>
-                    <p style="font-size: 14px; color: #2e6e2e; font-weight: 700; margin-bottom: 12px;">You are enrolled in Medicaid</p>
-                    <p style="font-size: 14px; color: #3d4551; margin-bottom: 16px;">Your application has been reviewed and approved. You can now receive Medicaid coverage.</p>
-
-                    <div style="background: #f0f0f0; border-radius: 6px; padding: 12px; text-align: left; font-size: 14px; color: #3d4551;">
-                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 14px;">NEXT STEPS</div>
-                        <div style="padding: 2px 0;">&#8226; Medicaid card arrives in 7-10 days</div>
-                        <div style="padding: 2px 0;">&#8226; Coverage begins immediately</div>
-                        <div style="padding: 2px 0;">&#8226; Next renewal in 6 months</div>
-                    </div>
+                    <h3 class="det-enrolled-title">Eligible</h3>
+                    <p class="det-enrolled-status" style="margin-bottom: 0;">You are enrolled in Medicaid</p>
                 </div>
+                <div class="det-avatar-wrap">
+                    <img class="det-avatar-img det-alex-img" src="" alt="Alex Smith">
+                    <div class="det-avatar-name">Alex Smith</div>
+                    <div class="det-avatar-role">Applicant</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alex: message 2 — quote -->
+        <div class="determination-panel det-panel--continuation">
+            <div class="det-character-panel det-character-panel--right">
+                <div class="det-bubble det-bubble--right det-bubble--continuation">
+                    <p class="det-quote" style="margin-bottom: 0;">"Finally! This is such a relief — I can't believe how straightforward Emmy made the whole process."</p>
+                </div>
+                <div class="det-avatar-spacer"></div>
             </div>
         </div>
     </div>
@@ -7331,7 +7633,7 @@ Eligibility Caseworker"></textarea>
      ============================================ -->
 <!-- SCREEN: avery-data-checks -->
 <div class="screen" id="avery-data-checks">
-    <div class="demo-annotation" data-anchor="#avery-dc-section-education">
+    <div class="demo-annotation" data-anchor="#avery-anchor-education">
         <div class="demo-annotation-badge"><div class="demo-annotation-icon">🔗</div><span>Emmy API</span></div>
         <h4>NSC call via Emmy API</h4>
         <p>The National Student Clearinghouse query is an <strong style="color:#fff;">Emmy API call</strong> — not a native state system check. It augments what the state already has.</p>
@@ -7382,7 +7684,7 @@ Eligibility Caseworker"></textarea>
                 </div>
                 <div class="dc-checks" id="avery-dc-checks-exemptions">
                     <div class="dc-check dc-check-anim">
-                        <span class="dc-check-source">VA / Disability</span>
+                        <span class="dc-check-source dc-check-source--emmy">VA / Disability <span class="dc-emmy-api-badge">Emmy API</span></span>
                         <span class="dc-check-result">No record</span>
                         <span class="dc-badge dc-badge-skipped">&mdash;</span>
                     </div>
@@ -7420,14 +7722,14 @@ Eligibility Caseworker"></textarea>
             </div>
 
             <!-- ====== SECTION 4: Education ====== -->
-            <div class="dc-section dc-section-anim" id="avery-dc-section-education">
+            <div class="dc-section dc-section-anim dc-section--emmy" id="avery-dc-section-education">
                 <div class="dc-section-header">
-                    <div class="dc-section-title"><span class="dc-header-spinner" id="avery-dc-spinner-education"></span>Education</div>
+                    <div class="dc-section-title" id="avery-anchor-education"><span class="dc-header-spinner" id="avery-dc-spinner-education"></span>Education</div>
                     <span class="dc-status dc-status-hidden" id="avery-dc-education-status" data-type="action">More info needed</span>
                 </div>
                 <div class="dc-checks" id="avery-dc-checks-education">
                     <div class="dc-check dc-check-anim">
-                        <span class="dc-check-source">National Student Clearinghouse</span>
+                        <span class="dc-check-source dc-check-source--emmy">National Student Clearinghouse <span class="dc-emmy-api-badge">Emmy API</span></span>
                         <span class="dc-check-result">State University &mdash; <strong>less than half-time</strong></span>
                         <span class="dc-badge dc-badge-discrepancy">&#9888;</span>
                     </div>
@@ -7845,7 +8147,7 @@ Eligibility Caseworker"></textarea>
                         <div class="emmy-step-number">1</div>
                         <div class="emmy-step-body">
                             <h3>Upload documentation for your student enrollment</h3>
-                            <p>You reported being enrolled as a half-time student at State University. The National Student Clearinghouse shows you're enrolled less than half-time. We need documentation to verify your enrollment status.</p>
+                            <p>Our records show you're enrolled at State University with less than half-time credits. Share your enrollment documentation so we can count your coursework toward your community engagement hours.</p>
                             <p class="emmy-step-hint">Acceptable documents include your current class schedule, enrollment verification letter, or transcript showing credit hours.</p>
                         </div>
                     </div>
@@ -8002,7 +8304,7 @@ Eligibility Caseworker"></textarea>
         <div class="usa-form" style="margin-bottom: 32px;">
             <div class="usa-form-group">
                 <label class="usa-label" for="avery-credit-hours">Term credit hours</label>
-                <input class="usa-input usa-input--small" id="avery-credit-hours" type="text" value="" data-fill="4">
+                <input class="usa-input" id="avery-credit-hours" type="text" value="" data-fill="4">
             </div>
         </div>
 
@@ -8436,7 +8738,7 @@ Eligibility Caseworker"></textarea>
                 <div class="usa-card activity-hub-card">
                     <div class="usa-card__container">
                         <div class="usa-card__header">
-                            <h3 class="usa-card__heading">Uber</h3>
+                            <h3 class="usa-card__heading">Uber Driver</h3>
                             <a class="usa-link">Edit</a>
                         </div>
                         <div class="usa-card__body">
@@ -8906,7 +9208,7 @@ function averyEmpTab(tab) {
         <div class="usa-form" style="margin-bottom: 32px;">
             <div class="usa-form-group">
                 <label class="usa-label" for="avery-march-cs-hours">March community service hours</label>
-                <input class="usa-input usa-input--small" id="avery-march-cs-hours" type="text" value="" data-fill="15">
+                <input class="usa-input" id="avery-march-cs-hours" type="text" value="" data-fill="15">
             </div>
         </div>
 
@@ -9051,19 +9353,8 @@ function averyEmpTab(tab) {
                 </div>
                 <div class="usa-card activity-hub-card">
                     <div class="usa-card__container">
-                        <div class="usa-card__header" style="align-items: flex-start;">
-                            <div>
-                                <h3 class="usa-card__heading" style="display:flex;align-items:center;gap:8px;">
-                                    <span style="display:inline-flex;width:22px;height:22px;border-radius:50%;background:#000;align-items:center;justify-content:center;flex-shrink:0;">
-                                        <svg viewBox="0 0 18 18" style="width:11px;height:11px;" aria-hidden="true"><text x="9" y="13" text-anchor="middle" fill="white" font-size="13" font-weight="800" font-family="Arial">U</text></svg>
-                                    </span>
-                                    Uber Driver
-                                </h3>
-                                <span style="display:inline-flex;align-items:center;gap:4px;background:#e8f0fe;color:#1a56db;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;margin-top:2px;">
-                                    <svg viewBox="0 0 24 24" style="width:11px;height:11px;" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                                    Connected via Emmy
-                                </span>
-                            </div>
+                        <div class="usa-card__header">
+                            <h3 class="usa-card__heading">Uber Driver</h3>
                             <a class="usa-link">Edit</a>
                         </div>
                         <div class="usa-card__body">
@@ -9378,73 +9669,120 @@ function averyEmpTab(tab) {
                 </div>
             </div>
 
-            <!-- Education documents -->
-            <div class="cw-section-title">Education documents</div>
+            <!-- Education -->
+            <div class="cw-section-title">Education</div>
             <div class="cw-card">
-                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #f0f6ff; border: 1px solid #ccdcf5; border-radius: 6px; font-size: 14px; margin-bottom: 8px;">
-                    <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 20px; height: 20px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
-                    <a href="#" style="color: #005ea2; text-decoration: underline; font-weight: 700; flex: 1;" onclick="return false;">transcript.pdf</a>
-                    <span class="emmy-badge">Received via Emmy</span>
-                    <button style="display: inline-flex; align-items: center; gap: 5px; background: #005ea2; color: white; border: none; border-radius: 4px; padding: 5px 12px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="return false;">
-                        <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        Download
-                    </button>
+                <div class="cw-activity-title">State University</div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Enrollment status</span>
+                    <span class="cw-data-value">Less than half-time</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #f0f6ff; border: 1px solid #ccdcf5; border-radius: 6px; font-size: 14px; margin-bottom: 8px;">
-                    <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 20px; height: 20px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
-                    <a href="#" style="color: #005ea2; text-decoration: underline; font-weight: 700; flex: 1;" onclick="return false;">enrollment-verification.pdf</a>
-                    <span class="emmy-badge">Received via Emmy</span>
-                    <button style="display: inline-flex; align-items: center; gap: 5px; background: #005ea2; color: white; border: none; border-radius: 4px; padding: 5px 12px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="return false;">
-                        <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        Download
-                    </button>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Term</span>
+                    <span class="cw-data-value">Spring 2026</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #f0f6ff; border: 1px solid #ccdcf5; border-radius: 6px; font-size: 14px;">
-                    <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 20px; height: 20px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
-                    <a href="#" style="color: #005ea2; text-decoration: underline; font-weight: 700; flex: 1;" onclick="return false;">tuition-letter.pdf</a>
-                    <span class="emmy-badge">Received via Emmy</span>
-                    <button style="display: inline-flex; align-items: center; gap: 5px; background: #005ea2; color: white; border: none; border-radius: 4px; padding: 5px 12px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="return false;">
-                        <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        Download
-                    </button>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Credit hours</span>
+                    <span class="cw-data-value">4</span>
+                    <span class="cw-source-badge">via Emmy</span>
                 </div>
-                <div style="background: #f0f0f0; padding: 10px 14px; margin-top: 12px; border-radius: 4px; font-size: 14px; color: #3d4551;">
-                    <strong>Verification note:</strong> Documentation confirms 4 credit hours in Spring 2026, equating to 48 hours of community engagement per month.
+                <div class="cw-data-row">
+                    <span class="cw-data-label">CE hours (proposed)</span>
+                    <span class="cw-data-value">48 (4 credits &times; 12 hrs/credit per CMCS guidance)</span>
+                    <span class="cw-source-badge">via Emmy</span>
                 </div>
-                <table class="cw-table" style="margin-top: 12px; margin-bottom: 0;">
-                    <tr><td style="font-weight: 700; width: 160px;">Institution</td><td>State University</td></tr>
-                    <tr><td style="font-weight: 700;">Term</td><td>Spring 2026</td></tr>
-                    <tr><td style="font-weight: 700;">Credit hours</td><td>4</td></tr>
-                    <tr><td style="font-weight: 700;">CE Hours</td><td>48 (4 credits &times; 12 hours/credit)</td></tr>
-                </table>
+                <div class="cw-card-docs">
+                    <div class="cw-card-docs-label">Documents</div>
+                    <div class="cw-doc-row">
+                        <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
+                        <a href="#" onclick="return false;">transcript.pdf</a>
+                        <span class="cw-source-badge">via Emmy</span>
+                        <button class="cw-doc-download" onclick="return false;"><svg viewBox="0 0 24 24" fill="white" style="width: 13px; height: 13px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Download</button>
+                    </div>
+                    <div class="cw-doc-row">
+                        <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
+                        <a href="#" onclick="return false;">enrollment-verification.pdf</a>
+                        <span class="cw-source-badge">via Emmy</span>
+                        <button class="cw-doc-download" onclick="return false;"><svg viewBox="0 0 24 24" fill="white" style="width: 13px; height: 13px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Download</button>
+                    </div>
+                    <div class="cw-doc-row">
+                        <svg viewBox="0 0 24 24" fill="#005ea2" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
+                        <a href="#" onclick="return false;">tuition-letter.pdf</a>
+                        <span class="cw-source-badge">via Emmy</span>
+                        <button class="cw-doc-download" onclick="return false;"><svg viewBox="0 0 24 24" fill="white" style="width: 13px; height: 13px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Download</button>
+                    </div>
+                    <div class="cw-emmy-verified">
+                        <svg viewBox="0 0 24 24" fill="#2e6e2e" style="width: 15px; height: 15px; flex-shrink: 0;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        Information verified via Emmy API intelligent document processing
+                    </div>
+                </div>
             </div>
 
-            <!-- Employment details -->
-            <div class="cw-section-title">Employment details</div>
+            <!-- Employment -->
+            <div class="cw-section-title">Employment</div>
             <div class="cw-card">
-                <table class="cw-table" style="margin-bottom: 0;">
-                    <tr><td style="font-weight: 700; width: 160px;">Employer</td><td>Uber</td></tr>
-                    <tr><td style="font-weight: 700;">Source</td><td>Connected via payroll sync (Emmy)</td></tr>
-                    <tr><td style="font-weight: 700;">March hours</td><td>20</td></tr>
-                    <tr><td style="font-weight: 700;">March income</td><td>$170.00</td></tr>
-                </table>
+                <div class="cw-activity-title">Uber Driver</div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Self-employed</span>
+                    <span class="cw-data-value">No</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Reporting month</span>
+                    <span class="cw-data-value">March 2026</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Hours worked</span>
+                    <span class="cw-data-value">20 hrs</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Gross income</span>
+                    <span class="cw-data-value">$170.00</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">CE hours</span>
+                    <span class="cw-data-value">20</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
             </div>
 
-            <!-- Community service details -->
-            <div class="cw-section-title">Community service details</div>
+            <!-- Community service -->
+            <div class="cw-section-title">Community service</div>
             <div class="cw-card">
-                <table class="cw-table" style="margin-bottom: 0;">
-                    <tr><td style="font-weight: 700; width: 160px;">Organization</td><td>Westbrook community garden</td></tr>
-                    <tr><td style="font-weight: 700;">Supervisor</td><td>Aaron Keyes</td></tr>
-                    <tr><td style="font-weight: 700;">Contact</td><td>aaron.keyes@westbrookgardens.org | (415) 344-8009</td></tr>
-                    <tr><td style="font-weight: 700;">March</td><td>15 hours</td></tr>
-                </table>
+                <div class="cw-activity-title">Westbrook Community Garden</div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Supervisor</span>
+                    <span class="cw-data-value">Aaron Keyes</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Contact</span>
+                    <span class="cw-data-value">aaron.keyes@westbrookgardens.org &nbsp;|&nbsp; (415) 344-8009</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Reporting month</span>
+                    <span class="cw-data-value">March 2026</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">Hours</span>
+                    <span class="cw-data-value">15 hrs</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
+                <div class="cw-data-row">
+                    <span class="cw-data-label">CE hours</span>
+                    <span class="cw-data-value">15</span>
+                    <span class="cw-source-badge">via Emmy</span>
+                </div>
             </div>
 
-            <!-- Eligibility determination -->
-            <div class="cw-section-title">Eligibility determination</div>
+            <!-- Community engagement summary -->
+            <div class="cw-section-title">Community engagement summary</div>
             <div style="background: white; border: 2px solid #2e6e2e; border-radius: 4px; padding: 16px 20px; margin-bottom: 20px;">
-                <h4 style="font-size: 14px; font-weight: 700; color: #2e6e2e; margin-bottom: 10px;">CE Summary</h4>
                 <table class="cw-table" style="margin-bottom: 8px;">
                     <tr><td style="font-weight: 700; width: 160px;">Education</td><td>48 hrs (March)</td></tr>
                     <tr><td style="font-weight: 700;">Employment (Uber)</td><td>20 hrs (March)</td></tr>
@@ -9470,65 +9808,75 @@ function averyEmpTab(tab) {
      ============================================ -->
 <!-- SCREEN: avery-determination -->
 <div class="screen" id="avery-determination">
-    <div class="wireframe-alert">&#9888; Example eligibility determination</div>
+    <div class="wireframe-alert">&#9888; Example determination notice</div>
 
     <div class="determination-split">
-        <!-- Left: Caseworker side -->
+        <!-- Cara: message 1 — quote -->
         <div class="determination-panel">
-            <div class="browser-chrome">
-                <div class="browser-dot" style="background: #ff5f56;"></div>
-                <div class="browser-dot" style="background: #ffbd2e;"></div>
-                <div class="browser-dot" style="background: #27c93f;"></div>
-                <div class="browser-url">example-state-portal.gov/cases/avery-johnson</div>
+            <div class="det-character-panel">
+                <div class="det-avatar-wrap">
+                    <img class="det-avatar-img det-cara-img" src="" alt="Cara Martinez">
+                    <div class="det-avatar-name">Cara Martinez</div>
+                    <div class="det-avatar-role">Caseworker</div>
+                </div>
+                <div class="det-bubble det-bubble--left">
+                    <p class="det-quote" style="margin-bottom: 0;">"I've reviewed Avery's education enrollment, Uber Driver income, and community service hours through Emmy — all CE requirements are met. Approving Medicaid coverage."</p>
+                </div>
             </div>
-            <div class="browser-content">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-                    <h3 style="font-size: 15px; font-weight: 700;">Avery Johnson's Case</h3>
-                    <span class="cw-badge cw-badge-green">&#10003; Eligible</span>
-                </div>
+        </div>
 
-                <div style="background: #ecf3ec; border-left: 4px solid #2e6e2e; padding: 12px 16px; margin-bottom: 16px; border-radius: 0 4px 4px 0;">
-                    <div style="font-weight: 700; font-size: 14px; color: #2e6e2e; margin-bottom: 4px;">Eligible for Medicaid</div>
-                    <div style="font-size: 14px; color: #3d4551;">Avery Johnson has been determined eligible for Medicaid coverage. Community engagement documentation reviewed and accepted.</div>
-                </div>
-
-                <div style="font-size: 14px; color: #3d4551;">
-                    <div style="display: flex; align-items: center; gap: 6px; padding: 4px 0;">
-                        <span style="color: #2e6e2e; font-weight: 700;">&#10003;</span>
-                        <strong>Income eligibility</strong> &mdash; Confirmed
+        <!-- Cara: message 2 — determination details -->
+        <div class="determination-panel det-panel--continuation">
+            <div class="det-character-panel">
+                <div class="det-avatar-spacer"></div>
+                <div class="det-bubble det-bubble--left det-bubble--continuation">
+                    <div class="det-approved-pill">
+                        <svg viewBox="0 0 24 24" fill="#2e6e2e" style="width:13px;height:13px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        Approved
                     </div>
-                    <div style="display: flex; align-items: center; gap: 6px; padding: 4px 0;">
-                        <span style="color: #2e6e2e; font-weight: 700;">&#10003;</span>
-                        <strong>CE requirement</strong> &mdash; Verified (95 hrs via education + community service)
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 6px; padding: 4px 0;">
-                        <span style="color: #2e6e2e; font-weight: 700;">&#10003;</span>
-                        <strong>Documentation</strong> &mdash; Reviewed via Emmy
+                    <div>
+                        <div class="det-check-row">
+                            <svg viewBox="0 0 24 24" fill="#2e6e2e" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            <span><strong>Income eligibility</strong> &mdash; Confirmed</span>
+                        </div>
+                        <div class="det-check-row">
+                            <svg viewBox="0 0 24 24" fill="#2e6e2e" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            <span><strong>CE requirement</strong> &mdash; 83 hrs via education, employment &amp; community service</span>
+                        </div>
+                        <div class="det-check-row">
+                            <svg viewBox="0 0 24 24" fill="#2e6e2e" width="14" height="14"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            <span><strong>Documentation</strong> &mdash; Reviewed via Emmy</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right: Avery's mobile view -->
+        <!-- Avery: message 1 — eligibility confirmation -->
         <div class="determination-panel">
-            <div class="phone-frame">
-                <div class="phone-notch"></div>
-                <div style="background: #3d4551; color: white; padding: 8px 16px; font-size: 14px; font-weight: 700;">Example state portal</div>
-                <div class="phone-content">
-                    <div style="width: 48px; height: 48px; border-radius: 50%; background: #ecf3ec; margin: 16px auto 12px; display: flex; align-items: center; justify-content: center;">
+            <div class="det-character-panel det-character-panel--right">
+                <div class="det-bubble det-bubble--right">
+                    <div class="det-success-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00a91c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </div>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">Eligible</h3>
-                    <p style="font-size: 14px; color: #2e6e2e; font-weight: 700; margin-bottom: 12px;">You are enrolled in Medicaid</p>
-                    <p style="font-size: 14px; color: #3d4551; margin-bottom: 16px;">Your application has been reviewed and approved. You can now receive Medicaid coverage.</p>
-
-                    <div style="background: #f0f0f0; border-radius: 6px; padding: 12px; text-align: left; font-size: 14px; color: #3d4551;">
-                        <div style="font-weight: 700; margin-bottom: 6px; font-size: 14px;">NEXT STEPS</div>
-                        <div style="padding: 2px 0;">&#8226; Medicaid card arrives in 7-10 days</div>
-                        <div style="padding: 2px 0;">&#8226; Coverage begins immediately</div>
-                        <div style="padding: 2px 0;">&#8226; Next renewal in 6 months</div>
-                    </div>
+                    <h3 class="det-enrolled-title">Eligible</h3>
+                    <p class="det-enrolled-status" style="margin-bottom: 0;">You are enrolled in Medicaid</p>
                 </div>
+                <div class="det-avatar-wrap">
+                    <img class="det-avatar-img det-avery-img" src="" alt="Avery Johnson">
+                    <div class="det-avatar-name">Avery Johnson</div>
+                    <div class="det-avatar-role">Applicant</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avery: message 2 — quote -->
+        <div class="determination-panel det-panel--continuation">
+            <div class="det-character-panel det-character-panel--right">
+                <div class="det-bubble det-bubble--right det-bubble--continuation">
+                    <p class="det-quote" style="margin-bottom: 0;">"Yes! Between school, Uber, and volunteering I wasn't sure if I'd have enough — Emmy made it so easy to pull it all together."</p>
+                </div>
+                <div class="det-avatar-spacer"></div>
             </div>
         </div>
     </div>
@@ -9536,7 +9884,7 @@ function averyEmpTab(tab) {
     <!-- Callout box below both -->
     <div class="callout-box">
         <div class="callout-heading">Emmy's value</div>
-        <p>Emmy gave Avery a structured way to provide proof of education and community service activities that the state's automated systems couldn't fully validate. Without Emmy, Avery would need to figure out what documents to gather and how to submit them &mdash; a process that often leads to delays and coverage gaps.</p>
+        <p>Emmy gave Avery a structured way to provide proof of education, employment, and community service that the state's automated systems couldn't fully validate. Without Emmy, Avery would need to figure out what documents to gather and how to submit them &mdash; a process that often leads to delays and coverage gaps.</p>
     </div>
 
 </div>
@@ -9759,7 +10107,7 @@ function averyEmpTab(tab) {
         'avery-determination'
     ];
 
-    let screenOrder = screenOrderScenario2;
+    let screenOrder = screenOrderScenario1;
 
     /* ============================================
        STEPPER STEP DEFINITIONS (6 phases)
@@ -9895,8 +10243,8 @@ function averyEmpTab(tab) {
         }
     ];
 
-    let stepperPhases = stepperPhasesScenario2;
-    let activeScenario = null;
+    let stepperPhases = stepperPhasesScenario1;
+    let activeScenario = 'scenario1';
 
     const visitedScreens = new Set(['home']);
 
@@ -9977,13 +10325,26 @@ function averyEmpTab(tab) {
         const annotation = screen ? screen.querySelector('.demo-annotation') : null;
         if (annotation) {
             annotation.classList.remove('annotation-visible');
-            // Position annotation based on data-anchor element, or center if none
+            // Position annotation based on data-anchor element, or center if none.
+            // Clamps the box within the viewport and slides the tail to keep
+            // pointing at the anchor regardless of where the box lands.
             const anchorSelector = annotation.dataset.anchor;
             const anchorEl = anchorSelector ? screen.querySelector(anchorSelector) : null;
+            const bottomBarEl = document.querySelector('.bottom-bar');
+            const bottomClearance = (bottomBarEl ? bottomBarEl.offsetHeight : 0) + 8;
             if (anchorEl) {
-                annotation.style.top = anchorEl.getBoundingClientRect().top + 'px';
+                const desiredTop = anchorEl.getBoundingClientRect().top;
+                const boxH = annotation.offsetHeight;
+                const clampedTop = Math.min(Math.max(desiredTop, 8), window.innerHeight - boxH - bottomClearance);
+                const tailOffset = Math.min(Math.max(desiredTop - clampedTop, 12), boxH - 12);
+                annotation.style.top = clampedTop + 'px';
+                annotation.style.setProperty('--tail-top', tailOffset + 'px');
             } else {
-                annotation.style.top = Math.max(16, (window.innerHeight - annotation.offsetHeight) / 2) + 'px';
+                const boxH = annotation.offsetHeight;
+                const centeredTop = (window.innerHeight - boxH) / 2;
+                const clampedTop = Math.min(Math.max(centeredTop, 16), window.innerHeight - boxH - bottomClearance);
+                annotation.style.top = clampedTop + 'px';
+                annotation.style.setProperty('--tail-top', '22px');
             }
         }
 
@@ -9992,10 +10353,10 @@ function averyEmpTab(tab) {
         // Data checks staggered reveal
         if (screenId === 'avery-data-checks') {
             revealDataChecks();
-            annotationDelay = 4200; // last phase at 3700ms + buffer
+            annotationDelay = 4700; // alert at ~4350ms + buffer
         } else if (screenId === 'alex-data-checks') {
             revealAlexDataChecks();
-            annotationDelay = 4500; // last phase at ~3800ms + buffer
+            annotationDelay = 4800; // alert at ~4450ms + buffer
         // Progress bar animations
         } else if (screenId === 'avery-emmy-hub-partial' || screenId === 'avery-emmy-hub-complete' || screenId === 'avery-emmy-hub-with-employment') {
             animateProgressBars(screenId);
@@ -10023,7 +10384,10 @@ function averyEmpTab(tab) {
         const c = document.getElementById(containerId);
         if (!c) return;
 
-        // Reset
+        const isAlex = prefix === 'alex';
+        const alert = c.querySelector(`#${prefix}-dc-alert`);
+
+        // ── Reset ──────────────────────────────────────────────────────────────
         c.querySelectorAll('.dc-section-anim').forEach(el => el.classList.remove('dc-revealed'));
         c.querySelectorAll('.dc-check-anim').forEach(el => {
             el.classList.remove('dc-revealed', 'dc-loading', 'dc-loaded');
@@ -10031,50 +10395,61 @@ function averyEmpTab(tab) {
         c.querySelectorAll('.dc-status-hidden').forEach(el => el.classList.remove('dc-status-visible'));
         c.querySelectorAll('.dc-header-spinner').forEach(el => el.classList.remove('dc-hidden'));
 
-        // All sections + all check rows pre-loaded immediately — only spinners animate
+        // ── Phase 0: all sections slide in, all rows appear in loading state ───
         requestAnimationFrame(() => {
-            c.querySelectorAll('.dc-section-anim').forEach(el => el.classList.add('dc-revealed'));
-            c.querySelectorAll('.dc-check-anim').forEach(el => el.classList.add('dc-revealed', 'dc-loaded'));
+            c.querySelectorAll('.dc-section-anim:not(.dc-alert)').forEach(el => el.classList.add('dc-revealed'));
+            c.querySelectorAll('.dc-check-anim').forEach(el => el.classList.add('dc-revealed', 'dc-loading'));
         });
 
-        // Timing varies by scenario — income lingers for Alex, education lingers for Avery
-        const isAlex = prefix === 'alex';
+        const ROW_INTERVAL = 250;   // ms between individual row resolves within a section
+        const ROW_TO_STATUS = 300;  // ms from last row resolving → section status badge appears
+        const SECTION_GAP = 350;    // ms between one section completing and next section starting
+        const INITIAL_DELAY = 300;  // ms before the first row starts resolving
 
-        // Phase 1: identity + exemptions resolve together
-        setTimeout(() => {
-            ['identity', 'exemptions'].forEach(key => {
+        // Extra delay on the scenario's "problem" section for dramatic effect
+        const sectionDefs = [
+            { key: 'identity',   extra: 0 },
+            { key: 'exemptions', extra: 0 },
+            { key: 'income',     extra: isAlex ? 400 : 0 },
+            { key: 'education',  extra: isAlex ? 0   : 300 },
+        ];
+
+        let cursor = INITIAL_DELAY;
+        let lastStatusT = 0;
+
+        sectionDefs.forEach(({ key, extra }) => {
+            const section = c.querySelector(`#${prefix}-dc-section-${key}`);
+            if (!section) return;
+            const rows = [...section.querySelectorAll('.dc-check-anim')];
+            const sectionStart = cursor + extra;
+
+            // Resolve rows one by one
+            rows.forEach((row, i) => {
+                setTimeout(() => {
+                    row.classList.remove('dc-loading');
+                    row.classList.add('dc-loaded');
+                }, sectionStart + i * ROW_INTERVAL);
+            });
+
+            const lastRowT = sectionStart + (rows.length - 1) * ROW_INTERVAL;
+            const statusT = lastRowT + ROW_TO_STATUS;
+            lastStatusT = statusT;
+
+            // Hide section spinner + reveal status badge
+            setTimeout(() => {
                 const spin = c.querySelector(`#${prefix}-dc-spinner-${key}`);
                 if (spin) spin.classList.add('dc-hidden');
-            });
-            [`#${prefix}-dc-identity-status`, `#${prefix}-dc-exemptions-status`].forEach(sel => {
-                const status = c.querySelector(sel);
+                const status = c.querySelector(`#${prefix}-dc-${key}-status`);
                 if (status) status.classList.add('dc-status-visible');
-            });
-        }, 1200);
+            }, statusT);
 
-        // Phase 2: income resolves — longer for Alex (his problem area)
-        const incomeT = isAlex ? 2800 : 1800;
-        setTimeout(() => {
-            const spin = c.querySelector(`#${prefix}-dc-spinner-income`);
-            if (spin) spin.classList.add('dc-hidden');
-            const status = c.querySelector(`#${prefix}-dc-income-status`);
-            if (status) status.classList.add('dc-status-visible');
-        }, incomeT);
+            cursor = statusT + SECTION_GAP;
+        });
 
-        // Phase 3: education resolves — longer for Avery (her problem area)
-        const eduT = isAlex ? incomeT + 500 : 3200;
+        // Alert appears 500ms after the last section completes
         setTimeout(() => {
-            const spin = c.querySelector(`#${prefix}-dc-spinner-education`);
-            if (spin) spin.classList.add('dc-hidden');
-            const status = c.querySelector(`#${prefix}-dc-education-status`);
-            if (status) status.classList.add('dc-status-visible');
-        }, eduT);
-
-        // Phase 4: alert appears
-        setTimeout(() => {
-            const alert = c.querySelector(`#${prefix}-dc-alert`);
             if (alert) alert.classList.add('dc-revealed');
-        }, eduT + 500);
+        }, lastStatusT + 500);
     }
 
     function animateProgressBars(screenId) {
@@ -10343,6 +10718,20 @@ function averyEmpTab(tab) {
                 fillScreen(screen.id);
             });
         });
+
+        // Copy avatar images from scenario detail illustrations into determination screens
+        const s1Imgs = document.querySelectorAll('#scenario-1-details .scenario-details-avatar-img');
+        const s2Imgs = document.querySelectorAll('#scenario-2-details .scenario-details-avatar-img');
+        if (s1Imgs.length >= 2) {
+            document.querySelectorAll('.det-alex-img').forEach(img => img.src = s1Imgs[0].src);
+            document.querySelectorAll('.det-cara-img').forEach(img => img.src = s1Imgs[1].src);
+        }
+        if (s2Imgs.length >= 1) {
+            document.querySelectorAll('.det-avery-img').forEach(img => img.src = s2Imgs[0].src);
+        }
+        if (s2Imgs.length >= 2) {
+            document.querySelectorAll('.det-cara-img').forEach(img => { if (!img.src) img.src = s2Imgs[1].src; });
+        }
     });
 
     // Constrain radio/checkbox selection to scenario-correct options.
@@ -10464,8 +10853,21 @@ function averyEmpTab(tab) {
         if (idx <= 0) btnBack.classList.add('disabled');
         else btnBack.classList.remove('disabled');
 
-        if (idx < 0 || idx >= total - 1) btnNext.classList.add('disabled');
-        else btnNext.classList.remove('disabled');
+        const atEnd = idx >= total - 1;
+        if (atEnd && activeScenario === 'scenario1') {
+            btnNext.classList.remove('disabled');
+            btnNext.textContent = 'Scenario 2 →';
+            btnNext.onclick = () => switchScenario('scenario2');
+        } else if (atEnd && activeScenario === 'scenario2') {
+            btnNext.classList.remove('disabled');
+            btnNext.textContent = 'Return to journey map →';
+            btnNext.onclick = () => goHome();
+        } else {
+            btnNext.innerHTML = 'Next &rarr;';
+            btnNext.onclick = goNext;
+            if (idx < 0 || atEnd) btnNext.classList.add('disabled');
+            else btnNext.classList.remove('disabled');
+        }
     }
 
     function goBack() {
